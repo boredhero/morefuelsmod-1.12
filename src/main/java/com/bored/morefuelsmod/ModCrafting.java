@@ -1,4 +1,4 @@
-package com.bored.morefuelsmod;
+/*package com.bored.morefuelsmod;
 
 import com.bored.morefuelsmod.block.ModBlocks;
 import com.bored.morefuelsmod.item.ModItems;
@@ -136,4 +136,4 @@ public class ModCrafting {
 		GameRegistry.addRecipe(new ItemStack(ModItems.pelletsFuel, 82),"###","###","###",'#',Items.TNT_MINECART);
 	}
 }
-
+*/

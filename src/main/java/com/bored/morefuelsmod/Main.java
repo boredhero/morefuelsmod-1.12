@@ -1,6 +1,6 @@
 package com.bored.morefuelsmod;
 
-import com.bored.morefuelsmod.block.ModBlocks;
+//import com.bored.morefuelsmod.block.ModBlocks;
 import com.bored.morefuelsmod.client.MoreFuelsTab;
 import com.bored.morefuelsmod.item.ModItems;
 import com.bored.morefuelsmod.proxy.CommonProxy;
@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = Main.modid, name = Main.name, version = Main.version, acceptedMinecraftVersions = "[1.11, 1.11.2]")
+@Mod(modid = Main.modid, name = Main.name, version = Main.version, acceptedMinecraftVersions = "[1.12, 1.12.1]")
 public class Main {
 
 	public static final String modid = "morefuelsmod";
@@ -31,21 +31,21 @@ public class Main {
 	public void preInit(FMLPreInitializationEvent event){
 		System.out.println(name + " is making smelting oh so much better for you!");
 		ModItems.init();
-		ModBlocks.init();
+		//ModBlocks.init();
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		boolean enableRFtLrecipe = config.get(Configuration.CATEGORY_GENERAL, "enableRFtLrecipe", true).getBoolean(true);
 		if(enableRFtLrecipe)
 			RFtL.init();
 		boolean enableModOrespawn = config.get(Configuration.CATEGORY_GENERAL, "enableModOrespawn", true).getBoolean(true);
-		if(enableModOrespawn)
+		/*if(enableModOrespawn)
 			GameRegistry.registerWorldGenerator(new ModWorldGen(), 1);
 		boolean enableModCraftingRecipes = config.get(Configuration.CATEGORY_GENERAL, "enableModCraftingRecipes", true).getBoolean(true);
 		if(enableModCraftingRecipes)
 			ModCrafting.init();
 		boolean enableBituminousCoalOreSmeltingIntoCoke = config.get(Configuration.CATEGORY_GENERAL, "enableBituminousCoalOreSmeltingIntoCoke", true).getBoolean(true);
 		if(enableBituminousCoalOreSmeltingIntoCoke)
-			ModSmelting.init();
+			ModSmelting.init(); */
 		//Fuels start here
 		boolean enableDeadbush = config.get(Configuration.CATEGORY_GENERAL, "fuelenableDeadbush", true).getBoolean(true);
 		if(enableDeadbush)
@@ -258,7 +258,7 @@ public class Main {
 		if(enableExperimentalPotions)
 			GameRegistry.registerFuelHandler(new ExperimentalPotions());
 		//Mod Fuels Start Here
-		boolean enablePelletFuel = config.get(Configuration.CATEGORY_GENERAL, "modfuelenablePelletFuel", true).getBoolean(true);
+/*		boolean enablePelletFuel = config.get(Configuration.CATEGORY_GENERAL, "modfuelenablePelletFuel", true).getBoolean(true);
 		if(enablePelletFuel)
 			GameRegistry.registerFuelHandler(new PelletFuel());
 		boolean enableConcentratedPelletFuel = config.get(Configuration.CATEGORY_GENERAL, "modfuelenableConcentratedPelletFuel", true).getBoolean(true);
@@ -290,7 +290,7 @@ public class Main {
 			GameRegistry.registerFuelHandler(new BituminousCoalBlock());
 		boolean enableLavaOrb = config.get(Configuration.CATEGORY_GENERAL, "modfuelsenableLavaOrb", true).getBoolean(true);
 		if(enableLavaOrb)
-			GameRegistry.registerFuelHandler(new LavaOrb());
+			GameRegistry.registerFuelHandler(new LavaOrb());*/
 		config.save();
 	}
 

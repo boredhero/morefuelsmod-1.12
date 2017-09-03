@@ -1,4 +1,4 @@
-package com.bored.morefuelsmod.block;
+/*package com.bored.morefuelsmod.block;
 
 import java.util.Random;
 
@@ -28,4 +28,4 @@ public class BlockOre extends BlockBase {
 		}
 
 
-}
+}*/

@@ -1,42 +1,22 @@
 package com.bored.morefuelsmod.item;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.event.RegistryEvent;
 
-public class ModItems {
-	
-	public static ItemBase pelletsFuel;
-	public static ItemBase concentratedPelletsFuel;
-	public static ItemBase coke;
-	public static ItemBase bituminousCoal;
-	public static ItemBase canSlimoline;
-	public static ItemBase dustCoal;
-	public static ItemBase glassOrb;
-	public static ItemBase temperedGlassOrb;
-	public static ItemBase lavaOrb;
-	public static ItemBase lavaCrystals;
+/**
+ * Created by Seine Eiligkeit on 27.06.2017.
+ */
+public final class ModItems extends Item {
 
-	public static void init() {
-		pelletsFuel = register(new ItemBase("pelletsFuel"));
-		concentratedPelletsFuel = register(new ItemBase("concentratedPelletsFuel"));
-		coke = register(new ItemBase("coke"));
-		bituminousCoal = register(new ItemBase("bituminousCoal"));
-		canSlimoline = register(new ItemBase("canSlimoline"));
-		dustCoal = register(new ItemBase("dustCoal"));
-		glassOrb = register(new ItemBase("glassOrb"));
-		temperedGlassOrb = register(new ItemBase("temperedGlassOrb"));
-		lavaOrb = register(new ItemBase("lavaOrb"));
-		lavaCrystals = register(new ItemBase("lavaCrystals"));
-	}
+    public static Item tutorialItem;
 
-	private static <T extends Item> T register(T item) {
-		GameRegistry.register(item);
+    public static final void init(){
+        tutorialItem = new Item();
 
-		if (item instanceof ItemBase) {
-			((ItemBase)item).registerItemModel();
-		}
+        tutorialItem.setUnlocalizedName("tutorialItem");
+        tutorialItem.setRegistryName("tutorialItem");
+        tutorialItem.setCreativeTab(CreativeTabs.MISC);
 
-		return item;
-	}
-
+    }
 }

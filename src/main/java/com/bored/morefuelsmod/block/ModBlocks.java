@@ -1,4 +1,4 @@
-package com.bored.morefuelsmod.block;
+/*package com.bored.morefuelsmod.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -43,4 +43,4 @@ public class ModBlocks {
 		return register(block, itemBlock);
 	}
 
-}
+}*/

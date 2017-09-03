@@ -15,7 +15,7 @@ public class MoreFuelsTab extends CreativeTabs {
 
 	@Override
 	public ItemStack getTabIconItem() {
-		return new ItemStack(ModItems.coke);
+		return new ItemStack(ModItems.tutorialItem);
 	}
 
 }

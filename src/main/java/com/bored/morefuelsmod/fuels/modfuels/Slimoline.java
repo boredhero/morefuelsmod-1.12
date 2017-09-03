@@ -1,4 +1,4 @@
-package com.bored.morefuelsmod.fuels.modfuels;
+/*package com.bored.morefuelsmod.fuels.modfuels;
 
 import com.bored.morefuelsmod.item.ModItems;
 
@@ -17,4 +17,4 @@ public class Slimoline implements IFuelHandler {
 		}
 		return 0;
 	}
-}
+}*/
