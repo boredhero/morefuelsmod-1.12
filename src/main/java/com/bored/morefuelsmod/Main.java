@@ -17,12 +17,12 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = Main.modid, name = Main.name, version = Main.version, acceptedMinecraftVersions = "[1.12]")
+@Mod(modid = Main.modid, name = Main.name, version = Main.version, acceptedMinecraftVersions = "[1.11, 1.11.2]")
 public class Main {
 
-	public static final String modid = "morefuelsmod-1.12.x";
+	public static final String modid = "morefuelsmod";
 	public static final String name = "More Fuels Mod";
-	public static final String version = "1.6.0";
+	public static final String version = "1.6.1";
 
 	@Mod.Instance(modid)
 	public static Main instance;

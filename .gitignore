@@ -1,22 +1,9 @@
-# eclipse
-bin
-*.launch
-.settings
-.metadata
-.classpath
-.project
-
-# idea
-out
-*.ipr
-*.iws
-*.iml
-.idea
-
-# gradle
-build
-.gradle
-
-# other
-eclipse
-run
+/CREDITS-fml.txt
+/forge-1.12.1-14.22.0.2467-changelog.txt
+/LICENSE-new.txt
+/MinecraftForge-Credits.txt
+/morefuelsmod-1.12_Client.launch
+/morefuelsmod-1.12_Server.launch
+/Paulscode IBXM Library License.txt
+/Paulscode SoundSystem CodecIBXM License.txt
+/README.txt
