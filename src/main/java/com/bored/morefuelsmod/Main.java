@@ -1,63 +1,46 @@
 package com.bored.morefuelsmod;
 
-import java.lang.ref.Reference;
-import java.util.logging.Logger;
-
-//import com.bored.morefuelsmod.block.ModBlocks;
-//import com.bored.morefuelsmod.client.MoreFuelsTab;
 import com.bored.morefuelsmod.proxy.CommonProxy;
-import com.bored.morefuelsmod.fuels.*;
-import com.bored.morefuelsmod.fuels.modfuels.*;
-
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraftforge.common.config.ConfigCategory;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Main.modid, name = Main.name, version = Main.version, acceptedMinecraftVersions = "[1.12, 1.12.2]")
+@Mod(modid = Main.MODID, name = Main.MODNAME, version = Main.MODVERSION, dependencies = "required-after:forge@[13.19.0.2129,)", useMetadata = true)
 public class Main {
 
-	public static final String modid = "morefuelsmod";
-	public static final String name = "More Fuels Mod";
-	public static final String version = "b001";
+    public static final String MODID = "morefuelsmod";
+    public static final String MODNAME = "More Fuels Mod Alpha";
+    public static final String MODVERSION = "b001";
 
-	@Mod.Instance(modid)
-	public static Main instance;
-	
-	public static Logger LOGGER = Logger.getLogger(Main.modid);
-	
-	@SidedProxy(clientSide = "com.bored.morefuelsmod.proxy.ClientProxy", serverSide = "com.bored.morefuelsmod.proxy.CommonProxy")
-	public static CommonProxy proxy;
-	
-	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event){
-		LOGGER.info("Starting PreInit...");
-		System.out.println(name + " is making smelting oh so much better for you!");
-	}
+    @SidedProxy(clientSide = "com.bored.morefuelsmod.proxy.ClientProxy", serverSide = "com.bored.morefuelsmod.ServerProxy")
+    public static CommonProxy proxy;
 
-	@Mod.EventHandler
-	public void init(FMLInitializationEvent event) {
-		LOGGER.info("Starting Init...");
-	}
+    @Mod.Instance
+    public static Main instance;
 
-	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
-		LOGGER.info("Starting PostInit...");
-	}
+    public static Logger logger;
 
-	public static void setCustomModelResourceLocation(Item item, int i, ModelResourceLocation modelResourceLocation) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	//public static final MoreFuelsTab creativeTab = new MoreFuelsTab();
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event){
+        logger = event.getModLog();
+        proxy.preInit(event);
+    }
 
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent e) {
+        proxy.init(e);
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent e) {
+        proxy.postInit(e);
+    }
+
+    @Mod.EventHandler
+    public void serverLoad(FMLServerStartingEvent event) {
+    }
 }
