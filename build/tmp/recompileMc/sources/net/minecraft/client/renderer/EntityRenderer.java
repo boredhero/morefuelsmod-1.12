@@ -931,6 +931,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
                     world.provider.getLightmapColors(partialTicks, f, f2, f3, colors);
                     f8 = colors[0]; f9 = colors[1]; f10 = colors[2];
 
+                    // Forge: fix MC-58177
+                    f8 = MathHelper.clamp(f8, 0f, 1f);
+                    f9 = MathHelper.clamp(f9, 0f, 1f);
+                    f10 = MathHelper.clamp(f10, 0f, 1f);
+
                     if (this.mc.player.isPotionActive(MobEffects.NIGHT_VISION))
                     {
                         float f15 = this.getNightVisionBrightness(this.mc.player, partialTicks);
@@ -1909,6 +1914,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
             {
                 f6 = 1.0F / this.fogColorBlue;
             }
+
+            // Forge: fix MC-4647 and MC-10480
+            if (Float.isInfinite(f6)) f6 = Math.nextAfter(f6, 0.0);
 
             this.fogColorRed = this.fogColorRed * (1.0F - f15) + this.fogColorRed * f6 * f15;
             this.fogColorGreen = this.fogColorGreen * (1.0F - f15) + this.fogColorGreen * f6 * f15;

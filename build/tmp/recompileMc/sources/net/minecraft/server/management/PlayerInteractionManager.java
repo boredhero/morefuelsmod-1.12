@@ -462,7 +462,7 @@ public class PlayerInteractionManager
             EnumActionResult ret = stack.onItemUseFirst(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
             if (ret != EnumActionResult.PASS) return ret;
 
-            boolean bypass = stack.isEmpty() || stack.getItem().doesSneakBypassUse(stack, worldIn, pos, player);
+            boolean bypass = player.getHeldItemMainhand().doesSneakBypassUse(worldIn, pos, player) && player.getHeldItemOffhand().doesSneakBypassUse(worldIn, pos, player);
             EnumActionResult result = EnumActionResult.PASS;
 
             if (!player.isSneaking() || bypass || event.getUseBlock() == net.minecraftforge.fml.common.eventhandler.Event.Result.ALLOW)

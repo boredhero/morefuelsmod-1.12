@@ -30,7 +30,7 @@ public class DefaultResourcePack implements IResourcePack
 
     public InputStream getInputStream(ResourceLocation location) throws IOException
     {
-        InputStream inputstream = this.getResourceStream(location);
+        InputStream inputstream = this.getInputStreamAssets(location);
 
         if (inputstream != null)
         {
@@ -38,7 +38,7 @@ public class DefaultResourcePack implements IResourcePack
         }
         else
         {
-            InputStream inputstream1 = this.getInputStreamAssets(location);
+            InputStream inputstream1 = this.getResourceStream(location);
 
             if (inputstream1 != null)
             {

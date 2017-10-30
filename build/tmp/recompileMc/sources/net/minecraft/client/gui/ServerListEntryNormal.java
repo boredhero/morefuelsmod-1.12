@@ -79,8 +79,8 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
             });
         }
 
-        boolean flag = this.server.version > 338;
-        boolean flag1 = this.server.version < 338;
+        boolean flag = this.server.version > 340;
+        boolean flag1 = this.server.version < 340;
         boolean flag2 = flag || flag1;
         this.mc.fontRenderer.drawString(this.server.serverName, x + 32 + 3, y + 1, 16777215);
         List<String> list = this.mc.fontRenderer.listFormattedStringToWidth(net.minecraftforge.fml.client.FMLClientHandler.instance().fixDescription(this.server.serverMOTD), listWidth - 32 - 2);

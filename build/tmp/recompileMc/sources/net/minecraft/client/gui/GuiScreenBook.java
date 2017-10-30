@@ -75,6 +75,7 @@ public class GuiScreenBook extends GuiScreen
 
             if (this.bookTotalPages < 1)
             {
+                this.bookPages.appendTag(new NBTTagString("")); // Forge: fix MC-1685
                 this.bookTotalPages = 1;
             }
         }

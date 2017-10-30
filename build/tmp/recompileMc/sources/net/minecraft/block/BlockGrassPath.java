@@ -57,7 +57,7 @@ public class BlockGrassPath extends Block
     {
         if (worldIn.getBlockState(pos.up()).getMaterial().isSolid())
         {
-            worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
+            BlockFarmland.turnToDirt(worldIn, pos);
         }
     }
 

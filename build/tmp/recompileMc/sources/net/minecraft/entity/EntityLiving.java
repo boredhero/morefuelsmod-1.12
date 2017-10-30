@@ -1114,6 +1114,8 @@ public abstract class EntityLiving extends EntityLivingBase
 
     public static EntityEquipmentSlot getSlotForItemStack(ItemStack stack)
     {
+        final EntityEquipmentSlot slot = stack.getItem().getEquipmentSlot(stack);
+        if (slot != null) return slot; // FORGE: Allow modders to set a non-default equipment slot for a stack; e.g. a non-armor chestplate-slot item
         if (stack.getItem() != Item.getItemFromBlock(Blocks.PUMPKIN) && stack.getItem() != Items.SKULL)
         {
             if (stack.getItem() instanceof ItemArmor)

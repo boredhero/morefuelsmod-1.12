@@ -1005,7 +1005,7 @@ public abstract class EntityPlayer extends EntityLivingBase
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("DataVersion", 1241);
+        compound.setInteger("DataVersion", 1343);
         compound.setTag("Inventory", this.inventory.writeToNBT(new NBTTagList()));
         compound.setInteger("SelectedItemSlot", this.inventory.currentItem);
         compound.setBoolean("Sleeping", this.sleeping);

@@ -41,7 +41,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Chunk
+public class Chunk implements net.minecraftforge.common.capabilities.ICapabilityProvider
 {
     private static final Logger LOGGER = LogManager.getLogger();
     public static final ExtendedBlockStorage NULL_BLOCK_STORAGE = null;
@@ -112,6 +112,7 @@ public class Chunk
 
         Arrays.fill(this.precipitationHeightMap, -999);
         Arrays.fill(this.blockBiomeArray, (byte) - 1);
+        capabilities = net.minecraftforge.event.ForgeEventFactory.gatherCapabilities(this);
     }
 
     public Chunk(World worldIn, ChunkPrimer primer, int x, int z)
@@ -926,8 +927,6 @@ public class Chunk
     {
         this.loaded = false;
 
-        this.world.markTileEntitiesInChunkForRemoval(this);
-        if (false) // Forge: remove all TEs in a chunk at once instead of marking each one for removal
         for (TileEntity tileentity : this.tileEntities.values())
         {
             this.world.markTileEntityForRemoval(tileentity);
@@ -1641,5 +1640,23 @@ public class Chunk
             net.minecraftforge.fml.common.FMLLog.log.debug(format, "Minecraft", this.x, this.z, this.world.provider.getDimension());
         else
             net.minecraftforge.fml.common.FMLLog.log.warn(format, activeModContainer.getName(), this.x, this.z, this.world.provider.getDimension());
+    }
+
+    private final net.minecraftforge.common.capabilities.CapabilityDispatcher capabilities;
+    @Nullable
+    public net.minecraftforge.common.capabilities.CapabilityDispatcher getCapabilities()
+    {
+        return capabilities;
+    }
+    @Override
+    public boolean hasCapability(net.minecraftforge.common.capabilities.Capability<?> capability, @Nullable EnumFacing facing)
+    {
+        return capabilities == null ? false : capabilities.hasCapability(capability, facing);
+    }
+    @Override
+    @Nullable
+    public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable EnumFacing facing)
+    {
+        return capabilities == null ? null : capabilities.getCapability(capability, facing);
     }
 }

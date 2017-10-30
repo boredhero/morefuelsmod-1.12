@@ -530,13 +530,13 @@ public class Template
             nbttaglist2.appendTag(NBTUtil.writeBlockState(new NBTTagCompound(), iblockstate));
         }
 
+        net.minecraftforge.fml.common.FMLCommonHandler.instance().getDataFixer().writeVersionData(nbt); //Moved up for MC updating reasons.
         nbt.setTag("palette", nbttaglist2);
         nbt.setTag("blocks", nbttaglist);
         nbt.setTag("entities", nbttaglist1);
         nbt.setTag("size", this.writeInts(this.size.getX(), this.size.getY(), this.size.getZ()));
         nbt.setString("author", this.author);
-        nbt.setInteger("DataVersion", 1241);
-        net.minecraftforge.fml.common.FMLCommonHandler.instance().getDataFixer().writeVersionData(nbt);
+        nbt.setInteger("DataVersion", 1343);
         return nbt;
     }
 

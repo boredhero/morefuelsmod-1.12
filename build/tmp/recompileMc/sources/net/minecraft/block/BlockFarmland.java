@@ -24,6 +24,7 @@ public class BlockFarmland extends Block
 {
     public static final PropertyInteger MOISTURE = PropertyInteger.create("moisture", 0, 7);
     protected static final AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
+    protected static final AxisAlignedBB field_194405_c = new AxisAlignedBB(0.0D, 0.9375D, 0.0D, 1.0D, 1.0D, 1.0D);
 
     protected BlockFarmland()
     {
@@ -63,7 +64,7 @@ public class BlockFarmland extends Block
             }
             else if (!this.hasCrops(worldIn, pos))
             {
-                this.turnToDirt(worldIn, pos);
+                turnToDirt(worldIn, pos);
             }
         }
         else if (i < 7)
@@ -79,21 +80,21 @@ public class BlockFarmland extends Block
     {
         if (!worldIn.isRemote && entityIn.canTrample(worldIn, this, pos, fallDistance)) // Forge: Move logic to Entity#canTrample
         {
-            this.turnToDirt(worldIn, pos);
+            turnToDirt(worldIn, pos);
         }
 
         super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
     }
 
-    private void turnToDirt(World worldIn, BlockPos pos)
+    protected static void turnToDirt(World p_190970_0_, BlockPos worldIn)
     {
-        IBlockState iblockstate = Blocks.DIRT.getDefaultState();
-        worldIn.setBlockState(pos, iblockstate);
-        AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(worldIn, pos).offset(pos);
+        p_190970_0_.setBlockState(worldIn, Blocks.DIRT.getDefaultState());
+        AxisAlignedBB axisalignedbb = field_194405_c.offset(worldIn);
 
-        for (Entity entity : worldIn.getEntitiesWithinAABBExcludingEntity((Entity)null, axisalignedbb))
+        for (Entity entity : p_190970_0_.getEntitiesWithinAABBExcludingEntity((Entity)null, axisalignedbb))
         {
-            entity.setPosition(entity.posX, axisalignedbb.maxY, entity.posZ);
+            double d0 = Math.min(axisalignedbb.maxY - axisalignedbb.minY, axisalignedbb.maxY - entity.getEntityBoundingBox().minY);
+            entity.setPositionAndUpdate(entity.posX, entity.posY + d0 + 0.001D, entity.posZ);
         }
     }
 
@@ -127,7 +128,7 @@ public class BlockFarmland extends Block
 
         if (worldIn.getBlockState(pos.up()).getMaterial().isSolid())
         {
-            this.turnToDirt(worldIn, pos);
+            turnToDirt(worldIn, pos);
         }
     }
 
@@ -140,7 +141,7 @@ public class BlockFarmland extends Block
 
         if (worldIn.getBlockState(pos.up()).getMaterial().isSolid())
         {
-            this.turnToDirt(worldIn, pos);
+            turnToDirt(worldIn, pos);
         }
     }
 

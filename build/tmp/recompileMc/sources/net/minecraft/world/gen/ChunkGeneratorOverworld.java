@@ -52,7 +52,7 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
     private MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
     private MapGenBase ravineGenerator = new MapGenRavine();
     private StructureOceanMonument oceanMonumentGenerator = new StructureOceanMonument();
-    private final WoodlandMansion woodlandMansionGenerator = new WoodlandMansion(this);
+    private WoodlandMansion woodlandMansionGenerator = new WoodlandMansion(this);
     private Biome[] biomesForGeneration;
     double[] mainNoiseRegion;
     double[] minLimitRegion;
@@ -69,6 +69,7 @@ public class ChunkGeneratorOverworld implements IChunkGenerator
             scatteredFeatureGenerator = (MapGenScatteredFeature)net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(scatteredFeatureGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.SCATTERED_FEATURE);
             ravineGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(ravineGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.RAVINE);
             oceanMonumentGenerator = (StructureOceanMonument)net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(oceanMonumentGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.OCEAN_MONUMENT);
+            woodlandMansionGenerator = (WoodlandMansion)net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(woodlandMansionGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.WOODLAND_MANSION);
         }
         this.world = worldIn;
         this.mapFeaturesEnabled = mapFeaturesEnabledIn;

@@ -4984,15 +4984,15 @@
         "start": "490"
       },
       {
-        "access": "609",
-        "inner_class": "net/minecraft/client/gui/GuiPageButtonList$GuiResponder",
-        "inner_name": "GuiResponder",
-        "outer_class": "net/minecraft/client/gui/GuiPageButtonList"
-      },
-      {
         "access": "29",
         "inner_class": "net/minecraft/client/gui/GuiPageButtonList$GuiLabelEntry",
         "inner_name": "GuiLabelEntry",
+        "outer_class": "net/minecraft/client/gui/GuiPageButtonList"
+      },
+      {
+        "access": "609",
+        "inner_class": "net/minecraft/client/gui/GuiPageButtonList$GuiResponder",
+        "inner_name": "GuiResponder",
         "outer_class": "net/minecraft/client/gui/GuiPageButtonList"
       }
     ]
@@ -6020,8 +6020,14 @@
       },
       {
         "access": "29",
-        "inner_class": "net/minecraft/client/main/GameConfiguration$ServerInformation",
-        "inner_name": "ServerInformation",
+        "inner_class": "net/minecraft/client/main/GameConfiguration$GameInformation",
+        "inner_name": "GameInformation",
+        "outer_class": "net/minecraft/client/main/GameConfiguration"
+      },
+      {
+        "access": "29",
+        "inner_class": "net/minecraft/client/main/GameConfiguration$UserInformation",
+        "inner_name": "UserInformation",
         "outer_class": "net/minecraft/client/main/GameConfiguration"
       },
       {
@@ -6032,14 +6038,8 @@
       },
       {
         "access": "29",
-        "inner_class": "net/minecraft/client/main/GameConfiguration$GameInformation",
-        "inner_name": "GameInformation",
-        "outer_class": "net/minecraft/client/main/GameConfiguration"
-      },
-      {
-        "access": "29",
-        "inner_class": "net/minecraft/client/main/GameConfiguration$UserInformation",
-        "inner_name": "UserInformation",
+        "inner_class": "net/minecraft/client/main/GameConfiguration$ServerInformation",
+        "inner_name": "ServerInformation",
         "outer_class": "net/minecraft/client/main/GameConfiguration"
       }
     ]
@@ -6307,19 +6307,19 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/client/multiplayer/WorldClient$1",
-        "start": "367"
+        "start": "368"
       },
       {
         "inner_class": "net/minecraft/client/multiplayer/WorldClient$2",
-        "start": "374"
+        "start": "375"
       },
       {
         "inner_class": "net/minecraft/client/multiplayer/WorldClient$3",
-        "start": "381"
+        "start": "382"
       },
       {
         "inner_class": "net/minecraft/client/multiplayer/WorldClient$4",
-        "start": "388"
+        "start": "389"
       }
     ]
   },
@@ -6332,7 +6332,7 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/client/multiplayer/WorldClient$1",
-        "start": "367"
+        "start": "368"
       }
     ]
   },
@@ -6345,7 +6345,7 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/client/multiplayer/WorldClient$2",
-        "start": "374"
+        "start": "375"
       }
     ]
   },
@@ -6358,7 +6358,7 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/client/multiplayer/WorldClient$3",
-        "start": "381"
+        "start": "382"
       }
     ]
   },
@@ -6371,7 +6371,7 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/client/multiplayer/WorldClient$4",
-        "start": "388"
+        "start": "389"
       }
     ]
   },
@@ -8355,8 +8355,10 @@
   "net/minecraft/client/renderer/EnumFaceDirection": {
     "innerClasses": [
       {
-        "access": "1000",
-        "inner_class": "net/minecraft/client/renderer/EnumFaceDirection$1"
+        "access": "29",
+        "inner_class": "net/minecraft/client/renderer/EnumFaceDirection$VertexInformation",
+        "inner_name": "VertexInformation",
+        "outer_class": "net/minecraft/client/renderer/EnumFaceDirection"
       },
       {
         "access": "39",
@@ -8365,10 +8367,8 @@
         "outer_class": "net/minecraft/client/renderer/EnumFaceDirection"
       },
       {
-        "access": "29",
-        "inner_class": "net/minecraft/client/renderer/EnumFaceDirection$VertexInformation",
-        "inner_name": "VertexInformation",
-        "outer_class": "net/minecraft/client/renderer/EnumFaceDirection"
+        "access": "1000",
+        "inner_class": "net/minecraft/client/renderer/EnumFaceDirection$1"
       }
     ]
   },
@@ -8469,62 +8469,14 @@
       },
       {
         "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$ClearState",
-        "inner_name": "ClearState",
-        "outer_class": "net/minecraft/client/renderer/GlStateManager"
-      },
-      {
-        "access": "28",
         "inner_class": "net/minecraft/client/renderer/GlStateManager$ColorLogicState",
         "inner_name": "ColorLogicState",
         "outer_class": "net/minecraft/client/renderer/GlStateManager"
       },
       {
         "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$TexGenState",
-        "inner_name": "TexGenState",
-        "outer_class": "net/minecraft/client/renderer/GlStateManager"
-      },
-      {
-        "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$FogState",
-        "inner_name": "FogState",
-        "outer_class": "net/minecraft/client/renderer/GlStateManager"
-      },
-      {
-        "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$CullState",
-        "inner_name": "CullState",
-        "outer_class": "net/minecraft/client/renderer/GlStateManager"
-      },
-      {
-        "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$AlphaState",
-        "inner_name": "AlphaState",
-        "outer_class": "net/minecraft/client/renderer/GlStateManager"
-      },
-      {
-        "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$Color",
-        "inner_name": "Color",
-        "outer_class": "net/minecraft/client/renderer/GlStateManager"
-      },
-      {
-        "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$DepthState",
-        "inner_name": "DepthState",
-        "outer_class": "net/minecraft/client/renderer/GlStateManager"
-      },
-      {
-        "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$ColorMaterialState",
-        "inner_name": "ColorMaterialState",
-        "outer_class": "net/minecraft/client/renderer/GlStateManager"
-      },
-      {
-        "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$ColorMask",
-        "inner_name": "ColorMask",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$ClearState",
+        "inner_name": "ClearState",
         "outer_class": "net/minecraft/client/renderer/GlStateManager"
       },
       {
@@ -8541,8 +8493,56 @@
       },
       {
         "access": "28",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$AlphaState",
+        "inner_name": "AlphaState",
+        "outer_class": "net/minecraft/client/renderer/GlStateManager"
+      },
+      {
+        "access": "28",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$FogState",
+        "inner_name": "FogState",
+        "outer_class": "net/minecraft/client/renderer/GlStateManager"
+      },
+      {
+        "access": "28",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$ColorMaterialState",
+        "inner_name": "ColorMaterialState",
+        "outer_class": "net/minecraft/client/renderer/GlStateManager"
+      },
+      {
+        "access": "28",
         "inner_class": "net/minecraft/client/renderer/GlStateManager$PolygonOffsetState",
         "inner_name": "PolygonOffsetState",
+        "outer_class": "net/minecraft/client/renderer/GlStateManager"
+      },
+      {
+        "access": "28",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$DepthState",
+        "inner_name": "DepthState",
+        "outer_class": "net/minecraft/client/renderer/GlStateManager"
+      },
+      {
+        "access": "28",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$TextureState",
+        "inner_name": "TextureState",
+        "outer_class": "net/minecraft/client/renderer/GlStateManager"
+      },
+      {
+        "access": "28",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$CullState",
+        "inner_name": "CullState",
+        "outer_class": "net/minecraft/client/renderer/GlStateManager"
+      },
+      {
+        "access": "28",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$Color",
+        "inner_name": "Color",
+        "outer_class": "net/minecraft/client/renderer/GlStateManager"
+      },
+      {
+        "access": "28",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$BlendState",
+        "inner_name": "BlendState",
         "outer_class": "net/minecraft/client/renderer/GlStateManager"
       },
       {
@@ -8553,8 +8553,8 @@
       },
       {
         "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$BlendState",
-        "inner_name": "BlendState",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$TexGenState",
+        "inner_name": "TexGenState",
         "outer_class": "net/minecraft/client/renderer/GlStateManager"
       },
       {
@@ -8565,8 +8565,8 @@
       },
       {
         "access": "28",
-        "inner_class": "net/minecraft/client/renderer/GlStateManager$TextureState",
-        "inner_name": "TextureState",
+        "inner_class": "net/minecraft/client/renderer/GlStateManager$ColorMask",
+        "inner_name": "ColorMask",
         "outer_class": "net/minecraft/client/renderer/GlStateManager"
       }
     ]
@@ -9736,15 +9736,15 @@
         "inner_class": "net/minecraft/client/renderer/block/model/ModelBlock$1"
       },
       {
-        "access": "29",
-        "inner_class": "net/minecraft/client/renderer/block/model/ModelBlock$LoopException",
-        "inner_name": "LoopException",
-        "outer_class": "net/minecraft/client/renderer/block/model/ModelBlock"
-      },
-      {
         "access": "30",
         "inner_class": "net/minecraft/client/renderer/block/model/ModelBlock$Bookkeep",
         "inner_name": "Bookkeep",
+        "outer_class": "net/minecraft/client/renderer/block/model/ModelBlock"
+      },
+      {
+        "access": "29",
+        "inner_class": "net/minecraft/client/renderer/block/model/ModelBlock$LoopException",
+        "inner_name": "LoopException",
         "outer_class": "net/minecraft/client/renderer/block/model/ModelBlock"
       }
     ]
@@ -10082,11 +10082,11 @@
     },
     "innerClasses": [
       {
-        "inner_class": "net/minecraft/client/renderer/block/model/multipart/ICondition$1$1",
+        "inner_class": "net/minecraft/client/renderer/block/model/multipart/ICondition$1",
         "start": "14"
       },
       {
-        "inner_class": "net/minecraft/client/renderer/block/model/multipart/ICondition$1",
+        "inner_class": "net/minecraft/client/renderer/block/model/multipart/ICondition$1$1",
         "start": "14"
       }
     ]
@@ -10108,11 +10108,11 @@
     },
     "innerClasses": [
       {
-        "inner_class": "net/minecraft/client/renderer/block/model/multipart/ICondition$2",
+        "inner_class": "net/minecraft/client/renderer/block/model/multipart/ICondition$2$1",
         "start": "25"
       },
       {
-        "inner_class": "net/minecraft/client/renderer/block/model/multipart/ICondition$2$1",
+        "inner_class": "net/minecraft/client/renderer/block/model/multipart/ICondition$2",
         "start": "25"
       }
     ]
@@ -11632,14 +11632,14 @@
   "net/minecraft/client/resources/data/MetadataSerializer": {
     "innerClasses": [
       {
-        "access": "1000",
-        "inner_class": "net/minecraft/client/resources/data/MetadataSerializer$1"
-      },
-      {
         "access": "20",
         "inner_class": "net/minecraft/client/resources/data/MetadataSerializer$Registration",
         "inner_name": "Registration",
         "outer_class": "net/minecraft/client/resources/data/MetadataSerializer"
+      },
+      {
+        "access": "1000",
+        "inner_class": "net/minecraft/client/resources/data/MetadataSerializer$1"
       }
     ]
   },
@@ -12966,14 +12966,14 @@
         "start": "205"
       },
       {
+        "access": "1000",
+        "inner_class": "net/minecraft/enchantment/EnchantmentHelper$1"
+      },
+      {
         "access": "608",
         "inner_class": "net/minecraft/enchantment/EnchantmentHelper$IModifier",
         "inner_name": "IModifier",
         "outer_class": "net/minecraft/enchantment/EnchantmentHelper"
-      },
-      {
-        "access": "1000",
-        "inner_class": "net/minecraft/enchantment/EnchantmentHelper$1"
       }
     ]
   },
@@ -14637,14 +14637,14 @@
         "start": "310"
       },
       {
-        "access": "1000",
-        "inner_class": "net/minecraft/entity/monster/EntityPolarBear$1"
-      },
-      {
         "access": "28",
         "inner_class": "net/minecraft/entity/monster/EntityPolarBear$GroupData",
         "inner_name": "GroupData",
         "outer_class": "net/minecraft/entity/monster/EntityPolarBear"
+      },
+      {
+        "access": "1000",
+        "inner_class": "net/minecraft/entity/monster/EntityPolarBear$1"
       }
     ]
   },
@@ -17672,15 +17672,15 @@
     "innerClasses": [
       {
         "access": "4000",
+        "inner_class": "net/minecraft/network/EnumConnectionState$2"
+      },
+      {
+        "access": "4000",
         "inner_class": "net/minecraft/network/EnumConnectionState$4"
       },
       {
         "access": "4000",
         "inner_class": "net/minecraft/network/EnumConnectionState$1"
-      },
-      {
-        "access": "4000",
-        "inner_class": "net/minecraft/network/EnumConnectionState$2"
       },
       {
         "access": "4000",
@@ -17736,15 +17736,15 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/network/NetHandlerPlayServer$1",
-        "start": "269"
+        "start": "274"
       },
       {
         "inner_class": "net/minecraft/network/NetHandlerPlayServer$2",
-        "start": "276"
+        "start": "281"
       },
       {
         "inner_class": "net/minecraft/network/NetHandlerPlayServer$3",
-        "start": "794"
+        "start": "799"
       },
       {
         "access": "1018",
@@ -17763,7 +17763,7 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/network/NetHandlerPlayServer$1",
-        "start": "269"
+        "start": "274"
       }
     ]
   },
@@ -17776,7 +17776,7 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/network/NetHandlerPlayServer$2",
-        "start": "276"
+        "start": "281"
       }
     ]
   },
@@ -17789,7 +17789,7 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/network/NetHandlerPlayServer$3",
-        "start": "794"
+        "start": "799"
       }
     ]
   },
@@ -21559,11 +21559,11 @@
       },
       {
         "inner_class": "net/minecraft/world/World$4",
-        "start": "2858"
+        "start": "2859"
       },
       {
         "inner_class": "net/minecraft/world/World$5",
-        "start": "2865"
+        "start": "2866"
       }
     ]
   },
@@ -21615,7 +21615,7 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/world/World$4",
-        "start": "2858"
+        "start": "2859"
       }
     ]
   },
@@ -21628,7 +21628,7 @@
     "innerClasses": [
       {
         "inner_class": "net/minecraft/world/World$5",
-        "start": "2865"
+        "start": "2866"
       }
     ]
   },
@@ -24847,16 +24847,6 @@
         "start": "1141"
       },
       {
-        "access": "28",
-        "inner_class": "net/minecraft/world/gen/structure/WoodlandMansionPieces$ThirdFloor",
-        "inner_name": "ThirdFloor",
-        "outer_class": "net/minecraft/world/gen/structure/WoodlandMansionPieces"
-      },
-      {
-        "access": "1000",
-        "inner_class": "net/minecraft/world/gen/structure/WoodlandMansionPieces$1"
-      },
-      {
         "access": "428",
         "inner_class": "net/minecraft/world/gen/structure/WoodlandMansionPieces$RoomCollection",
         "inner_name": "RoomCollection",
@@ -24866,6 +24856,16 @@
         "access": "28",
         "inner_class": "net/minecraft/world/gen/structure/WoodlandMansionPieces$PlacementData",
         "inner_name": "PlacementData",
+        "outer_class": "net/minecraft/world/gen/structure/WoodlandMansionPieces"
+      },
+      {
+        "access": "1000",
+        "inner_class": "net/minecraft/world/gen/structure/WoodlandMansionPieces$1"
+      },
+      {
+        "access": "28",
+        "inner_class": "net/minecraft/world/gen/structure/WoodlandMansionPieces$ThirdFloor",
+        "inner_name": "ThirdFloor",
         "outer_class": "net/minecraft/world/gen/structure/WoodlandMansionPieces"
       }
     ]
@@ -25023,14 +25023,14 @@
       },
       {
         "access": "29",
-        "inner_class": "net/minecraft/world/gen/structure/template/Template$BlockInfo",
-        "inner_name": "BlockInfo",
+        "inner_class": "net/minecraft/world/gen/structure/template/Template$EntityInfo",
+        "inner_name": "EntityInfo",
         "outer_class": "net/minecraft/world/gen/structure/template/Template"
       },
       {
         "access": "29",
-        "inner_class": "net/minecraft/world/gen/structure/template/Template$EntityInfo",
-        "inner_name": "EntityInfo",
+        "inner_class": "net/minecraft/world/gen/structure/template/Template$BlockInfo",
+        "inner_name": "BlockInfo",
         "outer_class": "net/minecraft/world/gen/structure/template/Template"
       },
       {

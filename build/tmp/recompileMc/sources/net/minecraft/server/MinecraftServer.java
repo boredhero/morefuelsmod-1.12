@@ -553,7 +553,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
                 this.currentTime = getCurrentTimeMillis();
                 long i = 0L;
                 this.statusResponse.setServerDescription(new TextComponentString(this.motd));
-                this.statusResponse.setVersion(new ServerStatusResponse.Version("1.12.1", 338));
+                this.statusResponse.setVersion(new ServerStatusResponse.Version("1.12.2", 340));
                 this.applyServerIconToResponse(this.statusResponse);
 
                 while (this.serverRunning)
@@ -922,7 +922,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IThre
      */
     public String getMinecraftVersion()
     {
-        return "1.12.1";
+        return "1.12.2";
     }
 
     /**

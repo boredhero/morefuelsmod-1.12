@@ -120,9 +120,9 @@ public class TileEntityRendererDispatcher
     {
         if (tileentityIn.getDistanceSq(this.entityX, this.entityY, this.entityZ) < tileentityIn.getMaxRenderDistanceSquared())
         {
-            RenderHelper.enableStandardItemLighting();
             if(!drawingBatch || !tileentityIn.hasFastRenderer())
             {
+            RenderHelper.enableStandardItemLighting();
             int i = this.world.getCombinedLight(tileentityIn.getPos(), 0);
             int j = i % 65536;
             int k = i / 65536;

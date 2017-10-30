@@ -80,6 +80,7 @@ public class GuiMainMenu extends GuiScreen
     private String openGLWarningLink;
     private static final ResourceLocation SPLASH_TEXTS = new ResourceLocation("texts/splashes.txt");
     private static final ResourceLocation MINECRAFT_TITLE_TEXTURES = new ResourceLocation("textures/gui/title/minecraft.png");
+    private static final ResourceLocation field_194400_H = new ResourceLocation("textures/gui/title/edition.png");
     /** An array of all the paths to the panorama pictures. */
     private static final ResourceLocation[] TITLE_PANORAMA_PATHS = new ResourceLocation[] {new ResourceLocation("textures/gui/title/background/panorama_0.png"), new ResourceLocation("textures/gui/title/background/panorama_1.png"), new ResourceLocation("textures/gui/title/background/panorama_2.png"), new ResourceLocation("textures/gui/title/background/panorama_3.png"), new ResourceLocation("textures/gui/title/background/panorama_4.png"), new ResourceLocation("textures/gui/title/background/panorama_5.png")};
     private ResourceLocation backgroundTexture;
@@ -569,6 +570,9 @@ public class GuiMainMenu extends GuiScreen
             this.drawTexturedModalRect(j + 155, 30, 0, 45, 155, 44);
         }
 
+        this.mc.getTextureManager().bindTexture(field_194400_H);
+        drawModalRectWithCustomSizedTexture(j + 88, 67, 0.0F, 0.0F, 98, 14, 128.0F, 16.0F);
+
         this.splashText = net.minecraftforge.client.ForgeHooksClient.renderMainMenu(this, this.fontRenderer, this.width, this.height, this.splashText);
 
         GlStateManager.pushMatrix();
@@ -579,7 +583,7 @@ public class GuiMainMenu extends GuiScreen
         GlStateManager.scale(f, f, f);
         this.drawCenteredString(this.fontRenderer, this.splashText, 0, -8, -256);
         GlStateManager.popMatrix();
-        String s = "Minecraft 1.12.1";
+        String s = "Minecraft 1.12.2";
 
         if (this.mc.isDemo())
         {

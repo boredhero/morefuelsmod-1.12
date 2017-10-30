@@ -128,9 +128,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
     private final MinecraftServer serverController;
     public EntityPlayerMP player;
     private int networkTickCount;
-    private int keepAliveId;
-    private long lastPingTime;
-    private long lastSentPingPacket;
+    private long field_194402_f;
+    private boolean field_194403_g;
+    private long field_194404_h;
     /**
      * Incremented by 20 each time a user sends a chat message, decreased by one every tick. Non-ops kicked when over
      * 200
@@ -236,13 +236,21 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
         }
 
         this.serverController.profiler.startSection("keepAlive");
+        long i = this.currentTimeMillis();
 
-        if ((long)this.networkTickCount - this.lastSentPingPacket > 40L)
+        if (i - this.field_194402_f >= 15000L)
         {
-            this.lastSentPingPacket = (long)this.networkTickCount;
-            this.lastPingTime = this.currentTimeMillis();
-            this.keepAliveId = (int)this.lastPingTime;
-            this.sendPacket(new SPacketKeepAlive(this.keepAliveId));
+            if (this.field_194403_g)
+            {
+                this.disconnect(new TextComponentTranslation("disconnect.timeout", new Object[0]));
+            }
+            else
+            {
+                this.field_194403_g = true;
+                this.field_194402_f = i;
+                this.field_194404_h = i;
+                this.sendPacket(new SPacketKeepAlive(this.field_194404_h));
+            }
         }
 
         this.serverController.profiler.endSection();
@@ -1385,10 +1393,15 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
      */
     public void processKeepAlive(CPacketKeepAlive packetIn)
     {
-        if (packetIn.getKey() == this.keepAliveId)
+        if (this.field_194403_g && packetIn.getKey() == this.field_194404_h)
         {
-            int i = (int)(this.currentTimeMillis() - this.lastPingTime);
+            int i = (int)(this.currentTimeMillis() - this.field_194402_f);
             this.player.ping = (this.player.ping * 3 + i) / 4;
+            this.field_194403_g = false;
+        }
+        else if (!this.player.getName().equals(this.serverController.getServerOwner()))
+        {
+            this.disconnect(new TextComponentTranslation("disconnect.timeout", new Object[0]));
         }
     }
 

@@ -1,6 +1,5 @@
 package net.minecraft.world;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -15,6 +14,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.advancements.FunctionManager;
@@ -293,12 +294,9 @@ public class WorldServer extends World implements IThreadListener
     {
         this.allPlayersSleeping = false;
 
-        for (EntityPlayer entityplayer : this.playerEntities)
+        for (EntityPlayer entityplayer : this.playerEntities.stream().filter(EntityPlayer::isPlayerSleeping).collect(Collectors.toList()))
         {
-            if (entityplayer.isPlayerSleeping())
-            {
-                entityplayer.wakeUpPlayer(false, false, true);
-            }
+            entityplayer.wakeUpPlayer(false, false, true);
         }
 
         if (this.getGameRules().getBoolean("doWeatherCycle"))
@@ -513,7 +511,7 @@ public class WorldServer extends World implements IThreadListener
     {
         BlockPos blockpos = this.getPrecipitationHeight(pos);
         AxisAlignedBB axisalignedbb = (new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), this.getHeight(), blockpos.getZ()))).grow(3.0D);
-        List<EntityLivingBase> list = this.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, new Predicate<EntityLivingBase>()
+        List<EntityLivingBase> list = this.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, new com.google.common.base.Predicate<EntityLivingBase>()
         {
             public boolean apply(@Nullable EntityLivingBase p_apply_1_)
             {

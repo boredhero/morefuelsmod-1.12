@@ -56,7 +56,7 @@ public class CrashReport
         {
             public String call()
             {
-                return "1.12.1";
+                return "1.12.2";
             }
         });
         this.systemDetailsCategory.addDetail("Operating System", new ICrashReportDetail<String>()

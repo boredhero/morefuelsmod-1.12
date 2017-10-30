@@ -847,16 +847,33 @@ public class Item extends net.minecraftforge.registries.IForgeRegistryEntry.Impl
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack){}
 
     /**
-     * Determines if the specific ItemStack can be placed in the specified armor slot.
+     * Determines if the specific ItemStack can be placed in the specified armor slot, for the entity.
+     *
+     * TODO: Change name to canEquip in 1.13?
      *
      * @param stack The ItemStack
-     * @param armorType Armor slot ID: 0: Helmet, 1: Chest, 2: Legs, 3: Boots
+     * @param armorType Armor slot to be verified.
      * @param entity The entity trying to equip the armor
      * @return True if the given ItemStack can be inserted in the slot
      */
     public boolean isValidArmor(ItemStack stack, EntityEquipmentSlot armorType, Entity entity)
     {
         return net.minecraft.entity.EntityLiving.getSlotForItemStack(stack) == armorType;
+    }
+
+    /**
+     * Override this to set a non-default armor slot for an ItemStack, but
+     * <em>do not use this to get the armor slot of said stack; for that, use
+     * {@link net.minecraft.entity.EntityLiving#getSlotForItemStack(ItemStack)}.</em>
+     *
+     * @param stack the ItemStack
+     * @return the armor slot of the ItemStack, or {@code null} to let the default
+     * vanilla logic as per {@code EntityLiving.getSlotForItemStack(stack)} decide
+     */
+    @Nullable
+    public EntityEquipmentSlot getEquipmentSlot(ItemStack stack)
+    {
+        return null;
     }
 
     /**
@@ -1171,6 +1188,27 @@ public class Item extends net.minecraftforge.registries.IForgeRegistryEntry.Impl
     public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack)
     {
         return !(newStack.getItem() == oldStack.getItem() && ItemStack.areItemStackTagsEqual(newStack, oldStack) && (newStack.isItemStackDamageable() || newStack.getMetadata() == oldStack.getMetadata()));
+    }
+
+    /**
+     * Called to get the Mod ID of the mod that *created* the ItemStack,
+     * instead of the real Mod ID that *registered* it.
+     *
+     * For example the Forge Universal Bucket creates a subitem for each modded fluid,
+     * and it returns the modded fluid's Mod ID here.
+     *
+     * Mods that register subitems for other mods can override this.
+     * Informational mods can call it to show the mod that created the item.
+     *
+     * @param itemStack the ItemStack to check
+     * @return the Mod ID for the ItemStack, or
+     *         null when there is no specially associated mod and {@link #getRegistryName()} would return null.
+     */
+    @Nullable
+    public String getCreatorModId(ItemStack itemStack)
+    {
+        ResourceLocation registryName = getRegistryName();
+        return registryName == null ? null : registryName.getResourceDomain();
     }
 
     /**

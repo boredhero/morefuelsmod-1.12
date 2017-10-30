@@ -41,7 +41,7 @@ public class GradleStart extends GradleStartCommon
     @Override
     protected void setDefaultArguments(Map<String, String> argMap)
     {
-        argMap.put("version",        "1.12.1");
+        argMap.put("version",        "1.12.2");
         argMap.put("assetIndex",     "1.12");
         argMap.put("assetsDir",      "C:/Users/Noah/.gradle/caches/minecraft/assets");
         argMap.put("accessToken",    "FML");
@@ -68,7 +68,7 @@ public class GradleStart extends GradleStartCommon
     private static void hackNatives()
     {
         String paths = System.getProperty("java.library.path");
-        String nativesDir = "C:/Users/Noah/.gradle/caches/minecraft/net/minecraft/natives/1.12.1";
+        String nativesDir = "C:/Users/Noah/.gradle/caches/minecraft/net/minecraft/natives/1.12.2";
         
         if (Strings.isNullOrEmpty(paths))
             paths = nativesDir;

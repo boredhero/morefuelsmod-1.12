@@ -1,4 +1,4 @@
-package com.bored.morefuelsmod.client;
+/*package com.bored.morefuelsmod.client;
 
 import com.bored.morefuelsmod.Main;
 import com.bored.morefuelsmod.item.ModItems;
@@ -15,7 +15,7 @@ public class MoreFuelsTab extends CreativeTabs {
 
 	@Override
 	public ItemStack getTabIconItem() {
-		return new ItemStack(ModItems.tutorialItem);
+		return new ItemStack();
 	}
 
-}
+}*/

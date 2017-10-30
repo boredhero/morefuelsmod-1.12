@@ -2,15 +2,23 @@
 <projectDescription>
 	<name>morefuelsmod-1.12</name>
 	<comment></comment>
-	<projects/>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
+	<projects>
+	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments/>
+			<arguments>
+			</arguments>
 		</buildCommand>
 	</buildSpec>
-	<linkedResources/>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>.link1</name>
+			<type>2</type>
+			<location>C:/Users/Noah/.gradle/caches/minecraft/net/minecraftforge/forge/1.12.2-14.23.0.2517/start</location>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -1796,7 +1796,7 @@ public class Block extends net.minecraftforge.registries.IForgeRegistryEntry.Imp
      */
     public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if (state.getBlockFaceShape(world, pos, EnumFacing.UP) == BlockFaceShape.SOLID)
+        if (state.isTopSolid() || state.getBlockFaceShape(world, pos, EnumFacing.UP) == BlockFaceShape.SOLID)
         {
             return this != Blocks.END_GATEWAY && this != Blocks.LIT_PUMPKIN;
         }

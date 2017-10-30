@@ -233,11 +233,11 @@ public class GuiRecipeOverlay extends Gui
             int k = 3;
             int l = 3;
 
-            if (this.recipe instanceof ShapedRecipes)
+            if (this.recipe instanceof net.minecraftforge.common.crafting.IShapedRecipe)
             {
-                ShapedRecipes shapedrecipes = (ShapedRecipes)this.recipe;
-                k = shapedrecipes.getWidth();
-                l = shapedrecipes.getHeight();
+                net.minecraftforge.common.crafting.IShapedRecipe shapedrecipes = (net.minecraftforge.common.crafting.IShapedRecipe)this.recipe;
+                k = shapedrecipes.getRecipeWidth();
+                l = shapedrecipes.getRecipeHeight();
             }
 
             Iterator<Ingredient> iterator = this.recipe.getIngredients().iterator();

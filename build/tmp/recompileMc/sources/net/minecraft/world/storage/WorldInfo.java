@@ -356,11 +356,11 @@ public class WorldInfo
     private void updateTagCompound(NBTTagCompound nbt, NBTTagCompound playerNbt)
     {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
-        nbttagcompound.setString("Name", "1.12.1");
-        nbttagcompound.setInteger("Id", 1241);
+        nbttagcompound.setString("Name", "1.12.2");
+        nbttagcompound.setInteger("Id", 1343);
         nbttagcompound.setBoolean("Snapshot", false);
         nbt.setTag("Version", nbttagcompound);
-        nbt.setInteger("DataVersion", 1241);
+        nbt.setInteger("DataVersion", 1343);
         nbt.setLong("RandomSeed", this.randomSeed);
         nbt.setString("generatorName", this.terrainType.getName());
         nbt.setInteger("generatorVersion", this.terrainType.getVersion());

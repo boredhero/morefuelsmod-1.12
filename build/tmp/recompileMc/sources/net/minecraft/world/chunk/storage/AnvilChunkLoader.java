@@ -50,24 +50,11 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
         this.fixer = dataFixerIn;
     }
 
+    @Deprecated // TODO: remove (1.13)
     public boolean chunkExists(World world, int x, int z)
     {
-        ChunkPos chunkcoordintpair = new ChunkPos(x, z);
-
-        if (this.currentSave.contains(chunkcoordintpair))
-        {
-            for(ChunkPos pendingChunkCoord : this.chunksToRemove.keySet())
-            {
-                if (pendingChunkCoord.equals(chunkcoordintpair))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return RegionFileCache.createOrLoadRegionFile(this.chunkSaveLocation, x, z).chunkExists(x & 31, z & 31);
+        return isChunkGeneratedAt(x, z);
     }
-
 
     /**
      * Loads the specified(XZ) chunk into the specified world.
@@ -186,9 +173,10 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
             NBTTagCompound nbttagcompound = new NBTTagCompound();
             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
             nbttagcompound.setTag("Level", nbttagcompound1);
-            nbttagcompound.setInteger("DataVersion", 1241);
+            nbttagcompound.setInteger("DataVersion", 1343);
             net.minecraftforge.fml.common.FMLCommonHandler.instance().getDataFixer().writeVersionData(nbttagcompound);
             this.writeChunkToNBT(chunkIn, worldIn, nbttagcompound1);
+            net.minecraftforge.common.ForgeChunkManager.storeChunkNBT(chunkIn, nbttagcompound1);
             net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.world.ChunkDataEvent.Save(chunkIn, nbttagcompound));
             this.addChunkToPending(chunkIn.getPos(), nbttagcompound);
         }
@@ -446,6 +434,18 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 
             compound.setTag("TileTicks", nbttaglist3);
         }
+
+        if (chunkIn.getCapabilities() != null)
+        {
+            try
+            {
+                compound.setTag("ForgeCaps", chunkIn.getCapabilities().serializeNBT());
+            }
+            catch (Exception exception)
+            {
+                net.minecraftforge.fml.common.FMLLog.log.error("A capability provider has thrown an exception trying to write state. It will not persist. Report this to the mod author", exception);
+            }
+        }
     }
 
     /**
@@ -491,6 +491,10 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
         if (compound.hasKey("Biomes", 7))
         {
             chunk.setBiomeArray(compound.getByteArray("Biomes"));
+        }
+
+        if (chunk.getCapabilities() != null && compound.hasKey("ForgeCaps")) {
+            chunk.getCapabilities().deserializeNBT(compound.getCompoundTag("ForgeCaps"));
         }
 
         // End this method here and split off entity loading to another method

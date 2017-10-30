@@ -106,7 +106,7 @@ public class ResourcePackRepository
         Map<String, String> map = Maps.<String, String>newHashMap();
         map.put("X-Minecraft-Username", Minecraft.getMinecraft().getSession().getUsername());
         map.put("X-Minecraft-UUID", Minecraft.getMinecraft().getSession().getPlayerID());
-        map.put("X-Minecraft-Version", "1.12.1");
+        map.put("X-Minecraft-Version", "1.12.2");
         return map;
     }
 

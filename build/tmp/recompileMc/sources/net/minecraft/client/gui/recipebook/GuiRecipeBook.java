@@ -491,7 +491,7 @@ public class GuiRecipeBook extends Gui implements IRecipeUpdateListener
         this.ghostRecipe.addIngredient(Ingredient.fromStacks(itemstack), (p_193951_2_.get(0)).xPos, (p_193951_2_.get(0)).yPos);
         int i = this.craftingSlots.getWidth();
         int j = this.craftingSlots.getHeight();
-        int k = p_193951_1_ instanceof ShapedRecipes ? ((ShapedRecipes)p_193951_1_).getWidth() : i;
+        int k = p_193951_1_ instanceof net.minecraftforge.common.crafting.IShapedRecipe ? ((net.minecraftforge.common.crafting.IShapedRecipe)p_193951_1_).getRecipeWidth() : i;
         int l = 1;
         Iterator<Ingredient> iterator = p_193951_1_.getIngredients().iterator();
 

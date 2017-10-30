@@ -223,7 +223,7 @@ public class ItemRenderer
         bufferbuilder.pos(135.0D, -7.0D, 0.0D).tex(1.0D, 0.0D).endVertex();
         bufferbuilder.pos(-7.0D, -7.0D, 0.0D).tex(0.0D, 0.0D).endVertex();
         tessellator.draw();
-        MapData mapdata = Items.FILLED_MAP.getMapData(stack, this.mc.world);
+        MapData mapdata = ((net.minecraft.item.ItemMap) stack.getItem()).getMapData(stack, this.mc.world);
 
         if (mapdata != null)
         {

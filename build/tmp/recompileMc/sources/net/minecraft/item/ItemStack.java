@@ -1399,4 +1399,18 @@ public final class ItemStack implements net.minecraftforge.common.capabilities.I
         else
             return shareTagB != null && shareTagA.equals(shareTagB);
     }
+
+    /**
+     *
+     * Should this item, when held, allow sneak-clicks to pass through to the underlying block?
+     *
+     * @param world The world
+     * @param pos Block position in world
+     * @param player The Player that is wielding the item
+     * @return
+     */
+    public boolean doesSneakBypassUse(net.minecraft.world.IBlockAccess world, BlockPos pos, EntityPlayer player)
+    {
+        return this.isEmpty() || this.getItem().doesSneakBypassUse(this, world, pos, player);
+    }
 }

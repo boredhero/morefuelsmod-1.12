@@ -23,7 +23,7 @@ public class C00Handshake implements Packet<INetHandlerHandshakeServer>
     @SideOnly(Side.CLIENT)
     public C00Handshake(String p_i47613_1_, int p_i47613_2_, EnumConnectionState p_i47613_3_)
     {
-        this.protocolVersion = 338;
+        this.protocolVersion = 340;
         this.ip = p_i47613_1_;
         this.port = p_i47613_2_;
         this.requestedState = p_i47613_3_;

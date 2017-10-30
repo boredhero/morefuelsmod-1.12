@@ -83,8 +83,8 @@ public class BlockStem extends BlockBush implements IGrowable
 
                 if (i < 7)
                 {
-                    state = state.withProperty(AGE, Integer.valueOf(i + 1));
-                    worldIn.setBlockState(pos, state, 2);
+                    IBlockState newState = state.withProperty(AGE, Integer.valueOf(i + 1));
+                    worldIn.setBlockState(pos, newState, 2);
                 }
                 else
                 {

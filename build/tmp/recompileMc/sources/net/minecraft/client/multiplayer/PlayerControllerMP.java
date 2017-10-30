@@ -446,7 +446,7 @@ public class PlayerControllerMP
                 }
 
                 IBlockState iblockstate = worldIn.getBlockState(pos);
-                boolean bypass = itemstack.isEmpty() || itemstack.getItem().doesSneakBypassUse(itemstack, worldIn, pos, player);
+                boolean bypass = player.getHeldItemMainhand().doesSneakBypassUse(worldIn, pos, player) && player.getHeldItemOffhand().doesSneakBypassUse(worldIn, pos, player);
 
                 if ((!player.isSneaking() || bypass || event.getUseBlock() == net.minecraftforge.fml.common.eventhandler.Event.Result.ALLOW))
                 {

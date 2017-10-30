@@ -128,7 +128,7 @@ public class ChunkProviderServer implements IChunkProvider
                 net.minecraft.world.chunk.storage.AnvilChunkLoader loader = (net.minecraft.world.chunk.storage.AnvilChunkLoader) this.chunkLoader;
                 if (runnable == null)
                     chunk = net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(this.world, loader, this, x, z);
-                else if (loader.chunkExists(this.world, x, z))
+                else if (loader.isChunkGeneratedAt(x, z))
                 {
                     // We can only use the async queue for already generated chunks
                     net.minecraftforge.common.chunkio.ChunkIOExecutor.queueChunkLoad(this.world, loader, this, x, z, runnable);
@@ -285,11 +285,11 @@ public class ChunkProviderServer implements IChunkProvider
                     if (chunk != null && chunk.unloadQueued)
                     {
                         chunk.onUnload();
+                        net.minecraftforge.common.ForgeChunkManager.putDormantChunk(ChunkPos.asLong(chunk.x, chunk.z), chunk);
                         this.saveChunkData(chunk);
                         this.saveChunkExtraData(chunk);
                         this.id2ChunkMap.remove(olong);
                         ++i;
-                        net.minecraftforge.common.ForgeChunkManager.putDormantChunk(ChunkPos.asLong(chunk.x, chunk.z), chunk);
                         if (id2ChunkMap.size() == 0 && net.minecraftforge.common.ForgeChunkManager.getPersistentChunksFor(this.world).size() == 0 && !this.world.provider.getDimensionType().shouldLoadSpawn()){
                             net.minecraftforge.common.DimensionManager.unloadWorld(this.world.provider.getDimension());
                             break;

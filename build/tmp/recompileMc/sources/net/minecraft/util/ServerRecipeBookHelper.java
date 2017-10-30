@@ -199,11 +199,11 @@ public class ServerRecipeBookHelper
         int i = this.field_194336_g.getWidth();
         int j = this.field_194336_g.getHeight();
 
-        if (this.field_194333_d instanceof ShapedRecipes)
+        if (this.field_194333_d instanceof net.minecraftforge.common.crafting.IShapedRecipe)
         {
-            ShapedRecipes shapedrecipes = (ShapedRecipes)this.field_194333_d;
-            i = shapedrecipes.getWidth();
-            j = shapedrecipes.getHeight();
+            net.minecraftforge.common.crafting.IShapedRecipe shapedrecipes = (net.minecraftforge.common.crafting.IShapedRecipe)this.field_194333_d;
+            i = shapedrecipes.getRecipeWidth();
+            j = shapedrecipes.getRecipeHeight();
         }
 
         int j1 = 1;

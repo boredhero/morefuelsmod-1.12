@@ -3453,6 +3453,7 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
     /**
      * Reset the entity ID to a new value. Not to be used from Mod code
      */
+    @Deprecated // TODO: remove (1.13?)
     public final void resetEntityId()
     {
         this.entityId = nextEntityID++;

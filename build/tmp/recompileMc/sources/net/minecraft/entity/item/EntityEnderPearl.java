@@ -1,6 +1,8 @@
 package net.minecraft.entity.item;
 
+import javax.annotation.Nullable;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityEndermite;
 import net.minecraft.entity.player.EntityPlayer;
@@ -146,5 +148,16 @@ public class EntityEnderPearl extends EntityThrowable
         {
             super.onUpdate();
         }
+    }
+
+    @Nullable
+    public Entity changeDimension(int dimensionIn)
+    {
+        if (this.thrower.dimension != dimensionIn)
+        {
+            this.thrower = null;
+        }
+
+        return super.changeDimension(dimensionIn);
     }
 }

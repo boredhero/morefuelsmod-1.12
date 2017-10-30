@@ -157,6 +157,7 @@ public class PlayerChunkMapEntry
             this.changes = 0;
             this.changedSectionFilter = 0;
             this.sentToPlayers = true;
+            if (this.players.isEmpty()) return true; // Forge: fix MC-120780
             Packet<?> packet = new SPacketChunkData(this.chunk, 65535);
 
             for (EntityPlayerMP entityplayermp : this.players)

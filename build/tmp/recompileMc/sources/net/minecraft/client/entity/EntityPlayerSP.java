@@ -17,6 +17,7 @@ import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraft.client.gui.inventory.GuiBeacon;
 import net.minecraft.client.gui.inventory.GuiBrewingStand;
 import net.minecraft.client.gui.inventory.GuiChest;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiCrafting;
 import net.minecraft.client.gui.inventory.GuiDispenser;
 import net.minecraft.client.gui.inventory.GuiEditCommandBlockMinecart;
@@ -931,6 +932,11 @@ public class EntityPlayerSP extends AbstractClientPlayer
         {
             if (this.mc.currentScreen != null && !this.mc.currentScreen.doesGuiPauseGame())
             {
+                if (this.mc.currentScreen instanceof GuiContainer)
+                {
+                    this.closeScreen();
+                }
+
                 this.mc.displayGuiScreen((GuiScreen)null);
             }
 

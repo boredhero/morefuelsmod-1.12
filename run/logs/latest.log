@@ -1,14 +1,62 @@
-[13:45:19] [main/INFO]: Setting user: Player6
-[13:45:21] [main/INFO]: LWJGL Version: 2.9.4
-[13:45:24] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:§4More Fuels Mod
-[13:45:25] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[13:45:25] [Thread-5/INFO]: Initializing LWJGL OpenAL
-[13:45:25] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[13:45:25] [Thread-5/INFO]: OpenAL initialized.
-[13:45:26] [Sound Library Loader/INFO]: Sound engine started
-[13:45:28] [main/INFO]: Created: 512x512 textures-atlas
-[13:45:29] [main/INFO]: Narrator library for x64 successfully loaded
-[13:45:29] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[13:45:32] [main/INFO]: Stopping!
-[13:45:32] [main/INFO]: SoundSystem shutting down...
-[13:45:32] [main/WARN]: Author: Paul Lamb, www.paulscode.com
+[16:20:37] [main/INFO]: Setting user: Player665
+[16:20:40] [main/INFO]: LWJGL Version: 2.9.4
+[16:20:43] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:§4More Fuels Mod
+[16:20:45] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[16:20:45] [Thread-5/INFO]: Initializing LWJGL OpenAL
+[16:20:45] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[16:20:45] [Thread-5/INFO]: OpenAL initialized.
+[16:20:46] [Sound Library Loader/INFO]: Sound engine started
+[16:20:49] [main/INFO]: Created: 512x512 textures-atlas
+[16:20:50] [main/INFO]: Narrator library for x64 successfully loaded
+[16:20:51] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[16:21:03] [Server thread/INFO]: Starting integrated minecraft server version 1.12.2
+[16:21:03] [Server thread/INFO]: Generating keypair
+[16:21:04] [Server thread/INFO]: Loaded 488 advancements
+[16:21:04] [Server thread/INFO]: Preparing start region for level 0
+[16:21:05] [Server thread/INFO]: Preparing spawn area: 68%
+[16:21:05] [Server thread/INFO]: Changing view distance to 12, from 10
+[16:21:06] [Server thread/INFO]: Player665[local:E:08ba5547] logged in with entity id 239 at (-231.5, 63.0, -30.5)
+[16:21:06] [Server thread/INFO]: Player665 joined the game
+[16:21:07] [Server thread/INFO]: Saving and pausing game...
+[16:21:07] [Server thread/INFO]: Saving chunks for level 'New World'/overworld
+[16:21:07] [Server thread/INFO]: Saving chunks for level 'New World'/the_nether
+[16:21:07] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@65a4c0b9[id=5daba5f8-966b-3165-8089-02aaa9b1e740,name=Player665,properties={},legacy=false]
+com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[YggdrasilAuthenticationService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) [YggdrasilMinecraftSessionService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:60) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:57) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3716) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2424) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2298) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2211) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache.get(LocalCache.java:4154) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:4158) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:5147) [guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:5153) [guava-21.0.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:170) [YggdrasilMinecraftSessionService.class:?]
+	at net.minecraft.client.Minecraft.getProfileProperties(Minecraft.java:3172) [Minecraft.class:?]
+	at net.minecraft.client.resources.SkinManager$3.run(SkinManager.java:138) [SkinManager$3.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) [?:1.8.0_151]
+	at java.util.concurrent.FutureTask.run(Unknown Source) [?:1.8.0_151]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [?:1.8.0_151]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [?:1.8.0_151]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_151]
+[16:21:07] [Server thread/INFO]: Saving chunks for level 'New World'/the_end
+[16:21:20] [main/INFO]: Loaded 7 advancements
+[16:21:21] [Server thread/INFO]: Saving and pausing game...
+[16:21:21] [Server thread/INFO]: Saving chunks for level 'New World'/overworld
+[16:21:21] [Server thread/INFO]: Saving chunks for level 'New World'/the_nether
+[16:21:21] [Server thread/INFO]: Saving chunks for level 'New World'/the_end
+[16:21:21] [Server thread/INFO]: Stopping server
+[16:21:21] [Server thread/INFO]: Saving players
+[16:21:21] [Server thread/INFO]: Player665 lost connection: Disconnected
+[16:21:21] [Server thread/INFO]: Player665 left the game
+[16:21:21] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[16:21:21] [Server thread/INFO]: Saving worlds
+[16:21:21] [Server thread/INFO]: Saving chunks for level 'New World'/overworld
+[16:21:21] [Server thread/INFO]: Saving chunks for level 'New World'/the_nether
+[16:21:21] [Server thread/INFO]: Saving chunks for level 'New World'/the_end
+[16:21:22] [main/INFO]: Stopping!
+[16:21:22] [main/INFO]: SoundSystem shutting down...
+[16:21:23] [main/WARN]: Author: Paul Lamb, www.paulscode.com

@@ -27,6 +27,7 @@ public class GuiWinGame extends GuiScreen
 {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final ResourceLocation MINECRAFT_LOGO = new ResourceLocation("textures/gui/title/minecraft.png");
+    private static final ResourceLocation field_194401_g = new ResourceLocation("textures/gui/title/edition.png");
     private static final ResourceLocation VIGNETTE_TEXTURE = new ResourceLocation("textures/misc/vignette.png");
     private final boolean poem;
     private final Runnable onFinished;
@@ -214,6 +215,8 @@ public class GuiWinGame extends GuiScreen
         GlStateManager.enableAlpha();
         this.drawTexturedModalRect(j, k, 0, 0, 155, 44);
         this.drawTexturedModalRect(j + 155, k, 0, 45, 155, 44);
+        this.mc.getTextureManager().bindTexture(field_194401_g);
+        drawModalRectWithCustomSizedTexture(j + 88, k + 37, 0.0F, 0.0F, 98, 14, 128.0F, 16.0F);
         GlStateManager.disableAlpha();
         int l = k + 100;
 

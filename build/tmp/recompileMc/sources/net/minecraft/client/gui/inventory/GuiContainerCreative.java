@@ -380,8 +380,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
         CreativeTabs tab = CreativeTabs.CREATIVE_TAB_ARRAY[selectedTabIndex];
         if (tab.hasSearchBar() && tab != CreativeTabs.SEARCH)
         {
-            for (Item item : Item.REGISTRY)
-                item.getSubItems(tab, guicontainercreative$containercreative.itemList);
+            tab.displayAllRelevantItems(guicontainercreative$containercreative.itemList);
             if (!this.searchField.getText().isEmpty())
             {
                 //TODO: Make this a SearchTree not a manual search

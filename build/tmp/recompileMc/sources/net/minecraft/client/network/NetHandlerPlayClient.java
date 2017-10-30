@@ -325,7 +325,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         this.gameController.gameSettings.difficulty = packetIn.getDifficulty();
         this.gameController.loadWorld(this.clientWorldController);
         this.gameController.player.dimension = packetIn.getDimension();
-        this.gameController.displayGuiScreen(new GuiDownloadTerrain(this));
+        this.gameController.displayGuiScreen(new GuiDownloadTerrain());
         this.gameController.player.setEntityId(packetIn.getPlayerId());
         this.currentServerMaxPlayers = packetIn.getMaxPlayers();
         this.gameController.player.setReducedDebug(packetIn.isReducedDebugInfo());
@@ -1160,7 +1160,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
             this.clientWorldController.setWorldScoreboard(scoreboard);
             this.gameController.loadWorld(this.clientWorldController);
             this.gameController.player.dimension = packetIn.getDimensionID();
-            this.gameController.displayGuiScreen(new GuiDownloadTerrain(this));
+            this.gameController.displayGuiScreen(new GuiDownloadTerrain());
         }
 
         this.gameController.setDimensionAndSpawnPlayer(packetIn.getDimensionID());
@@ -1454,7 +1454,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
             if (j == 0)
             {
                 this.gameController.player.connection.sendPacket(new CPacketClientStatus(CPacketClientStatus.State.PERFORM_RESPAWN));
-                this.gameController.displayGuiScreen(new GuiDownloadTerrain(this));
+                this.gameController.displayGuiScreen(new GuiDownloadTerrain());
             }
             else if (j == 1)
             {

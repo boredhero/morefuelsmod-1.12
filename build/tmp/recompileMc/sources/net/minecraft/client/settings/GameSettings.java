@@ -1187,7 +1187,7 @@ public class GameSettings
         try
         {
             printwriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(this.optionsFile), StandardCharsets.UTF_8));
-            printwriter.println("version:1241");
+            printwriter.println("version:1343");
             printwriter.println("invertYMouse:" + this.invertMouse);
             printwriter.println("mouseSensitivity:" + this.mouseSensitivity);
             printwriter.println("fov:" + (this.fovSetting - 70.0F) / 40.0F);

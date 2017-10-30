@@ -154,7 +154,6 @@ public abstract class World implements IBlockAccess, net.minecraftforge.common.c
     public boolean restoringBlockSnapshots = false;
     public boolean captureBlockSnapshots = false;
     public java.util.ArrayList<net.minecraftforge.common.util.BlockSnapshot> capturedBlockSnapshots = new java.util.ArrayList<net.minecraftforge.common.util.BlockSnapshot>();
-    private it.unimi.dsi.fastutil.longs.LongCollection tileEntitiesChunkToBeRemoved = new it.unimi.dsi.fastutil.longs.LongOpenHashSet();
     private net.minecraftforge.common.capabilities.CapabilityDispatcher capabilities;
     private net.minecraftforge.common.util.WorldCapabilityData capabilityData;
 
@@ -387,6 +386,7 @@ public abstract class World implements IBlockAccess, net.minecraftforge.common.c
         {
             Chunk chunk = this.getChunkFromBlockCoords(pos);
 
+            pos = pos.toImmutable(); // Forge - prevent mutable BlockPos leaks
             net.minecraftforge.common.util.BlockSnapshot blockSnapshot = null;
             if (this.captureBlockSnapshots && !this.isRemote)
             {
@@ -1949,7 +1949,24 @@ public abstract class World implements IBlockAccess, net.minecraftforge.common.c
         }
 
         this.profiler.endStartSection("blockEntities");
-        this.processingLoadedTiles = true;
+
+        this.processingLoadedTiles = true; //FML Move above remove to prevent CMEs
+
+        if (!this.tileEntitiesToBeRemoved.isEmpty())
+        {
+            for (Object tile : tileEntitiesToBeRemoved)
+            {
+               ((TileEntity)tile).onChunkUnload();
+            }
+
+            // forge: faster "contains" makes this removal much more efficient
+            java.util.Set<TileEntity> remove = java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<>());
+            remove.addAll(tileEntitiesToBeRemoved);
+            this.tickableTileEntities.removeAll(remove);
+            this.loadedTileEntityList.removeAll(remove);
+            this.tileEntitiesToBeRemoved.clear();
+        }
+
         Iterator<TileEntity> iterator = this.tickableTileEntities.iterator();
 
         while (iterator.hasNext())
@@ -2003,21 +2020,7 @@ public abstract class World implements IBlockAccess, net.minecraftforge.common.c
             }
         }
 
-        if (!this.tileEntitiesToBeRemoved.isEmpty())
-        {
-            for (Object tile : tileEntitiesToBeRemoved)
-            {
-               ((TileEntity)tile).onChunkUnload();
-            }
-
-            this.tickableTileEntities.removeAll(this.tileEntitiesToBeRemoved);
-            this.loadedTileEntityList.removeAll(this.tileEntitiesToBeRemoved);
-            this.tileEntitiesToBeRemoved.clear();
-        }
-
-        this.removeTileEntitiesForRemovedChunks();
-        this.processingLoadedTiles = false;  //FML Move below remove to prevent CMEs
-
+        this.processingLoadedTiles = false;
         this.profiler.endStartSection("pendingBlockEntities");
 
         if (!this.addedTileEntityList.isEmpty())
@@ -4289,37 +4292,12 @@ public abstract class World implements IBlockAccess, net.minecraftforge.common.c
         return count;
     }
 
+    @Deprecated // remove in 1.13
     public void markTileEntitiesInChunkForRemoval(Chunk chunk)
     {
-        if (!chunk.getTileEntityMap().isEmpty())
+        for (TileEntity tileentity : chunk.getTileEntityMap().values())
         {
-            long pos = net.minecraft.util.math.ChunkPos.asLong(chunk.x, chunk.z);
-            this.tileEntitiesChunkToBeRemoved.add(pos);
-        }
-    }
-
-    private void removeTileEntitiesForRemovedChunks()
-    {
-        if (!this.tileEntitiesChunkToBeRemoved.isEmpty())
-        {
-            java.util.function.Predicate<TileEntity> isInChunk = (tileEntity) ->
-            {
-                BlockPos tilePos = tileEntity.getPos();
-                long tileChunkPos = net.minecraft.util.math.ChunkPos.asLong(tilePos.getX() >> 4, tilePos.getZ() >> 4);
-                return this.tileEntitiesChunkToBeRemoved.contains(tileChunkPos);
-            };
-            java.util.function.Predicate<TileEntity> isInChunkDoUnload = (tileEntity) ->
-            {
-                boolean inChunk = isInChunk.test(tileEntity);
-                if (inChunk)
-                {
-                    tileEntity.onChunkUnload();
-                }
-                return inChunk;
-            };
-            this.tickableTileEntities.removeIf(isInChunk);
-            this.loadedTileEntityList.removeIf(isInChunkDoUnload);
-            this.tileEntitiesChunkToBeRemoved.clear();
+            markTileEntityForRemoval(tileentity);
         }
     }
 

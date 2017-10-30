@@ -20,7 +20,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class ShapedRecipes extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe
+public class ShapedRecipes extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements net.minecraftforge.common.crafting.IShapedRecipe
 {
     /** How many horizontal slots this recipe is wide. */
     public final int recipeWidth;
@@ -83,9 +83,9 @@ public class ShapedRecipes extends net.minecraftforge.registries.IForgeRegistryE
      */
     public boolean matches(InventoryCrafting inv, World worldIn)
     {
-        for (int i = 0; i <= 3 - this.recipeWidth; ++i)
+        for (int i = 0; i <= inv.getWidth() - this.recipeWidth; ++i)
         {
-            for (int j = 0; j <= 3 - this.recipeHeight; ++j)
+            for (int j = 0; j <= inv.getHeight() - this.recipeHeight; ++j)
             {
                 if (this.checkMatch(inv, i, j, true))
                 {
@@ -107,9 +107,9 @@ public class ShapedRecipes extends net.minecraftforge.registries.IForgeRegistryE
      */
     private boolean checkMatch(InventoryCrafting p_77573_1_, int p_77573_2_, int p_77573_3_, boolean p_77573_4_)
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < p_77573_1_.getWidth(); ++i)
         {
-            for (int j = 0; j < 3; ++j)
+            for (int j = 0; j < p_77573_1_.getHeight(); ++j)
             {
                 int k = i - p_77573_2_;
                 int l = j - p_77573_3_;
@@ -387,5 +387,17 @@ public class ShapedRecipes extends net.minecraftforge.registries.IForgeRegistryE
             int j = useCount ? JsonUtils.getInt(p_192405_0_, "count", 1) : 1;
             return new ItemStack(item, j, i);
         }
+    }
+
+    //================================================ FORGE START ================================================
+    @Override
+    public int getRecipeWidth()
+    {
+        return this.getWidth();
+    }
+    @Override
+    public int getRecipeHeight()
+    {
+        return this.getHeight();
     }
 }

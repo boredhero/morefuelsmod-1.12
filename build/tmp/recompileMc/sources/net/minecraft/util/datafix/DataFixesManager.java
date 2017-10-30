@@ -164,7 +164,7 @@ public class DataFixesManager
 
     public static DataFixer createFixer()
     {
-        DataFixer datafixer = new DataFixer(1241);
+        DataFixer datafixer = new DataFixer(1343);
         datafixer = new net.minecraftforge.common.util.CompoundDataFixer(datafixer);
         WorldInfo.registerFixes(datafixer);
         EntityPlayerMP.registerFixesPlayerMP(datafixer);
