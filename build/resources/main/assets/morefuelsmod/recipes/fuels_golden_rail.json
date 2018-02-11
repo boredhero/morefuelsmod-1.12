@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:golden_rail"
+		},
+		"B": {
+			"item": "minecraft:golden_rail"
+		},
+		"C": {
+			"item": "minecraft:golden_rail"
+		},
+		"D": {
+			"item": "minecraft:golden_rail"
+		},
+		"E": {
+			"item": "minecraft:golden_rail"
+		},
+		"F": {
+			"item": "minecraft:golden_rail"
+		},
+		"G": {
+			"item": "minecraft:golden_rail"
+		},
+		"H": {
+			"item": "minecraft:golden_rail"
+		},
+		"I": {
+			"item": "minecraft:golden_rail"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

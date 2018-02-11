@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:map"
+		},
+		"B": {
+			"item": "minecraft:map"
+		},
+		"C": {
+			"item": "minecraft:map"
+		},
+		"D": {
+			"item": "minecraft:map"
+		},
+		"E": {
+			"item": "minecraft:map"
+		},
+		"F": {
+			"item": "minecraft:map"
+		},
+		"G": {
+			"item": "minecraft:map"
+		},
+		"H": {
+			"item": "minecraft:map"
+		},
+		"I": {
+			"item": "minecraft:map"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":25
+	}
+}

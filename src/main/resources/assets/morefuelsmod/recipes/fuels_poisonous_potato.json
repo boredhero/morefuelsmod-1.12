@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:poisonous_potato"
+		},
+		"B": {
+			"item": "minecraft:poisonous_potato"
+		},
+		"C": {
+			"item": "minecraft:poisonous_potato"
+		},
+		"D": {
+			"item": "minecraft:poisonous_potato"
+		},
+		"E": {
+			"item": "minecraft:poisonous_potato"
+		},
+		"F": {
+			"item": "minecraft:poisonous_potato"
+		},
+		"G": {
+			"item": "minecraft:poisonous_potato"
+		},
+		"H": {
+			"item": "minecraft:poisonous_potato"
+		},
+		"I": {
+			"item": "minecraft:poisonous_potato"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

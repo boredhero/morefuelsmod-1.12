@@ -17,7 +17,7 @@ public abstract class NodeProcessor
     protected boolean canOpenDoors;
     protected boolean canSwim;
 
-    public void initProcessor(IBlockAccess sourceIn, EntityLiving mob)
+    public void init(IBlockAccess sourceIn, EntityLiving mob)
     {
         this.blockaccess = sourceIn;
         this.entity = mob;

@@ -82,7 +82,7 @@ public class RecipeTippedArrow extends net.minecraftforge.registries.IForgeRegis
         return NonNullList.<ItemStack>withSize(inv.getSizeInventory(), ItemStack.EMPTY);
     }
 
-    public boolean isHidden()
+    public boolean isDynamic()
     {
         return true;
     }

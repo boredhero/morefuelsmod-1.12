@@ -238,7 +238,7 @@ public class ContainerRepair extends Container
                             l1 = 0;
                         }
 
-                        if (l1 < itemstack1.getMetadata())
+                        if (l1 < itemstack1.getItemDamage()) // vanilla uses metadata here instead of damage.
                         {
                             itemstack1.setItemDamage(l1);
                             i += 2;

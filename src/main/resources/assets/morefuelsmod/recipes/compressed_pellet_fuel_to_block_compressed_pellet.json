@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"B": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"C": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"D": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"E": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"F": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"G": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"H": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"I": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:block_compressed_pellet_fuel"
+	}
+}

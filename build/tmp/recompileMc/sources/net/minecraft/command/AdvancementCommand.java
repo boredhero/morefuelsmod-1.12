@@ -93,21 +93,21 @@ public class AdvancementCommand extends CommandBase
         }
     }
 
-    private void perform(MinecraftServer p_193516_1_, ICommandSender p_193516_2_, String[] p_193516_3_, EntityPlayerMP p_193516_4_, AdvancementCommand.ActionType p_193516_5_, AdvancementCommand.Mode p_193516_6_) throws CommandException
+    private void perform(MinecraftServer server, ICommandSender sender, String[] args, EntityPlayerMP player, AdvancementCommand.ActionType p_193516_5_, AdvancementCommand.Mode p_193516_6_) throws CommandException
     {
         if (p_193516_6_ == AdvancementCommand.Mode.EVERYTHING)
         {
-            if (p_193516_3_.length == 3)
+            if (args.length == 3)
             {
-                int j = p_193516_5_.perform(p_193516_4_, p_193516_1_.getAdvancementManager().getAdvancements());
+                int j = p_193516_5_.perform(player, server.getAdvancementManager().getAdvancements());
 
                 if (j == 0)
                 {
-                    throw p_193516_6_.fail(p_193516_5_, p_193516_4_.getName());
+                    throw p_193516_6_.fail(p_193516_5_, player.getName());
                 }
                 else
                 {
-                    p_193516_6_.success(p_193516_2_, this, p_193516_5_, p_193516_4_.getName(), j);
+                    p_193516_6_.success(sender, this, p_193516_5_, player.getName(), j);
                 }
             }
             else
@@ -115,46 +115,46 @@ public class AdvancementCommand extends CommandBase
                 throw p_193516_6_.usage(p_193516_5_);
             }
         }
-        else if (p_193516_3_.length < 4)
+        else if (args.length < 4)
         {
             throw p_193516_6_.usage(p_193516_5_);
         }
         else
         {
-            Advancement advancement = findAdvancement(p_193516_1_, p_193516_3_[3]);
+            Advancement advancement = findAdvancement(server, args[3]);
 
-            if (p_193516_6_ == AdvancementCommand.Mode.ONLY && p_193516_3_.length == 5)
+            if (p_193516_6_ == AdvancementCommand.Mode.ONLY && args.length == 5)
             {
-                String s = p_193516_3_[4];
+                String s = args[4];
 
                 if (!advancement.getCriteria().keySet().contains(s))
                 {
-                    throw new CommandException("commands.advancement.criterionNotFound", new Object[] {advancement.getId(), p_193516_3_[4]});
+                    throw new CommandException("commands.advancement.criterionNotFound", new Object[] {advancement.getId(), args[4]});
                 }
 
-                if (!p_193516_5_.performCriterion(p_193516_4_, advancement, s))
+                if (!p_193516_5_.performCriterion(player, advancement, s))
                 {
-                    throw new CommandException(p_193516_5_.baseTranslationKey + ".criterion.failed", new Object[] {advancement.getId(), p_193516_4_.getName(), s});
+                    throw new CommandException(p_193516_5_.baseTranslationKey + ".criterion.failed", new Object[] {advancement.getId(), player.getName(), s});
                 }
 
-                notifyCommandListener(p_193516_2_, this, p_193516_5_.baseTranslationKey + ".criterion.success", new Object[] {advancement.getId(), p_193516_4_.getName(), s});
+                notifyCommandListener(sender, this, p_193516_5_.baseTranslationKey + ".criterion.success", new Object[] {advancement.getId(), player.getName(), s});
             }
             else
             {
-                if (p_193516_3_.length != 4)
+                if (args.length != 4)
                 {
                     throw p_193516_6_.usage(p_193516_5_);
                 }
 
                 List<Advancement> list = this.getAdvancements(advancement, p_193516_6_);
-                int i = p_193516_5_.perform(p_193516_4_, list);
+                int i = p_193516_5_.perform(player, list);
 
                 if (i == 0)
                 {
-                    throw p_193516_6_.fail(p_193516_5_, advancement.getId(), p_193516_4_.getName());
+                    throw p_193516_6_.fail(p_193516_5_, advancement.getId(), player.getName());
                 }
 
-                p_193516_6_.success(p_193516_2_, this, p_193516_5_, advancement.getId(), p_193516_4_.getName(), i);
+                p_193516_6_.success(sender, this, p_193516_5_, advancement.getId(), player.getName(), i);
             }
         }
     }

@@ -243,7 +243,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
         return false;
     }
 
-    public void updatePosition(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
+    public void updatePosition(int slotIndex, int x, int y, float partialTicks)
     {
     }
 

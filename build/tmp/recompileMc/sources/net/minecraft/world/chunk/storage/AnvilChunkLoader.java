@@ -37,8 +37,13 @@ import org.apache.logging.log4j.Logger;
 public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    private final Map<ChunkPos, NBTTagCompound> chunksToRemove = Maps.<ChunkPos, NBTTagCompound>newConcurrentMap();
-    private final Set<ChunkPos> currentSave = Collections.<ChunkPos>newSetFromMap(Maps.newConcurrentMap());
+    /**
+     * A map containing chunks to be written to disk (but not those that are currently in the process of being written).
+     * Key is the chunk position, value is the NBT to write.
+     */
+    private final Map<ChunkPos, NBTTagCompound> chunksToSave = Maps.<ChunkPos, NBTTagCompound>newConcurrentMap();
+    /** A set containing the chunk that is currently in the process of being written to disk. */
+    private final Set<ChunkPos> chunksBeingSaved = Collections.<ChunkPos>newSetFromMap(Maps.newConcurrentMap());
     /** Save directory for chunks using the Anvil format */
     public final File chunkSaveLocation;
     private final DataFixer fixer;
@@ -75,10 +80,11 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
         return null;
     }
 
+    @Nullable
     public Object[] loadChunk__Async(World worldIn, int x, int z) throws IOException
     {
         ChunkPos chunkpos = new ChunkPos(x, z);
-        NBTTagCompound nbttagcompound = this.chunksToRemove.get(chunkpos);
+        NBTTagCompound nbttagcompound = this.chunksToSave.get(chunkpos);
 
         if (nbttagcompound == null)
         {
@@ -98,7 +104,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
     public boolean isChunkGeneratedAt(int x, int z)
     {
         ChunkPos chunkpos = new ChunkPos(x, z);
-        NBTTagCompound nbttagcompound = this.chunksToRemove.get(chunkpos);
+        NBTTagCompound nbttagcompound = this.chunksToSave.get(chunkpos);
         return nbttagcompound != null ? true : RegionFileCache.chunkExists(this.chunkSaveLocation, x, z);
     }
 
@@ -112,6 +118,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
         return data != null ? (Chunk)data[0] : null;
     }
 
+    @Nullable
     protected Object[] checkedReadChunkFromNBT__Async(World worldIn, int x, int z, NBTTagCompound compound)
     {
         if (!compound.hasKey("Level", 10))
@@ -188,20 +195,23 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 
     protected void addChunkToPending(ChunkPos pos, NBTTagCompound compound)
     {
-        if (!this.currentSave.contains(pos))
+        if (!this.chunksBeingSaved.contains(pos))
         {
-            this.chunksToRemove.put(pos, compound);
+            this.chunksToSave.put(pos, compound);
         }
 
         ThreadedFileIOBase.getThreadedIOInstance().queueIO(this);
     }
 
     /**
-     * Returns a boolean stating if the write was unsuccessful.
+     * Writes one queued IO action.
+     *  
+     * @return true if there are more IO actions to perform afterwards, or false if there are none (and this instance of
+     * IThreadedFileIO should be removed from the queued list)
      */
     public boolean writeNextIO()
     {
-        if (this.chunksToRemove.isEmpty())
+        if (this.chunksToSave.isEmpty())
         {
             if (this.flushing)
             {
@@ -212,13 +222,13 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
         }
         else
         {
-            ChunkPos chunkpos = this.chunksToRemove.keySet().iterator().next();
+            ChunkPos chunkpos = this.chunksToSave.keySet().iterator().next();
             boolean lvt_3_1_;
 
             try
             {
-                this.currentSave.add(chunkpos);
-                NBTTagCompound nbttagcompound = this.chunksToRemove.remove(chunkpos);
+                this.chunksBeingSaved.add(chunkpos);
+                NBTTagCompound nbttagcompound = this.chunksToSave.remove(chunkpos);
 
                 if (nbttagcompound != null)
                 {
@@ -236,7 +246,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
             }
             finally
             {
-                this.currentSave.remove(chunkpos);
+                this.chunksBeingSaved.remove(chunkpos);
             }
 
             return lvt_3_1_;

@@ -62,7 +62,7 @@ public class EntityBat extends EntityAmbientCreature
         return this.getIsBatHanging() && this.rand.nextInt(4) != 0 ? null : SoundEvents.ENTITY_BAT_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_BAT_HURT;
     }

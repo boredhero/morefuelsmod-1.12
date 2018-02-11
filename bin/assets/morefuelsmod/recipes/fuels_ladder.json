@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:ladder"
+		},
+		"B": {
+			"item": "minecraft:ladder"
+		},
+		"C": {
+			"item": "minecraft:ladder"
+		},
+		"D": {
+			"item": "minecraft:ladder"
+		},
+		"E": {
+			"item": "minecraft:ladder"
+		},
+		"F": {
+			"item": "minecraft:ladder"
+		},
+		"G": {
+			"item": "minecraft:ladder"
+		},
+		"H": {
+			"item": "minecraft:ladder"
+		},
+		"I": {
+			"item": "minecraft:ladder"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":3
+	}
+}

@@ -18,12 +18,17 @@ public class ShapelessRecipes extends net.minecraftforge.registries.IForgeRegist
     /** Is a List of ItemStack that composes the recipe. */
     public final NonNullList<Ingredient> recipeItems;
     private final String group;
+    private final boolean isSimple;
 
     public ShapelessRecipes(String group, ItemStack output, NonNullList<Ingredient> ingredients)
     {
         this.group = group;
         this.recipeOutput = output;
         this.recipeItems = ingredients;
+        boolean simple = true;
+        for (Ingredient i : ingredients)
+            simple &= i.isSimple();
+        this.isSimple = simple;
     }
 
     public String getGroup()
@@ -60,7 +65,9 @@ public class ShapelessRecipes extends net.minecraftforge.registries.IForgeRegist
      */
     public boolean matches(InventoryCrafting inv, World worldIn)
     {
-        List<Ingredient> list = Lists.newArrayList(this.recipeItems);
+        int ingredientCount = 0;
+        net.minecraft.client.util.RecipeItemHelper recipeItemHelper = new net.minecraft.client.util.RecipeItemHelper();
+        List<ItemStack> inputs = Lists.newArrayList();
 
         for (int i = 0; i < inv.getHeight(); ++i)
         {
@@ -70,27 +77,22 @@ public class ShapelessRecipes extends net.minecraftforge.registries.IForgeRegist
 
                 if (!itemstack.isEmpty())
                 {
-                    boolean flag = false;
-
-                    for (Ingredient ingredient : list)
-                    {
-                        if (ingredient.apply(itemstack))
-                        {
-                            flag = true;
-                            list.remove(ingredient);
-                            break;
-                        }
-                    }
-
-                    if (!flag)
-                    {
-                        return false;
-                    }
+                    ++ingredientCount;
+                    if (this.isSimple)
+                        recipeItemHelper.accountStack(itemstack, 1);
+                    else
+                        inputs.add(itemstack);
                 }
             }
         }
 
-        return list.isEmpty();
+        if (ingredientCount != this.recipeItems.size())
+            return false;
+
+        if (this.isSimple)
+            return recipeItemHelper.canCraft(this, null);
+
+        return net.minecraftforge.common.util.RecipeMatcher.findMatches(inputs, this.recipeItems) != null;
     }
 
     /**

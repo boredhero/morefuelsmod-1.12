@@ -331,21 +331,21 @@ public class RenderChunk
         return d0 * d0 + d1 * d1 + d2 * d2;
     }
 
-    private void preRenderBlocks(BufferBuilder worldRendererIn, BlockPos pos)
+    private void preRenderBlocks(BufferBuilder bufferBuilderIn, BlockPos pos)
     {
-        worldRendererIn.begin(7, DefaultVertexFormats.BLOCK);
-        worldRendererIn.setTranslation((double)(-pos.getX()), (double)(-pos.getY()), (double)(-pos.getZ()));
+        bufferBuilderIn.begin(7, DefaultVertexFormats.BLOCK);
+        bufferBuilderIn.setTranslation((double)(-pos.getX()), (double)(-pos.getY()), (double)(-pos.getZ()));
     }
 
-    private void postRenderBlocks(BlockRenderLayer layer, float x, float y, float z, BufferBuilder worldRendererIn, CompiledChunk compiledChunkIn)
+    private void postRenderBlocks(BlockRenderLayer layer, float x, float y, float z, BufferBuilder bufferBuilderIn, CompiledChunk compiledChunkIn)
     {
         if (layer == BlockRenderLayer.TRANSLUCENT && !compiledChunkIn.isLayerEmpty(layer))
         {
-            worldRendererIn.sortVertexData(x, y, z);
-            compiledChunkIn.setState(worldRendererIn.getVertexState());
+            bufferBuilderIn.sortVertexData(x, y, z);
+            compiledChunkIn.setState(bufferBuilderIn.getVertexState());
         }
 
-        worldRendererIn.finishDrawing();
+        bufferBuilderIn.finishDrawing();
     }
 
     private void initModelviewMatrix()

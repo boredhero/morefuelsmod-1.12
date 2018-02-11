@@ -456,12 +456,26 @@ public class TileEntityStructure extends TileEntity
         buf.writeInt(this.pos.getZ());
     }
 
+    /**
+     * Saves the template, writing it to disk.
+     *  
+     * @return true if the template was successfully saved.
+     */
     public boolean save()
     {
         return this.save(true);
     }
 
-    public boolean save(boolean p_189712_1_)
+    /**
+     * Saves the template, either updating the local version or writing it to disk.
+     *  
+     * @return true if the template was successfully saved.
+     *  
+     * @param writeToDisk If true, {@link TemplateManager#writeTemplate} will be called with the template, and its
+     * return value will dictate the return value of this method. If false, the template will be updated but not written
+     * to disk.
+     */
+    public boolean save(boolean writeToDisk)
     {
         if (this.mode == TileEntityStructure.Mode.SAVE && !this.world.isRemote && !StringUtils.isNullOrEmpty(this.name))
         {
@@ -472,7 +486,7 @@ public class TileEntityStructure extends TileEntity
             Template template = templatemanager.getTemplate(minecraftserver, new ResourceLocation(this.name));
             template.takeBlocksFromWorld(this.world, blockpos, this.size, !this.ignoreEntities, Blocks.STRUCTURE_VOID);
             template.setAuthor(this.author);
-            return !p_189712_1_ || templatemanager.writeTemplate(minecraftserver, new ResourceLocation(this.name));
+            return !writeToDisk || templatemanager.writeTemplate(minecraftserver, new ResourceLocation(this.name));
         }
         else
         {
@@ -480,12 +494,27 @@ public class TileEntityStructure extends TileEntity
         }
     }
 
+    /**
+     * Loads the given template, both into this structure block and into the world, aborting if the size of the template
+     * does not match the size in this structure block.
+     *  
+     * @return true if the template was successfully added to the world.
+     */
     public boolean load()
     {
         return this.load(true);
     }
 
-    public boolean load(boolean p_189714_1_)
+    /**
+     * Loads the given template, both into this structure block and into the world.
+     *  
+     * @return true if the template was successfully added to the world.
+     *  
+     * @param requireMatchingSize If true, and the size of the loaded template does not match the size in this structure
+     * block, the structure will not be loaded into the world and false will be returned. Regardless of the value of
+     * this parameter, the size in the structure block will be updated after calling this method.
+     */
+    public boolean load(boolean requireMatchingSize)
     {
         if (this.mode == TileEntityStructure.Mode.LOAD && !this.world.isRemote && !StringUtils.isNullOrEmpty(this.name))
         {
@@ -518,7 +547,7 @@ public class TileEntityStructure extends TileEntity
                     this.world.notifyBlockUpdate(blockpos, iblockstate, iblockstate, 3);
                 }
 
-                if (p_189714_1_ && !flag)
+                if (requireMatchingSize && !flag)
                 {
                     return false;
                 }

@@ -136,9 +136,9 @@ public class AxisAlignedBB
      *  
      * <h3>See Also:</h3>
      * <ul>
-     * <li>{@link #addCoord(double, double, double)} - like this, except for expanding.</li>
-     * <li>{@link #expand(double, double, double)} and {@link #expandXyz(double)} - expands in all directions.</li>
-     * <li>{@link #contract(double)} - contracts in all directions (like {@link #expandXyz(double)})</li>
+     * <li>{@link #expand(double, double, double)} - like this, except for expanding.</li>
+     * <li>{@link #grow(double, double, double)} and {@link #grow(double)} - expands in all directions.</li>
+     * <li>{@link #shrink(double)} - contracts in all directions (like {@link #grow(double)})</li>
      * </ul>
      *  
      * @return A new modified bounding box.
@@ -189,19 +189,19 @@ public class AxisAlignedBB
      * <h3>Samples:</h3>
      * <table>
      * <tr><th>Input</th><th>Result</th></tr>
-     * <tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 1, 1, 1).addCoord(2, 2, 2)</code></pre></td><td><pre><samp>box[0,
-     * 0, 0 -> 3, 3, 3]</samp></pre></td><td>
-     * <tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 1, 1, 1).addCoord(-2, -2, -2)</code></pre></td><td><pre><samp>box[-
-     * 2, -2, -2 -> 1, 1, 1]</samp></pre></td><td>
-     * <tr><td><pre><code>new AxisAlignedBB(5, 5, 5, 7, 7, 7).addCoord(0, 1, -1)</code></pre></td><td><pre><samp>box[5,
-     * 5, 4, 7, 8, 7]</samp></pre></td><td>
+     * <tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 1, 1, 1).expand(2, 2, 2)</code></pre></td><td><pre><samp>box[0, 0,
+     * 0 -> 3, 3, 3]</samp></pre></td><td>
+     * <tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 1, 1, 1).expand(-2, -2, -2)</code></pre></td><td><pre><samp>box[-2,
+     * -2, -2 -> 1, 1, 1]</samp></pre></td><td>
+     * <tr><td><pre><code>new AxisAlignedBB(5, 5, 5, 7, 7, 7).expand(0, 1, -1)</code></pre></td><td><pre><samp>box[5, 5,
+     * 4, 7, 8, 7]</samp></pre></td><td>
      * </table>
      * 
      * <h3>See Also:</h3>
      * <ul>
      * <li>{@link #contract(double, double, double)} - like this, except for shrinking.</li>
-     * <li>{@link #expand(double, double, double)} and {@link #expandXyz(double)} - expands in all directions.</li>
-     * <li>{@link #contract(double)} - contracts in all directions (like {@link #expandXyz(double)})</li>
+     * <li>{@link #grow(double, double, double)} and {@link #grow(double)} - expands in all directions.</li>
+     * <li>{@link #shrink(double)} - contracts in all directions (like {@link #grow(double)})</li>
      * </ul>
      * 
      * @return A modified bounding box that will always be equal or greater in volume to this bounding box.
@@ -257,22 +257,22 @@ public class AxisAlignedBB
      * <h3>Samples:</h3>
      * <table>
      * <tr><th>Input</th><th>Result</th></tr>
-     * <tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 1, 1, 1).expand(2, 2, 2)</code></pre></td><td><pre><samp>box[-2.0,
-     * -2.0, -2.0 -> 3.0, 3.0, 3.0]</samp></pre></td></tr>
-     * <tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 6, 6, 6).expand(-2, -2, -
-     * 2)</code></pre></td><td><pre><samp>box[2.0, 2.0, 2.0 -> 4.0, 4.0, 4.0]</samp></pre></td></tr>
-     * <tr><td><pre><code>new AxisAlignedBB(5, 5, 5, 7, 7, 7).expand(0, 1, -1)</code></pre></td><td><pre><samp>box[5.0,
+     * <tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 1, 1, 1).grow(2, 2, 2)</code></pre></td><td><pre><samp>box[-2.0, -
+     * 2.0, -2.0 -> 3.0, 3.0, 3.0]</samp></pre></td></tr>
+     * <tr><td><pre><code>new AxisAlignedBB(0, 0, 0, 6, 6, 6).grow(-2, -2, -2)</code></pre></td><td><pre><samp>box[2.0,
+     * 2.0, 2.0 -> 4.0, 4.0, 4.0]</samp></pre></td></tr>
+     * <tr><td><pre><code>new AxisAlignedBB(5, 5, 5, 7, 7, 7).grow(0, 1, -1)</code></pre></td><td><pre><samp>box[5.0,
      * 4.0, 6.0 -> 7.0, 8.0, 6.0]</samp></pre></td></tr>
-     * <tr><td><pre><code>new AxisAlignedBB(1, 1, 1, 3, 3, 3).expand(-4, -2, -3)</code></pre></td><td><pre><samp>box[-
-     * 1.0, 1.0, 0.0 -> 5.0, 3.0, 4.0]</samp></pre></td></tr>
+     * <tr><td><pre><code>new AxisAlignedBB(1, 1, 1, 3, 3, 3).grow(-4, -2, -3)</code></pre></td><td><pre><samp>box[-1.0,
+     * 1.0, 0.0 -> 5.0, 3.0, 4.0]</samp></pre></td></tr>
      * </table>
      *  
      * <h3>See Also:</h3>
      * <ul>
-     * <li>{@link #addCoord(double, double, double)} - expands in only one direction.</li>
+     * <li>{@link #expand(double, double, double)} - expands in only one direction.</li>
      * <li>{@link #contract(double, double, double)} - contracts in only one direction.</li>
-     * <lu>{@link #expandXyz(double)} - version of this that expands in all directions from one parameter.</li>
-     * <li>{@link #contract(double)} - contracts in all directions</li>
+     * <lu>{@link #grow(double)} - version of this that expands in all directions from one parameter.</li>
+     * <li>{@link #shrink(double)} - contracts in all directions</li>
      * </ul>
      *  
      * @return A modified bounding box.
@@ -290,12 +290,12 @@ public class AxisAlignedBB
 
     /**
      * Creates a new {@link AxisAlignedBB} that is expanded by the given value in all directions. Equivalent to {@link
-     * #expand(double, double, double)} with the given value for all 3 params. Negative values will shrink the AABB.
+     * #grow(double, double, double)} with the given value for all 3 params. Negative values will shrink the AABB.
      * <br/>
      * Side lengths will be increased by 2 times the value of the parameter, since both min and max are changed.
      * <br/>
      * If contracting and the amount to contract by is larger than the length of a side, then the side will wrap (still
-     * creating a valid AABB - see samples on {@link #expand(double, double, double)}).
+     * creating a valid AABB - see samples on {@link #grow(double, double, double)}).
      *  
      * @return A modified AABB.
      */
@@ -304,14 +304,14 @@ public class AxisAlignedBB
         return this.grow(value, value, value);
     }
 
-    public AxisAlignedBB intersect(AxisAlignedBB p_191500_1_)
+    public AxisAlignedBB intersect(AxisAlignedBB other)
     {
-        double d0 = Math.max(this.minX, p_191500_1_.minX);
-        double d1 = Math.max(this.minY, p_191500_1_.minY);
-        double d2 = Math.max(this.minZ, p_191500_1_.minZ);
-        double d3 = Math.min(this.maxX, p_191500_1_.maxX);
-        double d4 = Math.min(this.maxY, p_191500_1_.maxY);
-        double d5 = Math.min(this.maxZ, p_191500_1_.maxZ);
+        double d0 = Math.max(this.minX, other.minX);
+        double d1 = Math.max(this.minY, other.minY);
+        double d2 = Math.max(this.minZ, other.minZ);
+        double d3 = Math.min(this.maxX, other.maxX);
+        double d4 = Math.min(this.maxY, other.maxY);
+        double d5 = Math.min(this.maxZ, other.maxZ);
         return new AxisAlignedBB(d0, d1, d2, d3, d4, d5);
     }
 
@@ -339,9 +339,9 @@ public class AxisAlignedBB
         return new AxisAlignedBB(this.minX + (double)pos.getX(), this.minY + (double)pos.getY(), this.minZ + (double)pos.getZ(), this.maxX + (double)pos.getX(), this.maxY + (double)pos.getY(), this.maxZ + (double)pos.getZ());
     }
 
-    public AxisAlignedBB offset(Vec3d p_191194_1_)
+    public AxisAlignedBB offset(Vec3d vec)
     {
-        return this.offset(p_191194_1_.x, p_191194_1_.y, p_191194_1_.z);
+        return this.offset(vec.x, vec.y, vec.z);
     }
 
     /**
@@ -506,13 +506,13 @@ public class AxisAlignedBB
 
     /**
      * Creates a new {@link AxisAlignedBB} that is expanded by the given value in all directions. Equivalent to {@link
-     * #expandXyz(double)} with value set to the negative of the value provided here. Passing a negative value to this
-     * method values will grow the AABB.
+     * #grow(double)} with value set to the negative of the value provided here. Passing a negative value to this method
+     * values will grow the AABB.
      * <br/>
      * Side lengths will be decreased by 2 times the value of the parameter, since both min and max are changed.
      * <br/>
      * If contracting and the amount to contract by is larger than the length of a side, then the side will wrap (still
-     * creating a valid AABB - see samples on {@link #expand(double, double, double)}).
+     * creating a valid AABB - see samples on {@link #grow(double, double, double)}).
      *  
      * @return A modified AABB.
      */

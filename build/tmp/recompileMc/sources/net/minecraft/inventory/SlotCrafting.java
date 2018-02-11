@@ -75,7 +75,7 @@ public class SlotCrafting extends Slot
         InventoryCraftResult inventorycraftresult = (InventoryCraftResult)this.inventory;
         IRecipe irecipe = inventorycraftresult.getRecipeUsed();
 
-        if (irecipe != null && !irecipe.isHidden())
+        if (irecipe != null && !irecipe.isDynamic())
         {
             this.player.unlockRecipes(Lists.newArrayList(irecipe));
             inventorycraftresult.setRecipeUsed((IRecipe)null);

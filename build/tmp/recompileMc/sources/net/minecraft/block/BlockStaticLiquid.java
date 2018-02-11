@@ -62,9 +62,9 @@ public class BlockStaticLiquid extends BlockLiquid
                             return;
                         }
 
-                        Block block = worldIn.getBlockState(blockpos).getBlock();
+                        IBlockState block = worldIn.getBlockState(blockpos);
 
-                        if (block.blockMaterial == Material.AIR)
+                        if (block.getBlock().isAir(block, worldIn, blockpos))
                         {
                             if (this.isSurroundingBlockFlammable(worldIn, blockpos))
                             {
@@ -72,7 +72,7 @@ public class BlockStaticLiquid extends BlockLiquid
                                 return;
                             }
                         }
-                        else if (block.blockMaterial.blocksMovement())
+                        else if (block.getMaterial().blocksMovement())
                         {
                             return;
                         }

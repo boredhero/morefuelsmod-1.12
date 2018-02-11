@@ -42,7 +42,7 @@ public class EntityAISit extends EntityAIBase
             }
             else
             {
-                return this.tameable.getDistanceSqToEntity(entitylivingbase) < 144.0D && entitylivingbase.getRevengeTarget() != null ? false : this.isSitting;
+                return this.tameable.getDistanceSq(entitylivingbase) < 144.0D && entitylivingbase.getRevengeTarget() != null ? false : this.isSitting;
             }
         }
     }
@@ -52,7 +52,7 @@ public class EntityAISit extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.tameable.getNavigator().clearPathEntity();
+        this.tameable.getNavigator().clearPath();
         this.tameable.setSitting(true);
     }
 

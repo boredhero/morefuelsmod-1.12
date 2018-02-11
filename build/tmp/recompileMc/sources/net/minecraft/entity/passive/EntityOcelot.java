@@ -169,7 +169,7 @@ public class EntityOcelot extends EntityTameable
         }
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_CAT_HURT;
     }
@@ -229,7 +229,7 @@ public class EntityOcelot extends EntityTameable
                 this.aiSit.setSitting(!this.isSitting());
             }
         }
-        else if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == Items.FISH && player.getDistanceSqToEntity(this) < 9.0D)
+        else if ((this.aiTempt == null || this.aiTempt.isRunning()) && itemstack.getItem() == Items.FISH && player.getDistanceSq(this) < 9.0D)
         {
             if (!player.capabilities.isCreativeMode)
             {

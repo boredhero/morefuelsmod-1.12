@@ -42,7 +42,7 @@ public class EntityAITradePlayer extends EntityAIBase
             {
                 return false;
             }
-            else if (this.villager.getDistanceSqToEntity(entityplayer) > 16.0D)
+            else if (this.villager.getDistanceSq(entityplayer) > 16.0D)
             {
                 return false;
             }
@@ -58,7 +58,7 @@ public class EntityAITradePlayer extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.villager.getNavigator().clearPathEntity();
+        this.villager.getNavigator().clearPath();
     }
 
     /**

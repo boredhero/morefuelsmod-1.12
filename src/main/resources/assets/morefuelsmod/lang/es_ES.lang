@@ -1,18 +1,25 @@
-##All Spanish Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+#All Spanish Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+
+#Mod Creative Tab
+itemGroup.morefuelsmod=Más Combustibles
 
 #Items
-item.pelletsFuel.name=Pastillas de Combustible
-item.concentratedPelletsFuel.name=Pastillas de Combustible Concentrados
-item.coke.name=Coque (Combustible)
-item.bituminousCoal.name=Carbon Bituminoso
-item.canSlimoline.name=Bidon de Slimolina
-item.dustCoal.name=Polvo de Carbon
+item.coke.name=Coca
+item.bituminous_coal.name=Carbón Bituminoso
+item.can_of_slimoline.name=Lata de Slim-o-line 
+item.coal_dust.name=Polvo de Carbón
+item.compressed_pellet_fuel.name=Combustible de Pellets Comprimido
+item.glass_orb.name=Orbe de Cristal Vacío (Utemperado)
+item.tempered_glass_orb.name=Orbe de Cristal Vacío (Templado)
+item.lava_glass_orb.name=Orbe de Cristal Lleno (Lava)
+item.pellet_fuel.name=Combustible de Pellets
+item.lava_crystals.name=Cristales de Lava
 
 #Blocks
-tile.pelletBlock.name=Bloque de Pastillas de combustible
-tile.concentratedPelletBlock.name=Bloque de Concentrados Pastillas de Combustible
-tile.cokeBlock.name=Bloque de Coque (Combustible)
-tile.bituminousCoalOre.name=Mineral de Carbon Bituminoso
-
-#Tabs
-itemGroup.morefuelsmod=Mas Combustibles Modificacion
+tile.ore_bituminous_coal.name=Mineral de Carbón Bituminoso
+tile.block_coke.name=Bloque de Coque
+tile.block_bituminous_coal.name=Bloque de Carbón Bituminoso
+tile.block_creative_infinite_fuel.name=Combustible infinito (Solo creativo)
+tile.ore_lava.name=Mineral de Lava
+tile.block_pellet_fuel.name=Bloque de Combustible de Pellets
+tile.block_compressed_pellet_fuel.name=Bloque de Combustible de Pellets Comprimido

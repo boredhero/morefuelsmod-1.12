@@ -400,7 +400,7 @@ public class EntityTracker
             {
                 entitytrackerentry.updatePlayerEntity(player);
 
-                if (entity instanceof EntityLiving && ((EntityLiving)entity).getLeashedToEntity() != null)
+                if (entity instanceof EntityLiving && ((EntityLiving)entity).getLeashHolder() != null)
                 {
                     list.add(entity);
                 }
@@ -416,7 +416,7 @@ public class EntityTracker
         {
             for (Entity entity1 : list)
             {
-                player.connection.sendPacket(new SPacketEntityAttach(entity1, ((EntityLiving)entity1).getLeashedToEntity()));
+                player.connection.sendPacket(new SPacketEntityAttach(entity1, ((EntityLiving)entity1).getLeashHolder()));
             }
         }
 

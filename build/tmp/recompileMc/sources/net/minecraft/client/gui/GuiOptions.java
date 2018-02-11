@@ -38,13 +38,13 @@ public class GuiOptions extends GuiScreen
 
         for (GameSettings.Options gamesettings$options : SCREEN_OPTIONS)
         {
-            if (gamesettings$options.getEnumFloat())
+            if (gamesettings$options.isFloat())
             {
-                this.buttonList.add(new GuiOptionSlider(gamesettings$options.returnEnumOrdinal(), this.width / 2 - 155 + i % 2 * 160, this.height / 6 - 12 + 24 * (i >> 1), gamesettings$options));
+                this.buttonList.add(new GuiOptionSlider(gamesettings$options.getOrdinal(), this.width / 2 - 155 + i % 2 * 160, this.height / 6 - 12 + 24 * (i >> 1), gamesettings$options));
             }
             else
             {
-                GuiOptionButton guioptionbutton = new GuiOptionButton(gamesettings$options.returnEnumOrdinal(), this.width / 2 - 155 + i % 2 * 160, this.height / 6 - 12 + 24 * (i >> 1), gamesettings$options, this.settings.getKeyBinding(gamesettings$options));
+                GuiOptionButton guioptionbutton = new GuiOptionButton(gamesettings$options.getOrdinal(), this.width / 2 - 155 + i % 2 * 160, this.height / 6 - 12 + 24 * (i >> 1), gamesettings$options, this.settings.getKeyBinding(gamesettings$options));
                 this.buttonList.add(guioptionbutton);
             }
 
@@ -73,7 +73,7 @@ public class GuiOptions extends GuiScreen
         }
         else
         {
-            this.buttonList.add(new GuiOptionButton(GameSettings.Options.REALMS_NOTIFICATIONS.returnEnumOrdinal(), this.width / 2 - 155 + i % 2 * 160, this.height / 6 - 12 + 24 * (i >> 1), GameSettings.Options.REALMS_NOTIFICATIONS, this.settings.getKeyBinding(GameSettings.Options.REALMS_NOTIFICATIONS)));
+            this.buttonList.add(new GuiOptionButton(GameSettings.Options.REALMS_NOTIFICATIONS.getOrdinal(), this.width / 2 - 155 + i % 2 * 160, this.height / 6 - 12 + 24 * (i >> 1), GameSettings.Options.REALMS_NOTIFICATIONS, this.settings.getKeyBinding(GameSettings.Options.REALMS_NOTIFICATIONS)));
         }
 
         this.buttonList.add(new GuiButton(110, this.width / 2 - 155, this.height / 6 + 48 - 6, 150, 20, I18n.format("options.skinCustomisation")));
@@ -132,9 +132,9 @@ public class GuiOptions extends GuiScreen
         {
             if (button.id < 100 && button instanceof GuiOptionButton)
             {
-                GameSettings.Options gamesettings$options = ((GuiOptionButton)button).returnEnumOptions();
+                GameSettings.Options gamesettings$options = ((GuiOptionButton)button).getOption();
                 this.settings.setOptionValue(gamesettings$options, 1);
-                button.displayString = this.settings.getKeyBinding(GameSettings.Options.getEnumOptions(button.id));
+                button.displayString = this.settings.getKeyBinding(GameSettings.Options.byOrdinal(button.id));
             }
 
             if (button.id == 108)

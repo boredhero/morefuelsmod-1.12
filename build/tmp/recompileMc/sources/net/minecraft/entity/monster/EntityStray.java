@@ -46,7 +46,7 @@ public class EntityStray extends AbstractSkeleton
         return SoundEvents.ENTITY_STRAY_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_STRAY_HURT;
     }

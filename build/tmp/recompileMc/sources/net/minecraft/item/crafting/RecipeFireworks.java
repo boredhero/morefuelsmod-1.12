@@ -258,7 +258,7 @@ public class RecipeFireworks extends net.minecraftforge.registries.IForgeRegistr
         return nonnulllist;
     }
 
-    public boolean isHidden()
+    public boolean isDynamic()
     {
         return true;
     }

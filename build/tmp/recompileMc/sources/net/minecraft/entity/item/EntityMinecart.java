@@ -134,7 +134,12 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
     }
 
     /**
-     * Returns the collision bounding box for this entity
+     * Returns the <b>solid</b> collision bounding box for this entity. Used to make (e.g.) boats solid. Return null if
+     * this entity is not solid.
+     *  
+     * For general purposes, use {@link #width} and {@link #height}.
+     *  
+     * @see getEntityBoundingBox
      */
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox()
@@ -186,7 +191,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
             {
                 this.setRollingDirection(-this.getRollingDirection());
                 this.setRollingAmplitude(10);
-                this.setBeenAttacked();
+                this.markVelocityChanged();
                 this.setDamage(this.getDamage() + amount * 10.0F);
                 boolean flag = source.getTrueSource() instanceof EntityPlayer && ((EntityPlayer)source.getTrueSource()).capabilities.isCreativeMode;
 
@@ -1132,6 +1137,12 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
     {
         this.getDataManager().set(SHOW_BLOCK, Boolean.valueOf(showBlock));
     }
+    
+    @Override
+    public boolean processInitialInteract(EntityPlayer player, net.minecraft.util.EnumHand hand)
+    {
+        return net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.minecart.MinecartInteractEvent(this, player, hand));
+    }
 
     /* =================================== FORGE START ===========================================*/
     private BlockPos getCurrentRailPosition()
@@ -1181,6 +1192,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
      * is registered, returns null
      * @return The collision handler or null
      */
+    @Nullable
     public static net.minecraftforge.common.IMinecartCollisionHandler getCollisionHandler()
     {
         return collisionHandler;

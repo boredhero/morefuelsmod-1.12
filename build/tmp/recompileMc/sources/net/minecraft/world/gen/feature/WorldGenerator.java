@@ -37,7 +37,8 @@ public abstract class WorldGenerator
         }
         else
         {
-            worldIn.setBlockState(pos, state, 2);
+            int flag = net.minecraftforge.common.ForgeModContainer.fixVanillaCascading ? 2| 16 : 2; //Forge: With bit 5 unset, it will notify neighbors and load adjacent chunks.
+            worldIn.setBlockState(pos, state, flag);
         }
     }
 }

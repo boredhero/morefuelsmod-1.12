@@ -25,7 +25,7 @@ public class BiomeCache
     /**
      * Returns a biome cache block at location specified.
      */
-    public BiomeCache.Block getBiomeCacheBlock(int x, int z)
+    public BiomeCache.Block getEntry(int x, int z)
     {
         x = x >> 4;
         z = z >> 4;
@@ -45,7 +45,7 @@ public class BiomeCache
 
     public Biome getBiome(int x, int z, Biome defaultValue)
     {
-        Biome biome = this.getBiomeCacheBlock(x, z).getBiome(x, z);
+        Biome biome = this.getEntry(x, z).getBiome(x, z);
         return biome == null ? defaultValue : biome;
     }
 
@@ -81,7 +81,7 @@ public class BiomeCache
      */
     public Biome[] getCachedBiomes(int x, int z)
     {
-        return this.getBiomeCacheBlock(x, z).biomes;
+        return this.getEntry(x, z).biomes;
     }
 
     public class Block

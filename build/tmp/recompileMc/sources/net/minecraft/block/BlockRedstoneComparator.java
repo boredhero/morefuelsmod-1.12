@@ -42,7 +42,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
     {
         super(powered);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.valueOf(false)).withProperty(MODE, BlockRedstoneComparator.Mode.COMPARE));
-        this.isBlockContainer = true;
+        this.hasTileEntity = true;
     }
 
     /**

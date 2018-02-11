@@ -85,7 +85,7 @@ public class EntityBlaze extends EntityMob
         return SoundEvents.ENTITY_BLAZE_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_BLAZE_HURT;
     }
@@ -253,7 +253,7 @@ public class EntityBlaze extends EntityMob
             {
                 --this.attackTime;
                 EntityLivingBase entitylivingbase = this.blaze.getAttackTarget();
-                double d0 = this.blaze.getDistanceSqToEntity(entitylivingbase);
+                double d0 = this.blaze.getDistanceSq(entitylivingbase);
 
                 if (d0 < 4.0D)
                 {
@@ -309,7 +309,7 @@ public class EntityBlaze extends EntityMob
                 }
                 else
                 {
-                    this.blaze.getNavigator().clearPathEntity();
+                    this.blaze.getNavigator().clearPath();
                     this.blaze.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
                 }
 

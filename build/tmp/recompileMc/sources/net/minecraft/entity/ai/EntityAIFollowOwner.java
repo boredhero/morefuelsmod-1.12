@@ -61,7 +61,7 @@ public class EntityAIFollowOwner extends EntityAIBase
         {
             return false;
         }
-        else if (this.tameable.getDistanceSqToEntity(entitylivingbase) < (double)(this.minDist * this.minDist))
+        else if (this.tameable.getDistanceSq(entitylivingbase) < (double)(this.minDist * this.minDist))
         {
             return false;
         }
@@ -77,7 +77,7 @@ public class EntityAIFollowOwner extends EntityAIBase
      */
     public boolean shouldContinueExecuting()
     {
-        return !this.petPathfinder.noPath() && this.tameable.getDistanceSqToEntity(this.owner) > (double)(this.maxDist * this.maxDist) && !this.tameable.isSitting();
+        return !this.petPathfinder.noPath() && this.tameable.getDistanceSq(this.owner) > (double)(this.maxDist * this.maxDist) && !this.tameable.isSitting();
     }
 
     /**
@@ -96,7 +96,7 @@ public class EntityAIFollowOwner extends EntityAIBase
     public void resetTask()
     {
         this.owner = null;
-        this.petPathfinder.clearPathEntity();
+        this.petPathfinder.clearPath();
         this.tameable.setPathPriority(PathNodeType.WATER, this.oldWaterCost);
     }
 
@@ -117,7 +117,7 @@ public class EntityAIFollowOwner extends EntityAIBase
                 {
                     if (!this.tameable.getLeashed() && !this.tameable.isRiding())
                     {
-                        if (this.tameable.getDistanceSqToEntity(this.owner) >= 144.0D)
+                        if (this.tameable.getDistanceSq(this.owner) >= 144.0D)
                         {
                             int i = MathHelper.floor(this.owner.posX) - 2;
                             int j = MathHelper.floor(this.owner.posZ) - 2;
@@ -130,7 +130,7 @@ public class EntityAIFollowOwner extends EntityAIBase
                                     if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && this.isTeleportFriendlyBlock(i, j, k, l, i1))
                                     {
                                         this.tameable.setLocationAndAngles((double)((float)(i + l) + 0.5F), (double)k, (double)((float)(j + i1) + 0.5F), this.tameable.rotationYaw, this.tameable.rotationPitch);
-                                        this.petPathfinder.clearPathEntity();
+                                        this.petPathfinder.clearPath();
                                         return;
                                     }
                                 }

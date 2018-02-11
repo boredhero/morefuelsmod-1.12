@@ -1,18 +1,25 @@
-##All German Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+#All German Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+
+#Mod Creative Tab
+itemGroup.morefuelsmod=Mehr Brennstoffe
 
 #Items
-item.pelletsFuel.name=Brennstoff-Pellets
-item.concentratedPelletsFuel.name=Konzentrierte Brennstoffpellets
-item.coke.name=Koks (Brennstoff)
-item.bituminousCoal.name=Steinkohle
-item.canSlimoline.name=Kann von Slimolin
-item.dustCoal.name=Kohlenstaub
+item.coke.name=Coke
+item.bituminous_coal.name=Steinkohle
+item.can_of_slimoline.name=Dose Slim-o-line
+item.coal_dust.name=Kohlenstaub
+item.compressed_pellet_fuel.name=Komprimierter Pellet-Kraftstoff
+item.glass_orb.name=Leere Glaskugel (Ungehärtet)
+item.tempered_glass_orb.name=Leere Glaskugel (Temperiert)
+item.lava_glass_orb.name=Gefüllte Glaskugel (Lava)
+item.pellet_fuel.name=Pellet-Treibstoff
+item.lava_crystals.name=Lavakristalle
 
 #Blocks
-tile.pelletBlock.name=Block von Pellets als Brennstoff
-tile.concentratedPelletBlock.name=Block Konzentrierter Pellets als Brennstoff
-tile.cokeBlock.name=Block von Koks (Brennstoff)
-tile.bituminousCoalOre.name=Bituminoser Kohle Erz
-
-#Tabs
-itemGroup.morefuelsmod=Mehr Brennstoffe Modifikation
+tile.ore_bituminous_coal.name=Steinkohlenerz
+tile.block_coke.name=Koks-Block
+tile.block_bituminous_coal.name=Steinkohle Block
+tile.block_creative_infinite_fuel.name=Unendlich Kraftstoff (nur Kreativ)
+tile.ore_lava.name=Lavaerz
+tile.block_pellet_fuel.name=Pellet-Brennstoffblock
+tile.block_compressed_pellet_fuel.name=Komprimierter Pellet-Brennstoffblock

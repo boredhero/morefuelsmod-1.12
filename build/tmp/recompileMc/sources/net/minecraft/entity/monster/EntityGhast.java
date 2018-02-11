@@ -126,7 +126,7 @@ public class EntityGhast extends EntityFlying implements IMob
         return SoundEvents.ENTITY_GHAST_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_GHAST_HURT;
     }
@@ -240,7 +240,7 @@ public class EntityGhast extends EntityFlying implements IMob
                 EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
                 double d0 = 64.0D;
 
-                if (entitylivingbase.getDistanceSqToEntity(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
+                if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
                 {
                     World world = this.parentEntity.world;
                     ++this.attackTimer;
@@ -309,7 +309,7 @@ public class EntityGhast extends EntityFlying implements IMob
                     EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
                     double d0 = 64.0D;
 
-                    if (entitylivingbase.getDistanceSqToEntity(this.parentEntity) < 4096.0D)
+                    if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D)
                     {
                         double d1 = entitylivingbase.posX - this.parentEntity.posX;
                         double d2 = entitylivingbase.posZ - this.parentEntity.posZ;

@@ -61,7 +61,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand)
     {
-        if(net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.minecart.MinecartInteractEvent(this, player, hand))) return true;
+        if (super.processInitialInteract(player, hand)) return true;
         if (!this.world.isRemote)
         {
             player.displayGUIChest(this);
@@ -166,7 +166,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 
     public boolean captureDroppedItems()
     {
-        if (TileEntityHopper.captureDroppedItems(this))
+        if (TileEntityHopper.pullItems(this))
         {
             return true;
         }

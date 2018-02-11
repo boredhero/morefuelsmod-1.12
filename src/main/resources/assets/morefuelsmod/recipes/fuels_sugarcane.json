@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:reeds"
+		},
+		"B": {
+			"item": "minecraft:reeds"
+		},
+		"C": {
+			"item": "minecraft:reeds"
+		},
+		"D": {
+			"item": "minecraft:reeds"
+		},
+		"E": {
+			"item": "minecraft:reeds"
+		},
+		"F": {
+			"item": "minecraft:reeds"
+		},
+		"G": {
+			"item": "minecraft:reeds"
+		},
+		"H": {
+			"item": "minecraft:reeds"
+		},
+		"I": {
+			"item": "minecraft:reeds"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":3
+	}
+}

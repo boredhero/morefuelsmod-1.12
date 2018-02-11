@@ -25,10 +25,10 @@ public class RecipeBookServer extends RecipeBook
 
         for (IRecipe irecipe : recipesIn)
         {
-            if (!this.recipes.get(getRecipeId(irecipe)) && !irecipe.isHidden())
+            if (!this.recipes.get(getRecipeId(irecipe)) && !irecipe.isDynamic())
             {
-                this.setRecipes(irecipe);
-                this.addDisplayedRecipe(irecipe);
+                this.unlock(irecipe);
+                this.markNew(irecipe);
                 list.add(irecipe);
                 CriteriaTriggers.RECIPE_UNLOCKED.trigger(player, irecipe);
             }
@@ -45,7 +45,7 @@ public class RecipeBookServer extends RecipeBook
         {
             if (this.recipes.get(getRecipeId(irecipe)))
             {
-                this.removeRecipe(irecipe);
+                this.lock(irecipe);
                 list.add(irecipe);
             }
         }
@@ -99,7 +99,7 @@ public class RecipeBookServer extends RecipeBook
             }
             else
             {
-                this.setRecipes(irecipe);
+                this.unlock(irecipe);
             }
         }
 
@@ -116,7 +116,7 @@ public class RecipeBookServer extends RecipeBook
             }
             else
             {
-                this.addDisplayedRecipe(irecipe1);
+                this.markNew(irecipe1);
             }
         }
     }
@@ -137,7 +137,7 @@ public class RecipeBookServer extends RecipeBook
     {
         List<IRecipe> list = Lists.<IRecipe>newArrayList();
 
-        for (int i = this.unseenRecipes.nextSetBit(0); i >= 0; i = this.unseenRecipes.nextSetBit(i + 1))
+        for (int i = this.newRecipes.nextSetBit(0); i >= 0; i = this.newRecipes.nextSetBit(i + 1))
         {
             list.add(CraftingManager.REGISTRY.getObjectById(i));
         }

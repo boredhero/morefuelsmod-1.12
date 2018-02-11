@@ -153,7 +153,7 @@ public class RecipesArmorDyes extends net.minecraftforge.registries.IForgeRegist
         return nonnulllist;
     }
 
-    public boolean isHidden()
+    public boolean isDynamic()
     {
         return true;
     }

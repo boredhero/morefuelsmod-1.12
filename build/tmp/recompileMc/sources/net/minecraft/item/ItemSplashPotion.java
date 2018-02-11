@@ -31,7 +31,7 @@ public class ItemSplashPotion extends ItemPotion
         if (!worldIn.isRemote)
         {
             EntityPotion entitypotion = new EntityPotion(worldIn, playerIn, itemstack1);
-            entitypotion.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -20.0F, 0.5F, 1.0F);
+            entitypotion.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -20.0F, 0.5F, 1.0F);
             worldIn.spawnEntity(entitypotion);
         }
 

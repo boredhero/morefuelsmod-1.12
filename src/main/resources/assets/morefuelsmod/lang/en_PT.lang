@@ -1,18 +1,27 @@
 ##Yay Pirates!
+##Mod Creative Tab
+itemGroup.morefuelsmod=Better Firewood Upgrade
 
 #Items
-item.pelletsFuel.name=Yer Oven Logs
-item.concentratedPelletsFuel.name=Yer Best Oven Logs
 item.coke.name=Fancy Baked Coal
-item.bituminousCoal.name=Fancy Coal
-item.canSlimoline.name=Turbo fuel
-item.dustCoal.name=Black Powder
+item.bituminous_coal.name=Fancy Coal
+item.can_of_slimoline.name=Whale Oil
+item.coal_dust.name=Black Powder
+item.compressed_pellet_fuel.name=Yer Best Oven Logs
+item.glass_orb.name=Fancy Bauble
+item.tempered_glass_orb.name=Fancy Bauble (High Heat)
+item.lava_glass_orb.name=Lava Bauble
+item.pellet_fuel.name=Yer Oven Logs
+item.lava_crystals.name=Hot Gemstones
 
 #Blocks
-tile.pelletBlock.name=Block of Yer Oven Logs
-tile.concentratedPelletBlock.name=Block of Yer Best Oven Logs
-tile.cokeBlock.name=Block of Yer Fancy Baked Coal
-tile.bituminousCoalOre.name=Rocks with Fancy Coal
+tile.ore_bituminous_coal.name=Rocks with Fancy Coal
+tile.block_coke.name=Block of Yer Fancy Baked Coal
+tile.block_bituminous_coal.name=Block of Fancy Coal
+tile.block_creative_infinite_fuel.name=Unlimited Booty
+tile.ore_lava.name=Lava Ore
+tile.block_pellet_fuel.name=Block of Yer Oven Logs
+tile.block_compressed_pellet_fuel.name=Block of Yer Best Oven Logs
 
-#Tabs
-itemGroup.morefuelsmod=Better Firewood Upgrade
+
+

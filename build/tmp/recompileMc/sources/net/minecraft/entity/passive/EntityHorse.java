@@ -34,6 +34,7 @@ public class EntityHorse extends AbstractHorse
     private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
     private static final DataParameter<Integer> HORSE_VARIANT = EntityDataManager.<Integer>createKey(EntityHorse.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> HORSE_ARMOR = EntityDataManager.<Integer>createKey(EntityHorse.class, DataSerializers.VARINT);
+    private static final DataParameter<ItemStack> HORSE_ARMOR_STACK = EntityDataManager.<ItemStack>createKey(EntityHorse.class, DataSerializers.ITEM_STACK);
     private static final String[] HORSE_TEXTURES = new String[] {"textures/entity/horse/horse_white.png", "textures/entity/horse/horse_creamy.png", "textures/entity/horse/horse_chestnut.png", "textures/entity/horse/horse_brown.png", "textures/entity/horse/horse_black.png", "textures/entity/horse/horse_gray.png", "textures/entity/horse/horse_darkbrown.png"};
     private static final String[] HORSE_TEXTURES_ABBR = new String[] {"hwh", "hcr", "hch", "hbr", "hbl", "hgr", "hdb"};
     private static final String[] HORSE_MARKING_TEXTURES = new String[] {null, "textures/entity/horse/horse_markings_white.png", "textures/entity/horse/horse_markings_whitefield.png", "textures/entity/horse/horse_markings_whitedots.png", "textures/entity/horse/horse_markings_blackdots.png"};
@@ -51,6 +52,7 @@ public class EntityHorse extends AbstractHorse
         super.entityInit();
         this.dataManager.register(HORSE_VARIANT, Integer.valueOf(0));
         this.dataManager.register(HORSE_ARMOR, Integer.valueOf(HorseArmorType.NONE.getOrdinal()));
+        this.dataManager.register(HORSE_ARMOR_STACK, ItemStack.EMPTY);
     }
 
     public static void registerFixesHorse(DataFixer fixer)
@@ -85,7 +87,7 @@ public class EntityHorse extends AbstractHorse
         {
             ItemStack itemstack = new ItemStack(compound.getCompoundTag("ArmorItem"));
 
-            if (!itemstack.isEmpty() && HorseArmorType.isHorseArmor(itemstack.getItem()))
+            if (!itemstack.isEmpty() && isArmor(itemstack))
             {
                 this.horseChest.setInventorySlotContents(1, itemstack);
             }
@@ -116,11 +118,12 @@ public class EntityHorse extends AbstractHorse
         int i = this.getHorseVariant();
         int j = (i & 255) % 7;
         int k = ((i & 65280) >> 8) % 5;
-        HorseArmorType horsearmortype = this.getHorseArmorType();
+        ItemStack armorStack = this.dataManager.get(HORSE_ARMOR_STACK);
+        String texture = !armorStack.isEmpty() ? armorStack.getItem().getHorseArmorTexture(this, armorStack) : HorseArmorType.getByOrdinal(this.dataManager.get(HORSE_ARMOR)).getTextureName(); //If armorStack is empty, the server is vanilla so the texture should be determined the vanilla way
         this.horseTexturesArray[0] = HORSE_TEXTURES[j];
         this.horseTexturesArray[1] = HORSE_MARKING_TEXTURES[k];
-        this.horseTexturesArray[2] = horsearmortype.getTextureName();
-        this.texturePrefix = "horse/" + HORSE_TEXTURES_ABBR[j] + HORSE_MARKING_TEXTURES_ABBR[k] + horsearmortype.getHash();
+        this.horseTexturesArray[2] = texture;
+        this.texturePrefix = "horse/" + HORSE_TEXTURES_ABBR[j] + HORSE_MARKING_TEXTURES_ABBR[k] + texture;
     }
 
     @SideOnly(Side.CLIENT)
@@ -161,6 +164,7 @@ public class EntityHorse extends AbstractHorse
     {
         HorseArmorType horsearmortype = HorseArmorType.getByItemStack(itemStackIn);
         this.dataManager.set(HORSE_ARMOR, Integer.valueOf(horsearmortype.getOrdinal()));
+        this.dataManager.set(HORSE_ARMOR_STACK, itemStackIn);
         this.resetTexturePrefix();
 
         if (!this.world.isRemote)
@@ -177,7 +181,9 @@ public class EntityHorse extends AbstractHorse
 
     public HorseArmorType getHorseArmorType()
     {
-        return HorseArmorType.getByOrdinal(((Integer)this.dataManager.get(HORSE_ARMOR)).intValue());
+        HorseArmorType armor = HorseArmorType.getByItemStack(this.dataManager.get(HORSE_ARMOR_STACK)); //First check the Forge armor DataParameter
+        if (armor == HorseArmorType.NONE) armor = HorseArmorType.getByOrdinal(this.dataManager.get(HORSE_ARMOR)); //If the Forge armor DataParameter returns NONE, fallback to the vanilla armor DataParameter. This is necessary to prevent issues with Forge clients connected to vanilla servers.
+        return armor;
     }
 
     /**
@@ -225,6 +231,8 @@ public class EntityHorse extends AbstractHorse
             this.dataManager.setClean();
             this.resetTexturePrefix();
         }
+        ItemStack armor = this.horseChest.getStackInSlot(1);
+        if (isArmor(armor)) armor.getItem().onHorseArmorTick(world, this, armor);
     }
 
     protected SoundEvent getAmbientSound()
@@ -239,9 +247,9 @@ public class EntityHorse extends AbstractHorse
         return SoundEvents.ENTITY_HORSE_DEATH;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        super.getHurtSound(p_184601_1_);
+        super.getHurtSound(damageSourceIn);
         return SoundEvents.ENTITY_HORSE_HURT;
     }
 
@@ -402,7 +410,7 @@ public class EntityHorse extends AbstractHorse
 
     public boolean isArmor(ItemStack stack)
     {
-        return HorseArmorType.isHorseArmor(stack.getItem());
+        return HorseArmorType.isHorseArmor(stack);
     }
 
     /**

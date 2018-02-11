@@ -236,11 +236,11 @@ public class GuiScreenCustomizePresets extends GuiScreen
             tessellator.draw();
         }
 
-        protected void drawSlot(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
+        protected void drawSlot(int slotIndex, int xPos, int yPos, int heightIn, int mouseXIn, int mouseYIn, float partialTicks)
         {
-            GuiScreenCustomizePresets.Info guiscreencustomizepresets$info = GuiScreenCustomizePresets.PRESETS.get(p_192637_1_);
-            this.blitIcon(p_192637_2_, p_192637_3_, guiscreencustomizepresets$info.texture);
-            GuiScreenCustomizePresets.this.fontRenderer.drawString(guiscreencustomizepresets$info.name, p_192637_2_ + 32 + 10, p_192637_3_ + 14, 16777215);
+            GuiScreenCustomizePresets.Info guiscreencustomizepresets$info = GuiScreenCustomizePresets.PRESETS.get(slotIndex);
+            this.blitIcon(xPos, yPos, guiscreencustomizepresets$info.texture);
+            GuiScreenCustomizePresets.this.fontRenderer.drawString(guiscreencustomizepresets$info.name, xPos + 32 + 10, yPos + 14, 16777215);
         }
     }
 }

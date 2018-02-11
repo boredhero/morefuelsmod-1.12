@@ -33,7 +33,7 @@ public class EntityAILeapAtTarget extends EntityAIBase
         }
         else
         {
-            double d0 = this.leaper.getDistanceSqToEntity(this.leapTarget);
+            double d0 = this.leaper.getDistanceSq(this.leapTarget);
 
             if (d0 >= 4.0D && d0 <= 16.0D)
             {

@@ -123,7 +123,7 @@ public class PlayerControllerMP
 
     public boolean onPlayerDestroyBlock(BlockPos pos)
     {
-        if (this.currentGameType.isAdventure())
+        if (this.currentGameType.hasLimitedInteractions())
         {
             if (this.currentGameType == GameType.SPECTATOR)
             {
@@ -209,7 +209,7 @@ public class PlayerControllerMP
      */
     public boolean clickBlock(BlockPos loc, EnumFacing face)
     {
-        if (this.currentGameType.isAdventure())
+        if (this.currentGameType.hasLimitedInteractions())
         {
             if (this.currentGameType == GameType.SPECTATOR)
             {
@@ -366,7 +366,8 @@ public class PlayerControllerMP
      */
     public float getBlockReachDistance()
     {
-        return this.currentGameType.isCreative() ? 5.0F : 4.5F;
+        float attrib = (float) mc.player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).getAttributeValue();
+        return this.currentGameType.isCreative() ? attrib : attrib - 0.5F;
     }
 
     public void updateController()

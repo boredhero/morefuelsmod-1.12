@@ -1,18 +1,25 @@
-##All Chinese (Simplified) Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+#All Chinese (Simplified) Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+
+#Mod Creative Tab
+itemGroup.morefuelsmod=更多燃料 (Gèng duō ránliào)
 
 #Items
-item.pelletsFuel.name=ç‡ƒæ–™èŠ¯å�— (RÃ¡nliÃ o xÄ«n kuÃ i)
-item.concentratedPelletsFuel.name=æµ“ç¼©ç‡ƒæ–™åŽ‹å�— (NÃ³ngsuÅ� rÃ¡nliÃ o yÄ� kuÃ i)
-item.coke.name=å�¯å�£å�¯ä¹�ï¼ˆç‡ƒæ–™ï¼‰ (KÄ›kÇ’ukÄ›lÃ¨ (rÃ¡nliÃ o))
-item.bituminousCoal.name=çƒŸç…¤ (YÄ�nmÃ©i)
-item.canSlimoline.name=slimolineçš„èƒ½ (Slimoline de nÃ©ng)
-item.dustCoal.name=ç…¤å°˜ (MÃ©i chÃ©n)
+item.coke.name=可乐 (Kělè)
+item.bituminous_coal.name=烟煤 (Yānméi)
+item.can_of_slimoline.name=可以 Slim-o-line (Nénggòu slimoline)
+item.coal_dust.name=煤炭粉末 (Méitàn fěnmò)
+item.compressed_pellet_fuel.name=压缩颗粒燃料 (Yāsuō kēlì ránliào)
+item.glass_orb.name=空的玻璃球 (Kōng de bōlí qiú)
+item.tempered_glass_orb.name=空玻璃球（钢化） (Kōng bōlí qiú (gānghuà))
+item.lava_glass_orb.name=填充玻璃球（熔岩） (Tiánchōng bōlí qiú (róngyán))
+item.pellet_fuel.name=颗粒燃料 (Kēlì ránliào)
+item.lava_crystals.name=熔岩晶体 (Róngyán jīngtǐ)
 
 #Blocks
-tile.pelletBlock.name=é¢—ç²’ç‡ƒæ–™å�— (KÄ“lÃ¬ rÃ¡nliÃ o kuÃ i)
-tile.concentratedPelletBlock.name=æµ“ç¼©çš„é¢—ç²’ç‡ƒæ–™å�— (NÃ³ngsuÅ� de kÄ“lÃ¬ rÃ¡nliÃ o kuÃ i)
-tile.cokeBlock.name=ç„¦ç‚­å�—ï¼ˆç‡ƒæ–™ï¼‰ (JiÄ�otÃ n kuÃ i (rÃ¡nliÃ o))
-tile.bituminousCoalOre.name=çƒŸç…¤çŸ¿ (YÄ�n mÃ©ikuÃ ng)
-
-#Tabs
-itemGroup.morefuelsmod=æ›´å¤šçš„ç‡ƒæ–™ä¿®æ”¹ (GÃ¨ng duÅ� de rÃ¡nliÃ o xiÅ«gÇŽi)
+tile.ore_bituminous_coal.name=烟煤矿 (Yān méikuàng)
+tile.block_coke.name=可乐块 (Kělè kuài)
+tile.block_bituminous_coal.name=烟煤块 (Yānméi kuài)
+tile.block_creative_infinite_fuel.name=无限燃料（仅限创意） (Wúxiàn ránliào (jǐn xiàn chuàngyì))
+tile.ore_lava.name=熔岩矿石 (Róngyán kuàngshí)
+tile.block_pellet_fuel.name=颗粒燃料块 (Kēlì ránliào kuài)
+tile.block_compressed_pellet_fuel.name=压缩颗粒燃料块 (Yāsuō kēlì ránliào kuài)

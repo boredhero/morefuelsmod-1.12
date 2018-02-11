@@ -60,7 +60,7 @@ public class PhaseStrafePlayer extends PhaseBase
 
             double d13 = 64.0D;
 
-            if (this.attackTarget.getDistanceSqToEntity(this.dragon) < 4096.0D)
+            if (this.attackTarget.getDistanceSq(this.dragon) < 4096.0D)
             {
                 if (this.dragon.canEntityBeSeen(this.attackTarget))
                 {
@@ -225,7 +225,7 @@ public class PhaseStrafePlayer extends PhaseBase
         return this.targetLocation;
     }
 
-    public PhaseList<PhaseStrafePlayer> getPhaseList()
+    public PhaseList<PhaseStrafePlayer> getType()
     {
         return PhaseList.STRAFE_PLAYER;
     }

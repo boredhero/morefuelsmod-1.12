@@ -19,7 +19,7 @@ public class EntityAIAttackMelee extends EntityAIBase
     /** When true, the mob will continue chasing its target, even if it can't find a path to them right now. */
     boolean longMemory;
     /** The PathEntity of our entity. */
-    Path entityPathEntity;
+    Path path;
     private int delayCounter;
     private double targetX;
     private double targetY;
@@ -58,18 +58,18 @@ public class EntityAIAttackMelee extends EntityAIBase
             {
                 if (--this.delayCounter <= 0)
                 {
-                    this.entityPathEntity = this.attacker.getNavigator().getPathToEntityLiving(entitylivingbase);
+                    this.path = this.attacker.getNavigator().getPathToEntityLiving(entitylivingbase);
                     this.delayCounter = 4 + this.attacker.getRNG().nextInt(7);
-                    return this.entityPathEntity != null;
+                    return this.path != null;
                 }
                 else
                 {
                     return true;
                 }
             }
-            this.entityPathEntity = this.attacker.getNavigator().getPathToEntityLiving(entitylivingbase);
+            this.path = this.attacker.getNavigator().getPathToEntityLiving(entitylivingbase);
 
-            if (this.entityPathEntity != null)
+            if (this.path != null)
             {
                 return true;
             }
@@ -114,7 +114,7 @@ public class EntityAIAttackMelee extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.attacker.getNavigator().setPath(this.entityPathEntity, this.speedTowardsTarget);
+        this.attacker.getNavigator().setPath(this.path, this.speedTowardsTarget);
         this.delayCounter = 0;
     }
 
@@ -130,7 +130,7 @@ public class EntityAIAttackMelee extends EntityAIBase
             this.attacker.setAttackTarget((EntityLivingBase)null);
         }
 
-        this.attacker.getNavigator().clearPathEntity();
+        this.attacker.getNavigator().clearPath();
     }
 
     /**

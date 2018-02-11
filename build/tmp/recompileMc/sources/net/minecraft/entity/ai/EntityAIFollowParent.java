@@ -36,7 +36,7 @@ public class EntityAIFollowParent extends EntityAIBase
             {
                 if (entityanimal1.getGrowingAge() >= 0)
                 {
-                    double d1 = this.childAnimal.getDistanceSqToEntity(entityanimal1);
+                    double d1 = this.childAnimal.getDistanceSq(entityanimal1);
 
                     if (d1 <= d0)
                     {
@@ -77,7 +77,7 @@ public class EntityAIFollowParent extends EntityAIBase
         }
         else
         {
-            double d0 = this.childAnimal.getDistanceSqToEntity(this.parentAnimal);
+            double d0 = this.childAnimal.getDistanceSq(this.parentAnimal);
             return d0 >= 9.0D && d0 <= 256.0D;
         }
     }

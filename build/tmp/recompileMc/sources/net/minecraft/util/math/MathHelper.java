@@ -293,7 +293,7 @@ public class MathHelper
     /**
      * Adjust the angle so that his value is in range [-180;180[
      */
-    public static int clampAngle(int angle)
+    public static int wrapDegrees(int angle)
     {
         angle = angle % 360;
 
@@ -564,6 +564,10 @@ public class MathHelper
         }
     }
 
+    /**
+     * Computes 1/sqrt(n) using <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">the fast inverse square
+     * root</a> with a constant of 0x5FE6EB50C7B537AA.
+     */
     public static double fastInvSqrt(double p_181161_0_)
     {
         double d0 = 0.5D * p_181161_0_;

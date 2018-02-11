@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" A ",
+		"B C",
+		" D "
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:glass"
+		},
+		"B": {
+			"item": "minecraft:glass"
+		},
+		"C": {
+			"item": "minecraft:glass"
+		},
+		"D": {
+			"item": "minecraft:glass"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:glass_orb"
+	}
+}

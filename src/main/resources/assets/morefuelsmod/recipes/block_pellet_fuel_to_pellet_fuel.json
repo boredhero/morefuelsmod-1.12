@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "morefuelsmod:block_pellet_fuel"
+		}
+	],
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":9
+	}
+}

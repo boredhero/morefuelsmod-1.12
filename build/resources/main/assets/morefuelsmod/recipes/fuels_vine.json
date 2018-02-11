@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:vine"
+		},
+		"B": {
+			"item": "minecraft:vine"
+		},
+		"C": {
+			"item": "minecraft:vine"
+		},
+		"D": {
+			"item": "minecraft:vine"
+		},
+		"E": {
+			"item": "minecraft:vine"
+		},
+		"F": {
+			"item": "minecraft:vine"
+		},
+		"G": {
+			"item": "minecraft:vine"
+		},
+		"H": {
+			"item": "minecraft:vine"
+		},
+		"I": {
+			"item": "minecraft:vine"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

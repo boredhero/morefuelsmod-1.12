@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:brown_mushroom_block"
+		},
+		"B": {
+			"item": "minecraft:brown_mushroom_block"
+		},
+		"C": {
+			"item": "minecraft:brown_mushroom_block"
+		},
+		"D": {
+			"item": "minecraft:brown_mushroom_block"
+		},
+		"E": {
+			"item": "minecraft:brown_mushroom_block"
+		},
+		"F": {
+			"item": "minecraft:brown_mushroom_block"
+		},
+		"G": {
+			"item": "minecraft:brown_mushroom_block"
+		},
+		"H": {
+			"item": "minecraft:brown_mushroom_block"
+		},
+		"I": {
+			"item": "minecraft:brown_mushroom_block"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":2
+	}
+}

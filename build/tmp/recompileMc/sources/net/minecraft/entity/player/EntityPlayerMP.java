@@ -1228,9 +1228,9 @@ public class EntityPlayerMP extends EntityPlayer implements IContainerListener
         }
     }
 
-    public void copyFrom(EntityPlayerMP that, boolean p_193104_2_)
+    public void copyFrom(EntityPlayerMP that, boolean keepEverything)
     {
-        if (p_193104_2_)
+        if (keepEverything)
         {
             this.inventory.copyInventory(that.inventory);
             this.setHealth(that.getHealth());
@@ -1258,7 +1258,7 @@ public class EntityPlayerMP extends EntityPlayer implements IContainerListener
         this.lastExperience = -1;
         this.lastHealth = -1.0F;
         this.lastFoodLevel = -1;
-        this.recipeBook.apply(that.recipeBook);
+        this.recipeBook.copyFrom(that.recipeBook);
         this.entityRemoveQueue.addAll(that.entityRemoveQueue);
         this.seenCredits = that.seenCredits;
         this.enteredNetherPosition = that.enteredNetherPosition;
@@ -1275,7 +1275,7 @@ public class EntityPlayerMP extends EntityPlayer implements IContainerListener
         {
             getEntityData().setTag(PERSISTED_NBT_TAG, old.getCompoundTag(PERSISTED_NBT_TAG));
         }
-        net.minecraftforge.event.ForgeEventFactory.onPlayerClone(this, that, !p_193104_2_);
+        net.minecraftforge.event.ForgeEventFactory.onPlayerClone(this, that, !keepEverything);
     }
 
     protected void onNewPotionEffect(PotionEffect id)

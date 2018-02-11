@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:rotten_flesh"
+		},
+		"B": {
+			"item": "minecraft:rotten_flesh"
+		},
+		"C": {
+			"item": "minecraft:rotten_flesh"
+		},
+		"D": {
+			"item": "minecraft:rotten_flesh"
+		},
+		"E": {
+			"item": "minecraft:rotten_flesh"
+		},
+		"F": {
+			"item": "minecraft:rotten_flesh"
+		},
+		"G": {
+			"item": "minecraft:rotten_flesh"
+		},
+		"H": {
+			"item": "minecraft:rotten_flesh"
+		},
+		"I": {
+			"item": "minecraft:rotten_flesh"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

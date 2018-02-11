@@ -32,7 +32,7 @@ public class RecipeList
     {
         for (int i = 0; i < this.recipes.size(); ++i)
         {
-            this.inBook.set(i, book.containsRecipe(this.recipes.get(i)));
+            this.inBook.set(i, book.isUnlocked(this.recipes.get(i)));
         }
     }
 
@@ -41,7 +41,7 @@ public class RecipeList
         for (int i = 0; i < this.recipes.size(); ++i)
         {
             IRecipe irecipe = this.recipes.get(i);
-            boolean flag = irecipe.canFit(width, height) && book.containsRecipe(irecipe);
+            boolean flag = irecipe.canFit(width, height) && book.isUnlocked(irecipe);
             this.canFit.set(i, flag);
             this.craftable.set(i, flag && handler.canCraft(irecipe, (IntList)null));
         }

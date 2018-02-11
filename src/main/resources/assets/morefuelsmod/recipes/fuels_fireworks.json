@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:fireworks"
+		},
+		"B": {
+			"item": "minecraft:fireworks"
+		},
+		"C": {
+			"item": "minecraft:fireworks"
+		},
+		"D": {
+			"item": "minecraft:fireworks"
+		},
+		"E": {
+			"item": "minecraft:fireworks"
+		},
+		"F": {
+			"item": "minecraft:fireworks"
+		},
+		"G": {
+			"item": "minecraft:fireworks"
+		},
+		"H": {
+			"item": "minecraft:fireworks"
+		},
+		"I": {
+			"item": "minecraft:fireworks"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":51
+	}
+}

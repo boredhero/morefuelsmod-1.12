@@ -207,12 +207,12 @@ public class GlStateManager
         GL14.glBlendEquation(blendEquation);
     }
 
-    public static void enableOutlineMode(int p_187431_0_)
+    public static void enableOutlineMode(int color)
     {
-        BUF_FLOAT_4.put(0, (float)(p_187431_0_ >> 16 & 255) / 255.0F);
-        BUF_FLOAT_4.put(1, (float)(p_187431_0_ >> 8 & 255) / 255.0F);
-        BUF_FLOAT_4.put(2, (float)(p_187431_0_ >> 0 & 255) / 255.0F);
-        BUF_FLOAT_4.put(3, (float)(p_187431_0_ >> 24 & 255) / 255.0F);
+        BUF_FLOAT_4.put(0, (float)(color >> 16 & 255) / 255.0F);
+        BUF_FLOAT_4.put(1, (float)(color >> 8 & 255) / 255.0F);
+        BUF_FLOAT_4.put(2, (float)(color >> 0 & 255) / 255.0F);
+        BUF_FLOAT_4.put(3, (float)(color >> 24 & 255) / 255.0F);
         glTexEnv(8960, 8705, BUF_FLOAT_4);
         glTexEnvi(8960, 8704, 34160);
         glTexEnvi(8960, 34161, 7681);

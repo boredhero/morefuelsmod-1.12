@@ -89,9 +89,9 @@ public class DebugRenderer
         }
     }
 
-    public static void renderDebugText(String p_191556_0_, int p_191556_1_, int p_191556_2_, int p_191556_3_, float p_191556_4_, int p_191556_5_)
+    public static void renderDebugText(String str, int x, int y, int z, float partialTicks, int color)
     {
-        renderDebugText(p_191556_0_, (double)p_191556_1_ + 0.5D, (double)p_191556_2_ + 0.5D, (double)p_191556_3_ + 0.5D, p_191556_4_, p_191556_5_);
+        renderDebugText(str, (double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, partialTicks, color);
     }
 
     public static void renderDebugText(String str, double x, double y, double z, float partialTicks, int color)

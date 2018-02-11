@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "morefuelsmod:coke"
+		},
+		"B": {
+			"item": "morefuelsmod:coke"
+		},
+		"C": {
+			"item": "morefuelsmod:coke"
+		},
+		"D": {
+			"item": "morefuelsmod:coke"
+		},
+		"E": {
+			"item": "morefuelsmod:coke"
+		},
+		"F": {
+			"item": "morefuelsmod:coke"
+		},
+		"G": {
+			"item": "morefuelsmod:coke"
+		},
+		"H": {
+			"item": "morefuelsmod:coke"
+		},
+		"I": {
+			"item": "morefuelsmod:coke"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:block_coke"
+	}
+}

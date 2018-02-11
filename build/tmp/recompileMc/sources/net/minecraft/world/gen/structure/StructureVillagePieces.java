@@ -172,7 +172,7 @@ public class StructureVillagePieces
 
                     if (k < 0)
                     {
-                        if (!structurevillagepieces$pieceweight.canSpawnMoreVillagePiecesOfType(componentType) || structurevillagepieces$pieceweight == start.structVillagePieceWeight && start.structureVillageWeightedPieceList.size() > 1)
+                        if (!structurevillagepieces$pieceweight.canSpawnMoreVillagePiecesOfType(componentType) || structurevillagepieces$pieceweight == start.lastPlaced && start.structureVillageWeightedPieceList.size() > 1)
                         {
                             break;
                         }
@@ -182,7 +182,7 @@ public class StructureVillagePieces
                         if (structurevillagepieces$village != null)
                         {
                             ++structurevillagepieces$pieceweight.villagePiecesSpawned;
-                            start.structVillagePieceWeight = structurevillagepieces$pieceweight;
+                            start.lastPlaced = structurevillagepieces$pieceweight;
 
                             if (!structurevillagepieces$pieceweight.canSpawnMoreVillagePieces())
                             {
@@ -1613,10 +1613,10 @@ public class StructureVillagePieces
 
     public static class Start extends StructureVillagePieces.Well
         {
-            public BiomeProvider worldChunkMngr;
+            public BiomeProvider biomeProvider;
             /** World terrain type, 0 for normal, 1 for flap map */
             public int terrainType;
-            public StructureVillagePieces.PieceWeight structVillagePieceWeight;
+            public StructureVillagePieces.PieceWeight lastPlaced;
             /**
              * Contains List of all spawnable Structure Piece Weights. If no more Pieces of a type can be spawned, they
              * are removed from this list
@@ -1630,13 +1630,13 @@ public class StructureVillagePieces
             {
             }
 
-            public Start(BiomeProvider chunkManagerIn, int p_i2104_2_, Random rand, int p_i2104_4_, int p_i2104_5_, List<StructureVillagePieces.PieceWeight> p_i2104_6_, int p_i2104_7_)
+            public Start(BiomeProvider biomeProviderIn, int p_i2104_2_, Random rand, int p_i2104_4_, int p_i2104_5_, List<StructureVillagePieces.PieceWeight> p_i2104_6_, int p_i2104_7_)
             {
                 super((StructureVillagePieces.Start)null, 0, rand, p_i2104_4_, p_i2104_5_);
-                this.worldChunkMngr = chunkManagerIn;
+                this.biomeProvider = biomeProviderIn;
                 this.structureVillageWeightedPieceList = p_i2104_6_;
                 this.terrainType = p_i2104_7_;
-                Biome biome = chunkManagerIn.getBiome(new BlockPos(p_i2104_4_, 0, p_i2104_5_), Biomes.DEFAULT);
+                Biome biome = biomeProviderIn.getBiome(new BlockPos(p_i2104_4_, 0, p_i2104_5_), Biomes.DEFAULT);
                 this.biome = biome;
                 this.startPiece = this;
 

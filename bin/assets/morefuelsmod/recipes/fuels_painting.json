@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:painting"
+		},
+		"B": {
+			"item": "minecraft:painting"
+		},
+		"C": {
+			"item": "minecraft:painting"
+		},
+		"D": {
+			"item": "minecraft:painting"
+		},
+		"E": {
+			"item": "minecraft:painting"
+		},
+		"F": {
+			"item": "minecraft:painting"
+		},
+		"G": {
+			"item": "minecraft:painting"
+		},
+		"H": {
+			"item": "minecraft:painting"
+		},
+		"I": {
+			"item": "minecraft:painting"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":10
+	}
+}

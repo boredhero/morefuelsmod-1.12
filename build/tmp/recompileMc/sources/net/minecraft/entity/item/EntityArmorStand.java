@@ -381,7 +381,7 @@ public class EntityArmorStand extends EntityLivingBase
         {
             Entity entity = list.get(i);
 
-            if (this.getDistanceSqToEntity(entity) <= 0.2D)
+            if (this.getDistanceSq(entity) <= 0.2D)
             {
                 entity.applyEntityCollision(this);
             }
@@ -720,11 +720,11 @@ public class EntityArmorStand extends EntityLivingBase
         return this.hasMarker() ? 0.0D : 0.10000000149011612D;
     }
 
-    public void travel(float p_191986_1_, float p_191986_2_, float p_191986_3_)
+    public void travel(float strafe, float vertical, float forward)
     {
         if (!this.hasNoGravity())
         {
-            super.travel(p_191986_1_, p_191986_2_, p_191986_3_);
+            super.travel(strafe, vertical, forward);
         }
     }
 
@@ -1009,7 +1009,7 @@ public class EntityArmorStand extends EntityLivingBase
     }
 
     @Nullable
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_ARMORSTAND_HIT;
     }

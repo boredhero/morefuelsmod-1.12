@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:waterlily"
+		},
+		"B": {
+			"item": "minecraft:waterlily"
+		},
+		"C": {
+			"item": "minecraft:waterlily"
+		},
+		"D": {
+			"item": "minecraft:waterlily"
+		},
+		"E": {
+			"item": "minecraft:waterlily"
+		},
+		"F": {
+			"item": "minecraft:waterlily"
+		},
+		"G": {
+			"item": "minecraft:waterlily"
+		},
+		"H": {
+			"item": "minecraft:waterlily"
+		},
+		"I": {
+			"item": "minecraft:waterlily"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

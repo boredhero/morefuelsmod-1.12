@@ -406,7 +406,7 @@ public class WorldInfo
 
         for (Entry<Integer, NBTTagCompound> entry : this.dimensionData.entrySet())
         {
-            if (entry.getValue() != null || entry.getValue().hasNoTags()) continue;
+            if (entry.getValue() == null || entry.getValue().hasNoTags()) continue;
             nbttagcompound1.setTag(String.valueOf(entry.getKey()), entry.getValue());
         }
 

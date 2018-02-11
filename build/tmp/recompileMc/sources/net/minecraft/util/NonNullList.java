@@ -29,9 +29,9 @@ public class NonNullList<E> extends AbstractList<E>
         return new NonNullList<E>(Arrays.asList((E[])aobject), fill);
     }
 
-    public static <E> NonNullList<E> from(E p_193580_0_, E... p_193580_1_)
+    public static <E> NonNullList<E> from(E defaultElementIn, E... elements)
     {
-        return new NonNullList<E>(Arrays.asList(p_193580_1_), p_193580_0_);
+        return new NonNullList<E>(Arrays.asList(elements), defaultElementIn);
     }
 
     protected NonNullList()

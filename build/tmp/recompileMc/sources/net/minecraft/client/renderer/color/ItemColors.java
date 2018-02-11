@@ -34,14 +34,14 @@ public class ItemColors
         ItemColors itemcolors = new ItemColors();
         itemcolors.registerItemColorHandler(new IItemColor()
         {
-            public int getColorFromItemstack(ItemStack stack, int tintIndex)
+            public int colorMultiplier(ItemStack stack, int tintIndex)
             {
                 return tintIndex > 0 ? -1 : ((ItemArmor)stack.getItem()).getColor(stack);
             }
         }, Items.LEATHER_HELMET, Items.LEATHER_CHESTPLATE, Items.LEATHER_LEGGINGS, Items.LEATHER_BOOTS);
         itemcolors.registerItemColorHandler(new IItemColor()
         {
-            public int getColorFromItemstack(ItemStack stack, int tintIndex)
+            public int colorMultiplier(ItemStack stack, int tintIndex)
             {
                 BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = BlockDoublePlant.EnumPlantType.byMetadata(stack.getMetadata());
                 return blockdoubleplant$enumplanttype != BlockDoublePlant.EnumPlantType.GRASS && blockdoubleplant$enumplanttype != BlockDoublePlant.EnumPlantType.FERN ? -1 : ColorizerGrass.getGrassColor(0.5D, 1.0D);
@@ -49,7 +49,7 @@ public class ItemColors
         }, Blocks.DOUBLE_PLANT);
         itemcolors.registerItemColorHandler(new IItemColor()
         {
-            public int getColorFromItemstack(ItemStack stack, int tintIndex)
+            public int colorMultiplier(ItemStack stack, int tintIndex)
             {
                 if (tintIndex != 1)
                 {
@@ -95,14 +95,14 @@ public class ItemColors
         }, Items.FIREWORK_CHARGE);
         itemcolors.registerItemColorHandler(new IItemColor()
         {
-            public int getColorFromItemstack(ItemStack stack, int tintIndex)
+            public int colorMultiplier(ItemStack stack, int tintIndex)
             {
                 return tintIndex > 0 ? -1 : PotionUtils.getColor(stack);
             }
         }, Items.POTIONITEM, Items.SPLASH_POTION, Items.LINGERING_POTION);
         itemcolors.registerItemColorHandler(new IItemColor()
         {
-            public int getColorFromItemstack(ItemStack stack, int tintIndex)
+            public int colorMultiplier(ItemStack stack, int tintIndex)
             {
                 EntityList.EntityEggInfo entitylist$entityegginfo = EntityList.ENTITY_EGGS.get(ItemMonsterPlacer.getNamedIdFrom(stack));
 
@@ -118,7 +118,7 @@ public class ItemColors
         }, Items.SPAWN_EGG);
         itemcolors.registerItemColorHandler(new IItemColor()
         {
-            public int getColorFromItemstack(ItemStack stack, int tintIndex)
+            public int colorMultiplier(ItemStack stack, int tintIndex)
             {
                 IBlockState iblockstate = ((ItemBlock)stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
                 return colors.colorMultiplier(iblockstate, (IBlockAccess)null, (BlockPos)null, tintIndex);
@@ -126,25 +126,26 @@ public class ItemColors
         }, Blocks.GRASS, Blocks.TALLGRASS, Blocks.VINE, Blocks.LEAVES, Blocks.LEAVES2, Blocks.WATERLILY);
         itemcolors.registerItemColorHandler(new IItemColor()
         {
-            public int getColorFromItemstack(ItemStack stack, int tintIndex)
+            public int colorMultiplier(ItemStack stack, int tintIndex)
             {
                 return tintIndex == 0 ? PotionUtils.getColor(stack) : -1;
             }
         }, Items.TIPPED_ARROW);
         itemcolors.registerItemColorHandler(new IItemColor()
         {
-            public int getColorFromItemstack(ItemStack stack, int tintIndex)
+            public int colorMultiplier(ItemStack stack, int tintIndex)
             {
                 return tintIndex == 0 ? -1 : ItemMap.getColor(stack);
             }
         }, Items.FILLED_MAP);
+        net.minecraftforge.client.ForgeHooksClient.onItemColorsInit(itemcolors, colors);
         return itemcolors;
     }
 
-    public int getColorFromItemstack(ItemStack stack, int tintIndex)
+    public int colorMultiplier(ItemStack stack, int tintIndex)
     {
         IItemColor iitemcolor = this.itemColorMap.get(stack.getItem().delegate);
-        return iitemcolor == null ? -1 : iitemcolor.getColorFromItemstack(stack, tintIndex);
+        return iitemcolor == null ? -1 : iitemcolor.colorMultiplier(stack, tintIndex);
     }
 
     public void registerItemColorHandler(IItemColor itemColor, Block... blocksIn)

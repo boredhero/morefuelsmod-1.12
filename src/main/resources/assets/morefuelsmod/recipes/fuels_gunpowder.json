@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:gunpowder"
+		},
+		"B": {
+			"item": "minecraft:gunpowder"
+		},
+		"C": {
+			"item": "minecraft:gunpowder"
+		},
+		"D": {
+			"item": "minecraft:gunpowder"
+		},
+		"E": {
+			"item": "minecraft:gunpowder"
+		},
+		"F": {
+			"item": "minecraft:gunpowder"
+		},
+		"G": {
+			"item": "minecraft:gunpowder"
+		},
+		"H": {
+			"item": "minecraft:gunpowder"
+		},
+		"I": {
+			"item": "minecraft:gunpowder"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":16
+	}
+}

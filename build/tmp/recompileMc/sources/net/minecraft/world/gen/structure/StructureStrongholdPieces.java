@@ -183,7 +183,7 @@ public class StructureStrongholdPieces
 
                     if (i < 0)
                     {
-                        if (!structurestrongholdpieces$pieceweight.canSpawnMoreStructuresOfType(p_175955_7_) || structurestrongholdpieces$pieceweight == p_175955_0_.strongholdPieceWeight)
+                        if (!structurestrongholdpieces$pieceweight.canSpawnMoreStructuresOfType(p_175955_7_) || structurestrongholdpieces$pieceweight == p_175955_0_.lastPlaced)
                         {
                             break;
                         }
@@ -193,7 +193,7 @@ public class StructureStrongholdPieces
                         if (structurestrongholdpieces$stronghold1 != null)
                         {
                             ++structurestrongholdpieces$pieceweight.instancesSpawned;
-                            p_175955_0_.strongholdPieceWeight = structurestrongholdpieces$pieceweight;
+                            p_175955_0_.lastPlaced = structurestrongholdpieces$pieceweight;
 
                             if (!structurestrongholdpieces$pieceweight.canSpawnMoreStructures())
                             {
@@ -1387,7 +1387,7 @@ public class StructureStrongholdPieces
 
     public static class Stairs2 extends StructureStrongholdPieces.Stairs
         {
-            public StructureStrongholdPieces.PieceWeight strongholdPieceWeight;
+            public StructureStrongholdPieces.PieceWeight lastPlaced;
             public StructureStrongholdPieces.PortalRoom strongholdPortalRoom;
             public List<StructureComponent> pendingChildren = Lists.<StructureComponent>newArrayList();
 

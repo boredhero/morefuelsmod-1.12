@@ -310,7 +310,7 @@ public class EntityEnderman extends EntityMob
         return this.isScreaming() ? SoundEvents.ENTITY_ENDERMEN_SCREAM : SoundEvents.ENTITY_ENDERMEN_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_ENDERMEN_HURT;
     }
@@ -520,14 +520,14 @@ public class EntityEnderman extends EntityMob
                     {
                         if (this.enderman.shouldAttackPlayer((EntityPlayer)this.targetEntity))
                         {
-                            if (((EntityPlayer)this.targetEntity).getDistanceSqToEntity(this.enderman) < 16.0D)
+                            if (((EntityPlayer)this.targetEntity).getDistanceSq(this.enderman) < 16.0D)
                             {
                                 this.enderman.teleportRandomly();
                             }
 
                             this.teleportTime = 0;
                         }
-                        else if (((EntityPlayer)this.targetEntity).getDistanceSqToEntity(this.enderman) > 256.0D && this.teleportTime++ >= 30 && this.enderman.teleportToEntity(this.targetEntity))
+                        else if (((EntityPlayer)this.targetEntity).getDistanceSq(this.enderman) > 256.0D && this.teleportTime++ >= 30 && this.enderman.teleportToEntity(this.targetEntity))
                         {
                             this.teleportTime = 0;
                         }

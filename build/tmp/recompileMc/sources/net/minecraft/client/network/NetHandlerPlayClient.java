@@ -821,7 +821,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         chunk.read(packetIn.getReadBuffer(), packetIn.getExtractedSize(), packetIn.isFullChunk());
         this.clientWorldController.markBlockRangeForRenderUpdate(packetIn.getChunkX() << 4, 0, packetIn.getChunkZ() << 4, (packetIn.getChunkX() << 4) + 15, 256, (packetIn.getChunkZ() << 4) + 15);
 
-        if (!packetIn.isFullChunk() || !(this.clientWorldController.provider instanceof WorldProviderSurface))
+        if (!packetIn.isFullChunk() || this.clientWorldController.provider.shouldClientCheckLighting())
         {
             chunk.resetRelightChecks();
         }
@@ -1090,7 +1090,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
         {
             if (entity1 != null)
             {
-                ((EntityLiving)entity).setLeashedToEntity(entity1, false);
+                ((EntityLiving)entity).setLeashHolder(entity1, false);
             }
             else
             {
@@ -1617,18 +1617,18 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
                     }
 
                     IRecipe irecipe = (IRecipe)iterator.next();
-                    recipebook.removeRecipe(irecipe);
+                    recipebook.lock(irecipe);
                 }
 
             case INIT:
-                packetIn.getRecipes().forEach(recipebook::setRecipes);
-                packetIn.getDisplayedRecipes().forEach(recipebook::addDisplayedRecipe);
+                packetIn.getRecipes().forEach(recipebook::unlock);
+                packetIn.getDisplayedRecipes().forEach(recipebook::markNew);
                 break;
             case ADD:
                 packetIn.getRecipes().forEach((p_194025_2_) ->
                 {
-                    recipebook.setRecipes(p_194025_2_);
-                    recipebook.addDisplayedRecipe(p_194025_2_);
+                    recipebook.unlock(p_194025_2_);
+                    recipebook.markNew(p_194025_2_);
                     RecipeToast.addOrUpdate(this.gameController.getToastGui(), p_194025_2_);
                 });
         }
@@ -2027,6 +2027,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
             }
             finally
             {
+                if (false) // Forge: let packet handle releasing buffer
                 packetbuffer.release();
             }
         }

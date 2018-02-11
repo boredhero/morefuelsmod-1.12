@@ -98,7 +98,7 @@ public class EntityAIVillagerMate extends EntityAIBase
         --this.matingTimeout;
         this.villager.getLookHelper().setLookPositionWithEntity(this.mate, 10.0F, 30.0F);
 
-        if (this.villager.getDistanceSqToEntity(this.mate) > 2.25D)
+        if (this.villager.getDistanceSq(this.mate) > 2.25D)
         {
             this.villager.getNavigator().tryMoveToEntityLiving(this.mate, 0.25D);
         }

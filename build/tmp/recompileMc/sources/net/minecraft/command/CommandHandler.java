@@ -62,7 +62,7 @@ public abstract class CommandHandler implements ICommandManager
                 {
                     if (event.getException() != null)
                     {
-                        com.google.common.base.Throwables.propagateIfPossible(event.getException());
+                        com.google.common.base.Throwables.throwIfUnchecked(event.getException());
                     }
                     return 1;
                 }

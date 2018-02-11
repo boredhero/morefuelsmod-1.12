@@ -196,6 +196,9 @@ public class PlayerAdvancements
 
     public boolean grantCriterion(Advancement p_192750_1_, String p_192750_2_)
     {
+        // Forge: don't grant advancements for fake players
+        if (this.player instanceof net.minecraftforge.common.util.FakePlayer) return false;
+
         boolean flag = false;
         AdvancementProgress advancementprogress = this.getProgress(p_192750_1_);
         boolean flag1 = advancementprogress.isDone();
@@ -214,6 +217,8 @@ public class PlayerAdvancements
                 {
                     this.server.getPlayerList().sendMessage(new TextComponentTranslation("chat.type.advancement." + p_192750_1_.getDisplay().getFrame().getName(), new Object[] {this.player.getDisplayName(), p_192750_1_.getDisplayText()}));
                 }
+
+                net.minecraftforge.common.ForgeHooks.onAdvancement(this.player, p_192750_1_);
             }
         }
 

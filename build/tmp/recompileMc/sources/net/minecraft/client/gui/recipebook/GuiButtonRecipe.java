@@ -38,7 +38,7 @@ public class GuiButtonRecipe extends GuiButton
 
         for (IRecipe irecipe : list)
         {
-            if (p_193928_3_.isRecipeUnseen(irecipe))
+            if (p_193928_3_.isNew(irecipe))
             {
                 p_193928_2_.recipesShown(list);
                 this.animationTime = 15.0F;

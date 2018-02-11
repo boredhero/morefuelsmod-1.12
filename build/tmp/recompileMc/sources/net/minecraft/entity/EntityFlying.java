@@ -20,11 +20,11 @@ public abstract class EntityFlying extends EntityLiving
     {
     }
 
-    public void travel(float p_191986_1_, float p_191986_2_, float p_191986_3_)
+    public void travel(float strafe, float vertical, float forward)
     {
         if (this.isInWater())
         {
-            this.moveRelative(p_191986_1_, p_191986_2_, p_191986_3_, 0.02F);
+            this.moveRelative(strafe, vertical, forward, 0.02F);
             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
             this.motionX *= 0.800000011920929D;
             this.motionY *= 0.800000011920929D;
@@ -32,7 +32,7 @@ public abstract class EntityFlying extends EntityLiving
         }
         else if (this.isInLava())
         {
-            this.moveRelative(p_191986_1_, p_191986_2_, p_191986_3_, 0.02F);
+            this.moveRelative(strafe, vertical, forward, 0.02F);
             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
             this.motionX *= 0.5D;
             this.motionY *= 0.5D;
@@ -50,7 +50,7 @@ public abstract class EntityFlying extends EntityLiving
             }
 
             float f1 = 0.16277136F / (f * f * f);
-            this.moveRelative(p_191986_1_, p_191986_2_, p_191986_3_, this.onGround ? 0.1F * f1 : 0.02F);
+            this.moveRelative(strafe, vertical, forward, this.onGround ? 0.1F * f1 : 0.02F);
             f = 0.91F;
 
             if (this.onGround)
@@ -81,7 +81,8 @@ public abstract class EntityFlying extends EntityLiving
     }
 
     /**
-     * returns true if this entity is by a ladder, false otherwise
+     * Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or
+     * for AI reasons)
      */
     public boolean isOnLadder()
     {

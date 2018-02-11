@@ -455,7 +455,7 @@ public class EntityDragon extends EntityLiving implements IEntityMultiPart, IMob
 
             for (EntityEnderCrystal entityendercrystal1 : list)
             {
-                double d1 = entityendercrystal1.getDistanceSqToEntity(this);
+                double d1 = entityendercrystal1.getDistanceSq(this);
 
                 if (d1 < d0)
                 {
@@ -980,7 +980,7 @@ public class EntityDragon extends EntityLiving implements IEntityMultiPart, IMob
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("DragonPhase", this.phaseManager.getCurrentPhase().getPhaseList().getId());
+        compound.setInteger("DragonPhase", this.phaseManager.getCurrentPhase().getType().getId());
     }
 
     /**
@@ -1034,7 +1034,7 @@ public class EntityDragon extends EntityLiving implements IEntityMultiPart, IMob
         return SoundEvents.ENTITY_ENDERDRAGON_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_ENDERDRAGON_HURT;
     }
@@ -1057,7 +1057,7 @@ public class EntityDragon extends EntityLiving implements IEntityMultiPart, IMob
     public float getHeadPartYOffset(int p_184667_1_, double[] p_184667_2_, double[] p_184667_3_)
     {
         IPhase iphase = this.phaseManager.getCurrentPhase();
-        PhaseList <? extends IPhase > phaselist = iphase.getPhaseList();
+        PhaseList <? extends IPhase > phaselist = iphase.getType();
         double d0;
 
         if (phaselist != PhaseList.LANDING && phaselist != PhaseList.TAKEOFF)
@@ -1088,7 +1088,7 @@ public class EntityDragon extends EntityLiving implements IEntityMultiPart, IMob
     public Vec3d getHeadLookVec(float p_184665_1_)
     {
         IPhase iphase = this.phaseManager.getCurrentPhase();
-        PhaseList <? extends IPhase > phaselist = iphase.getPhaseList();
+        PhaseList <? extends IPhase > phaselist = iphase.getType();
         Vec3d vec3d;
 
         if (phaselist != PhaseList.LANDING && phaselist != PhaseList.TAKEOFF)

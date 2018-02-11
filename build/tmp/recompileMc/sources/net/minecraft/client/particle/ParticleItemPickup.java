@@ -54,7 +54,7 @@ public class ParticleItemPickup extends Particle
         d7 = d7 - interpPosY;
         d8 = d8 - interpPosZ;
         GlStateManager.enableLighting();
-        this.renderManager.doRenderEntity(this.item, d6, d7, d8, this.item.rotationYaw, partialTicks, false);
+        this.renderManager.renderEntity(this.item, d6, d7, d8, this.item.rotationYaw, partialTicks, false);
     }
 
     public void onUpdate()

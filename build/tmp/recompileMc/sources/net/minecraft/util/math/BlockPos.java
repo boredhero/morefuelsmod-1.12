@@ -241,14 +241,43 @@ public class BlockPos extends Vec3i
     }
 
     /**
-     * Create an Iterable that returns all positions in the box specified by the given corners
+     * Create an Iterable that returns all positions in the box specified by the given corners. There is no requirement
+     * that one corner is greater than the other; individual coordinates will be swapped as needed.
+     *  
+     * In situations where it is usable, prefer {@link #getAllInBoxMutable(BlockPos, BlockPos}) instead as it has better
+     * performance (fewer allocations)
+     *  
+     * @see #getAllInBox(int, int, int, int, int, int)
+     * @see #getAllInBoxMutable(BlockPos, BlockPos)
+     * @see #mutablesBetween(int, int, int, int, int, int)
+     *  
+     * @param from One corner of the box
+     * @param to Another corner of the box
      */
     public static Iterable<BlockPos> getAllInBox(BlockPos from, BlockPos to)
     {
         return getAllInBox(Math.min(from.getX(), to.getX()), Math.min(from.getY(), to.getY()), Math.min(from.getZ(), to.getZ()), Math.max(from.getX(), to.getX()), Math.max(from.getY(), to.getY()), Math.max(from.getZ(), to.getZ()));
     }
 
-    public static Iterable<BlockPos> getAllInBox(final int p_191532_0_, final int p_191532_1_, final int p_191532_2_, final int p_191532_3_, final int p_191532_4_, final int p_191532_5_)
+    /**
+     * Create an Iterable that returns all positions in the box specified by the coordinates. <strong>Coordinates must
+     * be in order</strong>; e.g. x1 <= x2.
+     *  
+     * In situations where it is usable, prefer {@link #getAllInBoxMutable(BlockPos, BlockPos}) instead as it has better
+     * performance (fewer allocations)
+     *  
+     * @see #getAllInBox(BlockPos, BlockPos)
+     * @see #getAllInBoxMutable(BlockPos, BlockPos)
+     * @see #mutablesBetween(int, int, int, int, int, int)
+     *  
+     * @param x1 The lower x coordinate
+     * @param y1 The lower y coordinate
+     * @param z1 The lower z coordinate
+     * @param x2 The upper x coordinate
+     * @param y2 The upper y coordinate
+     * @param z2 The upper z coordinate
+     */
+    public static Iterable<BlockPos> getAllInBox(final int x1, final int y1, final int z1, final int x2, final int y2, final int z2)
     {
         return new Iterable<BlockPos>()
         {
@@ -265,30 +294,30 @@ public class BlockPos extends Vec3i
                         if (this.first)
                         {
                             this.first = false;
-                            this.lastPosX = p_191532_0_;
-                            this.lastPosY = p_191532_1_;
-                            this.lastPosZ = p_191532_2_;
-                            return new BlockPos(p_191532_0_, p_191532_1_, p_191532_2_);
+                            this.lastPosX = x1;
+                            this.lastPosY = y1;
+                            this.lastPosZ = z1;
+                            return new BlockPos(x1, y1, z1);
                         }
-                        else if (this.lastPosX == p_191532_3_ && this.lastPosY == p_191532_4_ && this.lastPosZ == p_191532_5_)
+                        else if (this.lastPosX == x2 && this.lastPosY == y2 && this.lastPosZ == z2)
                         {
                             return (BlockPos)this.endOfData();
                         }
                         else
                         {
-                            if (this.lastPosX < p_191532_3_)
+                            if (this.lastPosX < x2)
                             {
                                 ++this.lastPosX;
                             }
-                            else if (this.lastPosY < p_191532_4_)
+                            else if (this.lastPosY < y2)
                             {
-                                this.lastPosX = p_191532_0_;
+                                this.lastPosX = x1;
                                 ++this.lastPosY;
                             }
-                            else if (this.lastPosZ < p_191532_5_)
+                            else if (this.lastPosZ < z2)
                             {
-                                this.lastPosX = p_191532_0_;
-                                this.lastPosY = p_191532_1_;
+                                this.lastPosX = x1;
+                                this.lastPosY = y1;
                                 ++this.lastPosZ;
                             }
 
@@ -312,15 +341,48 @@ public class BlockPos extends Vec3i
     }
 
     /**
-     * Like getAllInBox but reuses a single MutableBlockPos instead. If this method is used, the resulting BlockPos
-     * instances can only be used inside the iteration loop.
+     * Creates an Iterable that returns all positions in the box specified by the given corners. There is no requirement
+     * that one corner is greater than the other; individual coordinates will be swapped as needed.
+     *  
+     * This method uses {@link BlockPos.MutableBlockPos MutableBlockPos} instead of regular BlockPos, which grants
+     * better performance. However, the resulting BlockPos instances can only be used inside the iteration loop (as
+     * otherwise the value will change), unless {@link #toImmutable()} is called. This method is ideal for searching
+     * large areas and only storing a few locations.
+     *  
+     * @see #getAllInBox(BlockPos, BlockPos)
+     * @see #getAllInBox(int, int, int, int, int, int)
+     * @see #getAllInBoxMutable(BlockPos, BlockPos)
+     * @see #mutablesBetween(int, int, int, int, int, int)
+     *  
+     * @param from One corner of the box
+     * @param to Another corner of the box
      */
     public static Iterable<BlockPos.MutableBlockPos> getAllInBoxMutable(BlockPos from, BlockPos to)
     {
-        return mutablesBetween(Math.min(from.getX(), to.getX()), Math.min(from.getY(), to.getY()), Math.min(from.getZ(), to.getZ()), Math.max(from.getX(), to.getX()), Math.max(from.getY(), to.getY()), Math.max(from.getZ(), to.getZ()));
+        return getAllInBoxMutable(Math.min(from.getX(), to.getX()), Math.min(from.getY(), to.getY()), Math.min(from.getZ(), to.getZ()), Math.max(from.getX(), to.getX()), Math.max(from.getY(), to.getY()), Math.max(from.getZ(), to.getZ()));
     }
 
-    public static Iterable<BlockPos.MutableBlockPos> mutablesBetween(final int p_191531_0_, final int p_191531_1_, final int p_191531_2_, final int p_191531_3_, final int p_191531_4_, final int p_191531_5_)
+    /**
+     * Creates an Iterable that returns all positions in the box specified by the given corners. <strong>Coordinates
+     * must be in order</strong>; e.g. x1 <= x2.
+     *  
+     * This method uses {@link BlockPos.MutableBlockPos MutableBlockPos} instead of regular BlockPos, which grants
+     * better performance. However, the resulting BlockPos instances can only be used inside the iteration loop (as
+     * otherwise the value will change), unless {@link #toImmutable()} is called. This method is ideal for searching
+     * large areas and only storing a few locations.
+     *  
+     * @see #getAllInBox(BlockPos, BlockPos)
+     * @see #getAllInBox(int, int, int, int, int, int)
+     * @see #getAllInBoxMutable(BlockPos, BlockPos)
+     *  
+     * @param x1 The lower x coordinate
+     * @param y1 The lower y coordinate
+     * @param z1 The lower z coordinate
+     * @param x2 The upper x coordinate
+     * @param y2 The upper y coordinate
+     * @param z2 The upper z coordinate
+     */
+    public static Iterable<BlockPos.MutableBlockPos> getAllInBoxMutable(final int x1, final int y1, final int z1, final int x2, final int y2, final int z2)
     {
         return new Iterable<BlockPos.MutableBlockPos>()
         {
@@ -333,28 +395,28 @@ public class BlockPos extends Vec3i
                     {
                         if (this.pos == null)
                         {
-                            this.pos = new BlockPos.MutableBlockPos(p_191531_0_, p_191531_1_, p_191531_2_);
+                            this.pos = new BlockPos.MutableBlockPos(x1, y1, z1);
                             return this.pos;
                         }
-                        else if (this.pos.x == p_191531_3_ && this.pos.y == p_191531_4_ && this.pos.z == p_191531_5_)
+                        else if (this.pos.x == x2 && this.pos.y == y2 && this.pos.z == z2)
                         {
                             return (BlockPos.MutableBlockPos)this.endOfData();
                         }
                         else
                         {
-                            if (this.pos.x < p_191531_3_)
+                            if (this.pos.x < x2)
                             {
                                 ++this.pos.x;
                             }
-                            else if (this.pos.y < p_191531_4_)
+                            else if (this.pos.y < y2)
                             {
-                                this.pos.x = p_191531_0_;
+                                this.pos.x = x1;
                                 ++this.pos.y;
                             }
-                            else if (this.pos.z < p_191531_5_)
+                            else if (this.pos.z < z2)
                             {
-                                this.pos.x = p_191531_0_;
-                                this.pos.y = p_191531_1_;
+                                this.pos.x = x1;
+                                this.pos.y = y1;
                                 ++this.pos.z;
                             }
 
@@ -478,9 +540,9 @@ public class BlockPos extends Vec3i
                 return this.move(facing, 1);
             }
 
-            public BlockPos.MutableBlockPos move(EnumFacing facing, int p_189534_2_)
+            public BlockPos.MutableBlockPos move(EnumFacing facing, int n)
             {
-                return this.setPos(this.x + facing.getFrontOffsetX() * p_189534_2_, this.y + facing.getFrontOffsetY() * p_189534_2_, this.z + facing.getFrontOffsetZ() * p_189534_2_);
+                return this.setPos(this.x + facing.getFrontOffsetX() * n, this.y + facing.getFrontOffsetY() * n, this.z + facing.getFrontOffsetZ() * n);
             }
 
             public void setY(int yIn)
@@ -594,9 +656,9 @@ public class BlockPos extends Vec3i
                 return (BlockPos.PooledMutableBlockPos)super.move(facing);
             }
 
-            public BlockPos.PooledMutableBlockPos move(EnumFacing facing, int p_189534_2_)
+            public BlockPos.PooledMutableBlockPos move(EnumFacing facing, int n)
             {
-                return (BlockPos.PooledMutableBlockPos)super.move(facing, p_189534_2_);
+                return (BlockPos.PooledMutableBlockPos)super.move(facing, n);
             }
         }
 }

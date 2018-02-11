@@ -89,7 +89,7 @@ public class EntityRabbit extends EntityAnimal
 
     protected float getJumpUpwardsMotion()
     {
-        if (!this.isCollidedHorizontally && (!this.moveHelper.isUpdating() || this.moveHelper.getY() <= this.posY + 0.5D))
+        if (!this.collidedHorizontally && (!this.moveHelper.isUpdating() || this.moveHelper.getY() <= this.posY + 0.5D))
         {
             Path path = this.navigator.getPath();
 
@@ -199,7 +199,7 @@ public class EntityRabbit extends EntityAnimal
             {
                 EntityLivingBase entitylivingbase = this.getAttackTarget();
 
-                if (entitylivingbase != null && this.getDistanceSqToEntity(entitylivingbase) < 16.0D)
+                if (entitylivingbase != null && this.getDistanceSq(entitylivingbase) < 16.0D)
                 {
                     this.calculateRotationYaw(entitylivingbase.posX, entitylivingbase.posZ);
                     this.moveHelper.setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, this.moveHelper.getSpeed());
@@ -337,7 +337,7 @@ public class EntityRabbit extends EntityAnimal
         return SoundEvents.ENTITY_RABBIT_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_RABBIT_HURT;
     }

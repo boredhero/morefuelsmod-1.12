@@ -1,18 +1,25 @@
-##All Polish Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+#All Polish Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+
+#Mod Creative Tab
+itemGroup.morefuelsmod=Więcej Paliw
 
 #Items
-item.pelletsFuel.name=Pellety Opałowe
-item.concentratedPelletsFuel.name=Skoncentrowane Pellety Opałowe
-item.coke.name=Koks (Paliwa)
-item.bituminousCoal.name=Węgiel Kamienny
-item.canSlimoline.name=Puszka Slimoline
-item.dustCoal.name=Pył Węglowy
+item.coke.name=Koks
+item.bituminous_coal.name=Węgiel kamienny
+item.can_of_slimoline.name=Pojemnik z Slim-o-line
+item.coal_dust.name=Pył węglowy
+item.compressed_pellet_fuel.name=Sprężone paliwo peletkowe
+item.glass_orb.name=Pusta szklana kula
+item.tempered_glass_orb.name=Spalona szklana kula
+item.lava_glass_orb.name=Sfera lawy wulkanicznej
+item.pellet_fuel.name=Pellet paliwowy
+item.lava_crystals.name=Kryształy lawy
 
 #Blocks
-tile.pelletBlock.name=Blok Paliwa Pelet
-tile.concentratedPelletBlock.name=Blok Stężonego Fuek Pelet
-tile.cokeBlock.name=Blok Koks (Paliwa)
-tile.bituminousCoalOre.name=Rudy Węgla Kamiennego
-
-#Tabs
-itemGroup.morefuelsmod=Modyfikacja Więcej Paliw
+tile.ore_bituminous_coal.name=Węgiel bitumiczny kruszec
+tile.block_coke.name=Blok Coke
+tile.block_bituminous_coal.name=Bitumiczny blok węglowy
+tile.block_creative_infinite_fuel.name=Nieskończone paliwo (tylko kreatywne)
+tile.ore_lava.name=Ruda Lawy
+tile.block_pellet_fuel.name=Blok paliwa pelletowego
+tile.block_compressed_pellet_fuel.name=Skompresowany blok paliwa pelletowego

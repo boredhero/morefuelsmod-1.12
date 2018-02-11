@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:deadbush"
+		},
+		"B": {
+			"item": "minecraft:deadbush"
+		},
+		"C": {
+			"item": "minecraft:deadbush"
+		},
+		"D": {
+			"item": "minecraft:deadbush"
+		},
+		"E": {
+			"item": "minecraft:deadbush"
+		},
+		"F": {
+			"item": "minecraft:deadbush"
+		},
+		"G": {
+			"item": "minecraft:deadbush"
+		},
+		"H": {
+			"item": "minecraft:deadbush"
+		},
+		"I": {
+			"item": "minecraft:deadbush"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":2
+	}
+}

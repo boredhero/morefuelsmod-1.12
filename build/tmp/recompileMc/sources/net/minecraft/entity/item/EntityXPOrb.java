@@ -115,7 +115,7 @@ public class EntityXPOrb extends Entity
 
         if (this.xpTargetColor < this.xpColor - 20 + this.getEntityId() % 100)
         {
-            if (this.closestPlayer == null || this.closestPlayer.getDistanceSqToEntity(this) > 64.0D)
+            if (this.closestPlayer == null || this.closestPlayer.getDistanceSq(this) > 64.0D)
             {
                 this.closestPlayer = this.world.getClosestPlayerToEntity(this, 8.0D);
             }
@@ -201,7 +201,7 @@ public class EntityXPOrb extends Entity
         }
         else
         {
-            this.setBeenAttacked();
+            this.markVelocityChanged();
             this.xpOrbHealth = (int)((float)this.xpOrbHealth - amount);
 
             if (this.xpOrbHealth <= 0)

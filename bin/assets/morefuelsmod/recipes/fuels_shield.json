@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:shield"
+		},
+		"B": {
+			"item": "minecraft:shield"
+		},
+		"C": {
+			"item": "minecraft:shield"
+		},
+		"D": {
+			"item": "minecraft:shield"
+		},
+		"E": {
+			"item": "minecraft:shield"
+		},
+		"F": {
+			"item": "minecraft:shield"
+		},
+		"G": {
+			"item": "minecraft:shield"
+		},
+		"H": {
+			"item": "minecraft:shield"
+		},
+		"I": {
+			"item": "minecraft:shield"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":18
+	}
+}

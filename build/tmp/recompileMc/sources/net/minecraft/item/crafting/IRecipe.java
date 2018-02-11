@@ -34,7 +34,7 @@ default NonNullList<Ingredient> getIngredients()
         return NonNullList.<Ingredient>create();
     }
 
-default boolean isHidden()
+default boolean isDynamic()
     {
         return false;
     }

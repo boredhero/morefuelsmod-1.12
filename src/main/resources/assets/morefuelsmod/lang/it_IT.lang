@@ -1,18 +1,25 @@
-##All Italian Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+#All Italian Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+
+#Mod Creative Tab
+itemGroup.morefuelsmod=Più carburanti
 
 #Items
-item.pelletsFuel.name=Pellet di Combustibile
-item.concentratedPelletsFuel.name=Pellet di Combustibile Concentrate
-item.coke.name=Coca (Carburante)
-item.bituminousCoal.name=Carbone Bituminoso
-item.canSlimoline.name=Tanica di Slimoline
-item.dustCoal.name=Polvere di Carbone
+item.coke.name=il carbone
+item.bituminous_coal.name=Carbone bituminoso
+item.can_of_slimoline.name=Lattina di Slim-o-line
+item.coal_dust.name=Polvere di carbone
+item.compressed_pellet_fuel.name=Combustibile a pellet compresso
+item.glass_orb.name=Globo di vetro vuoto
+item.tempered_glass_orb.name=Orbita di vetro vuoto temperato
+item.lava_glass_orb.name=Sfera di Lava
+item.pellet_fuel.name=Combustibile per pellet
+item.lava_crystals.name=Cristalli di lava
 
 #Blocks
-tile.pelletBlock.name=Blocco di Combustibile Pellet
-tile.concentratedPelletBlock.name=Blocco di Combustibile Pellet Concentrato
-tile.cokeBlock.name=Blocco di Coke (Combustibile)
-tile.bituminousCoalOre.name=Minerale di Carbone Bituminoso
-
-#Tabs
-itemGroup.morefuelsmod=Modifica Più Combustibili
+tile.ore_bituminous_coal.name=Minerale di carbone bituminoso
+tile.block_coke.name=Blocco di carbone
+tile.block_bituminous_coal.name=Carbone bituminoso blocco
+tile.block_creative_infinite_fuel.name=Carburante infinito (solo creatività)
+tile.ore_lava.name=Minerale di lava
+tile.block_pellet_fuel.name=Blocco di combustibile a pellet
+tile.block_compressed_pellet_fuel.name=Blocco di combustibile a pellet compresso

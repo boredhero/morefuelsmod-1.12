@@ -110,7 +110,7 @@ public class StructureOceanMonument extends MapGenStructure
     /**
      * Gets the scattered feature spawn list
      */
-    public List<Biome.SpawnListEntry> getScatteredFeatureSpawnList()
+    public List<Biome.SpawnListEntry> getMonsters()
     {
         return MONUMENT_ENEMIES;
     }

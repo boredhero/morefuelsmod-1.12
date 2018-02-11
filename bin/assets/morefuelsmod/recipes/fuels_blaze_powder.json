@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:blaze_powder"
+		},
+		"B": {
+			"item": "minecraft:blaze_powder"
+		},
+		"C": {
+			"item": "minecraft:blaze_powder"
+		},
+		"D": {
+			"item": "minecraft:blaze_powder"
+		},
+		"E": {
+			"item": "minecraft:blaze_powder"
+		},
+		"F": {
+			"item": "minecraft:blaze_powder"
+		},
+		"G": {
+			"item": "minecraft:blaze_powder"
+		},
+		"H": {
+			"item": "minecraft:blaze_powder"
+		},
+		"I": {
+			"item": "minecraft:blaze_powder"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":12
+	}
+}

@@ -337,7 +337,7 @@ public class EntityZombie extends EntityMob
         return SoundEvents.ENTITY_ZOMBIE_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_ZOMBIE_HURT;
     }
@@ -609,7 +609,7 @@ public class EntityZombie extends EntityMob
         {
             EntityCreeper entitycreeper = (EntityCreeper)cause.getTrueSource();
 
-            if (entitycreeper.getPowered() && entitycreeper.isAIEnabled())
+            if (entitycreeper.getPowered() && entitycreeper.ableToCauseSkullDrop())
             {
                 entitycreeper.incrementDroppedSkulls();
                 ItemStack itemstack = this.getSkullDrop();

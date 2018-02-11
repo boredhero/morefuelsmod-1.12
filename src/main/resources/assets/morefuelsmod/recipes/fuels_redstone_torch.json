@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:redstone_torch"
+		},
+		"B": {
+			"item": "minecraft:redstone_torch"
+		},
+		"C": {
+			"item": "minecraft:redstone_torch"
+		},
+		"D": {
+			"item": "minecraft:redstone_torch"
+		},
+		"E": {
+			"item": "minecraft:redstone_torch"
+		},
+		"F": {
+			"item": "minecraft:redstone_torch"
+		},
+		"G": {
+			"item": "minecraft:redstone_torch"
+		},
+		"H": {
+			"item": "minecraft:redstone_torch"
+		},
+		"I": {
+			"item": "minecraft:redstone_torch"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

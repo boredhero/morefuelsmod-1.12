@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:hay_block"
+		},
+		"B": {
+			"item": "minecraft:hay_block"
+		},
+		"C": {
+			"item": "minecraft:hay_block"
+		},
+		"D": {
+			"item": "minecraft:hay_block"
+		},
+		"E": {
+			"item": "minecraft:hay_block"
+		},
+		"F": {
+			"item": "minecraft:hay_block"
+		},
+		"G": {
+			"item": "minecraft:hay_block"
+		},
+		"H": {
+			"item": "minecraft:hay_block"
+		},
+		"I": {
+			"item": "minecraft:hay_block"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":9
+	}
+}

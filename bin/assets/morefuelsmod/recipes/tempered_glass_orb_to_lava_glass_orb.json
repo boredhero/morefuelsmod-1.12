@@ -1,0 +1,14 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "morefuelsmod:tempered_glass_orb"
+		},
+		{
+			"item": "morefuelsmod:lava_crystals"
+		}
+	],
+	"result": {
+		"item": "morefuelsmod:lava_glass_orb"
+	}
+}

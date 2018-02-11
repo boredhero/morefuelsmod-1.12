@@ -1,18 +1,25 @@
-##All Japanese Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+#All Japanese Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+
+#Mod Creative Tab
+itemGroup.morefuelsmod=より多くの燃料 (Yori ōku no nenryō)
 
 #Items
-item.pelletsFuel.name=ç‡ƒæ–™ãƒšãƒ¬ãƒƒãƒˆ (NenryÅ� peretto)
-item.concentratedPelletsFuel.name=æ¿ƒç¸®ã�•ã‚Œã�Ÿç‡ƒæ–™ãƒšãƒ¬ãƒƒãƒˆ (NÅ�shuku sa reta nenryÅ� peretto)
-item.coke.name=ã‚³ãƒ¼ã‚¯ã‚¹ï¼ˆç‡ƒæ–™) (KÅ�kusu (nenryÅ�))
-item.bituminousCoal.name=ç€�é�’ç‚­ (Rekiseitan)
-item.canSlimoline.name=slimolineã�®ç¼¶ (Slimoline no kan)
-item.dustCoal.name=ç‚­å¡µ (Tanjin)
+item.coke.name=コークス (Kōkusu)
+item.bituminous_coal.name=瀝青炭 (Rekiseitan)
+item.can_of_slimoline.name=コンテナ Slim-o-line (Kontena slimoline)
+item.coal_dust.name=炭塵 (Tanjin)
+item.compressed_pellet_fuel.name=圧縮ペレット燃料 (Asshuku peretto nenryō)
+item.glass_orb.name=空のガラスのオーブ (Sora no garasu no ōbu)
+item.tempered_glass_orb.name=黒いガラスのオーブ (Kuroi garasu no kyū)
+item.lava_glass_orb.name=ラヴァオーブ (Ravu~aōbu)
+item.pellet_fuel.name=ペレット燃料 (Peretto nenryō)
+item.lava_crystals.name=溶岩の結晶 (Yōgan no kesshō)
 
 #Blocks
-tile.pelletBlock.name=ãƒšãƒ¬ãƒƒãƒˆç‡ƒæ–™ã�®ãƒ–ãƒ­ãƒƒã‚¯ (Peretto nenryÅ� no burokku)
-tile.concentratedPelletBlock.name=æ¿ƒç¸®ã�•ã‚Œã�Ÿãƒšãƒ¬ãƒƒãƒˆç‡ƒæ–™ã�®ãƒ–ãƒ­ãƒƒã‚¯ (NÅ�shuku sa reta peretto nenryÅ� no burokku)
-tile.cokeBlock.name=ã‚³ãƒ¼ã‚¯ã‚¹ã�®ãƒ–ãƒ­ãƒƒã‚¯ï¼ˆç‡ƒæ–™ï¼‰) (KÅ�kusu no burokku (nenryÅ�))
-tile.bituminousCoalOre.name=ç€�é�’ç‚­é‰±çŸ³ (Rekiseitan kÅ�seki)
-
-#Tabs
-itemGroup.morefuelsmod=ã‚ˆã‚Šå¤šã��ã�®ç‡ƒæ–™ã�®å¤‰æ›´ (Yori Å�ku no nenryÅ� no henkÅ�)
+tile.ore_bituminous_coal.name=瀝青炭鉱石 (Rekiseitan kōseki)
+tile.block_coke.name=コークスブロック (Kōkusuburokku)
+tile.block_bituminous_coal.name=瀝青炭ブロック (Rekiseitan burokku)
+tile.block_creative_infinite_fuel.name=無限の燃料クリエイティブのみ (Mugen no nenryō kurieitibu nomi)
+tile.ore_lava.name=溶岩鉱石 (Yōgan kōseki)
+tile.block_pellet_fuel.name=ペレット燃料ブロック (Peretto nenryō burokku)
+tile.block_compressed_pellet_fuel.name=圧縮ペレット燃料ブロック (Asshuku peretto nenryō burokku)

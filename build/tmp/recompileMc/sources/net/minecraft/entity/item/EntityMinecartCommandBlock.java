@@ -47,7 +47,7 @@ public class EntityMinecartCommandBlock extends EntityMinecart
             return 1;
         }
         /**
-         * Fills in information about the command block for the packet. X/Y/Z for the minecart version, and entityId for
+         * Fills in information about the command block for the packet. entityId for the minecart version, and X/Y/Z for
          * the traditional version
          */
         @SideOnly(Side.CLIENT)
@@ -182,7 +182,7 @@ public class EntityMinecartCommandBlock extends EntityMinecart
 
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand)
     {
-        if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.minecart.MinecartInteractEvent(this, player, hand))) return true;
+        if (super.processInitialInteract(player, hand)) return true;
         this.commandBlockLogic.tryOpenEditCommandBlock(player);
         return false;
     }

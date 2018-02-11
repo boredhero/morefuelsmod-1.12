@@ -214,11 +214,11 @@ public class GuiSelectStringEntries extends GuiListExtended
         }
 
         @Override
-        public void updatePosition(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_){}
+        public void updatePosition(int slotIndex, int x, int y, float partialTicks){}
     }
 
     public static interface IGuiSelectStringListEntry extends GuiListExtended.IGuiListEntry
     {
-        public Object getValue();
+        Object getValue();
     }
 }

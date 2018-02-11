@@ -146,7 +146,7 @@ public class BlockRailPowered extends BlockRailBase
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
 
-        if (iblockstate.getBlock() != this)
+        if (!(iblockstate.getBlock() instanceof BlockRailPowered))
         {
             return false;
         }

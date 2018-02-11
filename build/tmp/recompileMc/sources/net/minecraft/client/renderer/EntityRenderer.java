@@ -320,7 +320,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.mc.setRenderViewEntity(this.mc.player);
         }
 
-        float f3 = this.mc.world.getLightBrightness(new BlockPos(this.mc.getRenderViewEntity()));
+        float f3 = this.mc.world.getLightBrightness(new BlockPos(this.mc.getRenderViewEntity().getPositionEyes(1F))); // Forge: fix MC-51150
         float f4 = (float)this.mc.gameSettings.renderDistanceChunks / 32.0F;
         float f2 = f3 * (1.0F - f4) + f4;
         this.fogColor1 += (f2 - this.fogColor1) * 0.1F;
@@ -1550,7 +1550,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 BlockPos blockpos2 = blockpos1.down();
                 IBlockState iblockstate = world.getBlockState(blockpos2);
 
-                if (blockpos1.getY() <= blockpos.getY() + 10 && blockpos1.getY() >= blockpos.getY() - 10 && biome.canRain() && biome.getFloatTemperature(blockpos1) >= 0.15F)
+                if (blockpos1.getY() <= blockpos.getY() + 10 && blockpos1.getY() >= blockpos.getY() - 10 && biome.canRain() && biome.getTemperature(blockpos1) >= 0.15F)
                 {
                     double d3 = this.random.nextDouble();
                     double d4 = this.random.nextDouble();
@@ -1678,7 +1678,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
                         {
                             this.random.setSeed((long)(l1 * l1 * 3121 + l1 * 45238971 ^ k1 * k1 * 418711 + k1 * 13761));
                             blockpos$mutableblockpos.setPos(l1, k2, k1);
-                            float f2 = biome.getFloatTemperature(blockpos$mutableblockpos);
+                            float f2 = biome.getTemperature(blockpos$mutableblockpos);
 
                             if (world.getBiomeProvider().getTemperatureAtHeight(f2, j2) >= 0.15F)
                             {
@@ -2127,9 +2127,9 @@ public class EntityRenderer implements IResourceManagerReloadListener
         GlStateManager.popMatrix();
     }
 
-    public void displayItemActivation(ItemStack p_190565_1_)
+    public void displayItemActivation(ItemStack stack)
     {
-        this.itemActivationItem = p_190565_1_;
+        this.itemActivationItem = stack;
         this.itemActivationTicks = 40;
         this.itemActivationOffX = this.random.nextFloat() * 2.0F - 1.0F;
         this.itemActivationOffY = this.random.nextFloat() * 2.0F - 1.0F;

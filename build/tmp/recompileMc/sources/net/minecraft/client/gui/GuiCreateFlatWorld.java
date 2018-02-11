@@ -244,9 +244,9 @@ public class GuiCreateFlatWorld extends GuiScreen
         {
         }
 
-        protected void drawSlot(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
+        protected void drawSlot(int slotIndex, int xPos, int yPos, int heightIn, int mouseXIn, int mouseYIn, float partialTicks)
         {
-            FlatLayerInfo flatlayerinfo = (FlatLayerInfo)GuiCreateFlatWorld.this.generatorInfo.getFlatLayers().get(GuiCreateFlatWorld.this.generatorInfo.getFlatLayers().size() - p_192637_1_ - 1);
+            FlatLayerInfo flatlayerinfo = (FlatLayerInfo)GuiCreateFlatWorld.this.generatorInfo.getFlatLayers().get(GuiCreateFlatWorld.this.generatorInfo.getFlatLayers().size() - slotIndex - 1);
             IBlockState iblockstate = flatlayerinfo.getLayerMaterial();
             Block block = iblockstate.getBlock();
             Item item = Item.getItemFromBlock(block);
@@ -268,15 +268,15 @@ public class GuiCreateFlatWorld extends GuiScreen
 
             ItemStack itemstack = new ItemStack(item, 1, item.getHasSubtypes() ? block.getMetaFromState(iblockstate) : 0);
             String s = item.getItemStackDisplayName(itemstack);
-            this.drawItem(p_192637_2_, p_192637_3_, itemstack);
-            GuiCreateFlatWorld.this.fontRenderer.drawString(s, p_192637_2_ + 18 + 5, p_192637_3_ + 3, 16777215);
+            this.drawItem(xPos, yPos, itemstack);
+            GuiCreateFlatWorld.this.fontRenderer.drawString(s, xPos + 18 + 5, yPos + 3, 16777215);
             String s1;
 
-            if (p_192637_1_ == 0)
+            if (slotIndex == 0)
             {
                 s1 = I18n.format("createWorld.customize.flat.layer.top", flatlayerinfo.getLayerCount());
             }
-            else if (p_192637_1_ == GuiCreateFlatWorld.this.generatorInfo.getFlatLayers().size() - 1)
+            else if (slotIndex == GuiCreateFlatWorld.this.generatorInfo.getFlatLayers().size() - 1)
             {
                 s1 = I18n.format("createWorld.customize.flat.layer.bottom", flatlayerinfo.getLayerCount());
             }
@@ -285,7 +285,7 @@ public class GuiCreateFlatWorld extends GuiScreen
                 s1 = I18n.format("createWorld.customize.flat.layer", flatlayerinfo.getLayerCount());
             }
 
-            GuiCreateFlatWorld.this.fontRenderer.drawString(s1, p_192637_2_ + 2 + 213 - GuiCreateFlatWorld.this.fontRenderer.getStringWidth(s1), p_192637_3_ + 3, 16777215);
+            GuiCreateFlatWorld.this.fontRenderer.drawString(s1, xPos + 2 + 213 - GuiCreateFlatWorld.this.fontRenderer.getStringWidth(s1), yPos + 3, 16777215);
         }
 
         protected int getScrollBarX()

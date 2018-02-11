@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:feather"
+		},
+		"B": {
+			"item": "minecraft:feather"
+		},
+		"C": {
+			"item": "minecraft:feather"
+		},
+		"D": {
+			"item": "minecraft:feather"
+		},
+		"E": {
+			"item": "minecraft:feather"
+		},
+		"F": {
+			"item": "minecraft:feather"
+		},
+		"G": {
+			"item": "minecraft:feather"
+		},
+		"H": {
+			"item": "minecraft:feather"
+		},
+		"I": {
+			"item": "minecraft:feather"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

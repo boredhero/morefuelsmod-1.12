@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:carrot_on_a_stick"
+		},
+		"B": {
+			"item": "minecraft:carrot_on_a_stick"
+		},
+		"C": {
+			"item": "minecraft:carrot_on_a_stick"
+		},
+		"D": {
+			"item": "minecraft:carrot_on_a_stick"
+		},
+		"E": {
+			"item": "minecraft:carrot_on_a_stick"
+		},
+		"F": {
+			"item": "minecraft:carrot_on_a_stick"
+		},
+		"G": {
+			"item": "minecraft:carrot_on_a_stick"
+		},
+		"H": {
+			"item": "minecraft:carrot_on_a_stick"
+		},
+		"I": {
+			"item": "minecraft:carrot_on_a_stick"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":3
+	}
+}

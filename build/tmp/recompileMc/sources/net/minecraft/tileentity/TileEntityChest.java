@@ -378,6 +378,7 @@ public class TileEntityChest extends TileEntityLockableLoot implements ITickable
 
     @SuppressWarnings("unchecked")
     @Override
+    @Nullable
     public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable net.minecraft.util.EnumFacing facing)
     {
         if (capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)

@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"AB ",
+		"CD ",
+		"   "
+	],
+	"key": {
+		"A": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"B": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"C": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		},
+		"D": {
+			"item": "morefuelsmod:compressed_pellet_fuel"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:block_pellet_fuel"
+	}
+}

@@ -228,7 +228,7 @@ public class EntityFireworkRocket extends Entity
 
             for (EntityLivingBase entitylivingbase : this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().grow(5.0D)))
             {
-                if (entitylivingbase != this.boostedEntity && this.getDistanceSqToEntity(entitylivingbase) <= 25.0D)
+                if (entitylivingbase != this.boostedEntity && this.getDistanceSq(entitylivingbase) <= 25.0D)
                 {
                     boolean flag = false;
 
@@ -245,7 +245,7 @@ public class EntityFireworkRocket extends Entity
 
                     if (flag)
                     {
-                        float f1 = f * (float)Math.sqrt((5.0D - (double)this.getDistanceToEntity(entitylivingbase)) / 5.0D);
+                        float f1 = f * (float)Math.sqrt((5.0D - (double)this.getDistance(entitylivingbase)) / 5.0D);
                         entitylivingbase.attackEntityFrom(DamageSource.FIREWORKS, f1);
                     }
                 }

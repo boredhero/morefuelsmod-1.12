@@ -34,7 +34,7 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
         {
             return false;
         }
-        else if (this.targetEntity.getDistanceSqToEntity(this.creature) > (double)(this.maxTargetDistance * this.maxTargetDistance))
+        else if (this.targetEntity.getDistanceSq(this.creature) > (double)(this.maxTargetDistance * this.maxTargetDistance))
         {
             return false;
         }
@@ -61,7 +61,7 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
      */
     public boolean shouldContinueExecuting()
     {
-        return !this.creature.getNavigator().noPath() && this.targetEntity.isEntityAlive() && this.targetEntity.getDistanceSqToEntity(this.creature) < (double)(this.maxTargetDistance * this.maxTargetDistance);
+        return !this.creature.getNavigator().noPath() && this.targetEntity.isEntityAlive() && this.targetEntity.getDistanceSq(this.creature) < (double)(this.maxTargetDistance * this.maxTargetDistance);
     }
 
     /**

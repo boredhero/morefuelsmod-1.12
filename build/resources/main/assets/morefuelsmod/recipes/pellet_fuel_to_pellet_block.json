@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "morefuelsmod:pellet_fuel"
+		},
+		"B": {
+			"item": "morefuelsmod:pellet_fuel"
+		},
+		"C": {
+			"item": "morefuelsmod:pellet_fuel"
+		},
+		"D": {
+			"item": "morefuelsmod:pellet_fuel"
+		},
+		"E": {
+			"item": "morefuelsmod:pellet_fuel"
+		},
+		"F": {
+			"item": "morefuelsmod:pellet_fuel"
+		},
+		"G": {
+			"item": "morefuelsmod:pellet_fuel"
+		},
+		"H": {
+			"item": "morefuelsmod:pellet_fuel"
+		},
+		"I": {
+			"item": "morefuelsmod:pellet_fuel"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:block_pellet_fuel"
+	}
+}

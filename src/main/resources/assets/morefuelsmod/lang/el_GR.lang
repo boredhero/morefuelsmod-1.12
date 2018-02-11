@@ -1,18 +1,25 @@
-##All Greek Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+#All Greek Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+
+#Mod Creative Tab
+itemGroup.morefuelsmod=Περισσότερα καύσιμα (Perissótera káfsima)
 
 #Items
-item.pelletsFuel.name=Ï€Î»Î¯Î½Î¸Ï‰Î½ ÎºÎ±Ï…ÏƒÎ¯Î¼Ï‰Î½ (plÃ­nthon kafsÃ­mon)
-item.concentratedPelletsFuel.name=ÏƒÏ…Î¼Ï€Ï…ÎºÎ½Ï‰Î¼Î­Î½Î¿Ï… Ï€Î»Î¯Î½Î¸Ï‰Î½ ÎºÎ±Ï…ÏƒÎ¯Î¼Ï‰Î½ (sympyknomÃ©nou plÃ­nthon kafsÃ­mon)
-item.coke.name=Î¿Ï€Ï„Î¬Î½Î¸Ï�Î±ÎºÎ± (ÎºÎ±Ï…ÏƒÎ¯Î¼Ï‰Î½) (optÃ¡nthraka (kafsÃ­mon))
-item.bituminousCoal.name=Î±ÏƒÏ†Î±Î»Ï„Î¿Ï�Ï‡Î± Î¬Î½Î¸Ï�Î±ÎºÎ± (asfaltoÃºcha Ã¡nthraka)
-item.canSlimoline.name=ÎœÏ€Î¿Ï�ÎµÎ¯ Î½Î± Ï„Î¿Ï… Slimoline (BoreÃ­ na tou Slimoline)
-item.dustCoal.name=Î±Î½Î¸Ï�Î±ÎºÎ¿ÏƒÎºÏŒÎ½Î· (anthrakoskÃ³ni)
+item.coke.name=Κοκ
+item.bituminous_coal.name=Ασφαλτός άνθρακας (Asfaltós ánthrakas)
+item.can_of_slimoline.name=Μπορεί να Slim-o-line (Boreí na Slimoline)
+item.coal_dust.name=Ανθρακοσκόνη (Anthrakoskóni)
+item.compressed_pellet_fuel.name=Συμπιεσμένο καύσιμο πελετών (Sympiesméno káfsimo peletón)
+item.glass_orb.name=Γυμνάσιο γυμνό (Gymnásio gymnó)
+item.tempered_glass_orb.name=Σκουλαρίκι από σκληρό γυαλί (Skoularíki apó skliró gyalí)
+item.lava_glass_orb.name=Λάβα Σφαίρα (Láva Sfaíra)
+item.pellet_fuel.name=Πετρέλαιο καυσίμου (Petrélaio kafsímou)
+item.lava_crystals.name=Κρύσταλλοι λάβα (Krýstalloi láva)
 
 #Blocks
-tile.pelletBlock.name=Î¼Ï€Î»Î¿Îº Ï„Î¿Ï… ÎºÎ±Ï…ÏƒÎ¯Î¼Î¿Ï… Î²Î¹Î¿Î¼Î¬Î¶Î±Ï‚ (blok tou kafsÃ­mou viomÃ¡zas)
-tile.concentratedPelletBlock.name=Î¼Ï€Î»Î¿Îº ÏƒÏ…Î¼Ï€Ï…ÎºÎ½Ï‰Î¼Î­Î½Î¿Ï… ÎºÎ±Ï�ÏƒÎ¹Î¼Î¿ pellet
-tile.cokeBlock.name=Î‘Ï€Î¿ÎºÎ»ÎµÎ¹ÏƒÎ¼ÏŒÏ‚ Ï„Î·Ï‚ Coke (ÎºÎ±Ï…ÏƒÎ¯Î¼Ï‰Î½) (ApokleismÃ³s tis Coke (kafsÃ­mon))
-tile.bituminousCoalOre.name=Î±ÏƒÏ†Î±Î»Ï„Î¿Ï�Ï‡Î± Î¿Ï�Ï…ÎºÏ„ÏŒ Î¬Î½Î¸Ï�Î±ÎºÎ± (asfaltoÃºcha oryktÃ³ Ã¡nthraka)
-
-#Tabs
-itemGroup.morefuelsmod=Î ÎµÏ�Î¹ÏƒÏƒÏŒÏ„ÎµÏ�Î± ÎšÎ±Ï�ÏƒÎ¹Î¼Î± Î¤Ï�Î¿Ï€Î¿Ï€Î¿Î¯Î·ÏƒÎ· (PerissÃ³tera KÃ¡fsima TropopoÃ­isi)
+tile.ore_bituminous_coal.name=Ασφαλτόχρωμα ορυκτά (Asfaltóchroma oryktá)
+tile.block_coke.name=Αποκλεισμός οπτάνθρακα (Apokleismós optánthraka)
+tile.block_bituminous_coal.name=Ασφαλτό στρώμα άνθρακα (Asfaltó stróma ánthraka)
+tile.block_creative_infinite_fuel.name=Μόνο δημιουργικό άπειρο καύσιμο (Móno dimiourgikó ápeiro káfsimo)
+tile.ore_lava.name=Λάβα Ορέ (Láva Oré)
+tile.block_pellet_fuel.name=Δοχείο καυσίμου πελετών (Docheío kafsímou peletón)
+tile.block_compressed_pellet_fuel.name=Συμπιεσμένο μπλοκ καυσίμου πελετών (Sympiesméno blok kafsímou peletón)

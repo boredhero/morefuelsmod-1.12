@@ -108,11 +108,11 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
     public double prevPosX;
     public double prevPosY;
     public double prevPosZ;
-    /** Entity position X */
+    /** X position of this entity, located at the center of its bounding box. */
     public double posX;
-    /** Entity position Y */
+    /** Y position of this entity, located at the bottom of its bounding box (its feet) */
     public double posY;
-    /** Entity position Z */
+    /** Z position of this entity, located at the center of its bounding box. */
     public double posZ;
     /** Entity motion X */
     public double motionX;
@@ -130,11 +130,12 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
     private AxisAlignedBB boundingBox;
     public boolean onGround;
     /** True if after a move this entity has collided with something on X- or Z-axis */
-    public boolean isCollidedHorizontally;
+    public boolean collidedHorizontally;
     /** True if after a move this entity has collided with something on Y-axis */
-    public boolean isCollidedVertically;
+    public boolean collidedVertically;
     /** True if after a move this entity has collided with something either vertically or horizontally */
-    public boolean isCollided;
+    public boolean collided;
+    /** If true, an {@link SPacketEntityVelocity} will be sent updating this entity's velocity. */
     public boolean velocityChanged;
     protected boolean isInWeb;
     private boolean isOutsideBorder;
@@ -975,10 +976,10 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
             this.world.profiler.endSection();
             this.world.profiler.startSection("rest");
             this.resetPositionToBB();
-            this.isCollidedHorizontally = d2 != x || d4 != z;
-            this.isCollidedVertically = d3 != y;
-            this.onGround = this.isCollidedVertically && d3 < 0.0D;
-            this.isCollided = this.isCollidedHorizontally || this.isCollidedVertically;
+            this.collidedHorizontally = d2 != x || d4 != z;
+            this.collidedVertically = d3 != y;
+            this.onGround = this.collidedVertically && d3 < 0.0D;
+            this.collided = this.collidedHorizontally || this.collidedVertically;
             int j6 = MathHelper.floor(this.posX);
             int i1 = MathHelper.floor(this.posY - 0.20000000298023224D);
             int k6 = MathHelper.floor(this.posZ);
@@ -1258,7 +1259,12 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
     }
 
     /**
-     * Returns the collision bounding box for this entity
+     * Returns the <b>solid</b> collision bounding box for this entity. Used to make (e.g.) boats solid. Return null if
+     * this entity is not solid.
+     *  
+     * For general purposes, use {@link #width} and {@link #height}.
+     *  
+     * @see getEntityBoundingBox
      */
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox()
@@ -1413,6 +1419,7 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
         BlockPos blockpos = new BlockPos(i, j, k);
         IBlockState iblockstate = this.world.getBlockState(blockpos);
 
+        if(!iblockstate.getBlock().addRunningEffects(iblockstate, world, blockpos, this))
         if (iblockstate.getRenderType() != EnumBlockRenderType.INVISIBLE)
         {
             this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, Block.getStateId(iblockstate));
@@ -1579,7 +1586,7 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
     /**
      * Returns the distance to the entity.
      */
-    public float getDistanceToEntity(Entity entityIn)
+    public float getDistance(Entity entityIn)
     {
         float f = (float)(this.posX - entityIn.posX);
         float f1 = (float)(this.posY - entityIn.posY);
@@ -1622,7 +1629,7 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
     /**
      * Returns the squared distance to the entity.
      */
-    public double getDistanceSqToEntity(Entity entityIn)
+    public double getDistanceSq(Entity entityIn)
     {
         double d0 = this.posX - entityIn.posX;
         double d1 = this.posY - entityIn.posY;
@@ -1684,7 +1691,7 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
     }
 
     /**
-     * Adds to the current velocity of the entity.
+     * Adds to the current velocity of the entity, and sets {@link #isAirBorne} to true.
      */
     public void addVelocity(double x, double y, double z)
     {
@@ -1695,9 +1702,9 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
     }
 
     /**
-     * Sets that this entity has been attacked.
+     * Marks this entity's velocity as changed, so that it can be re-synced with the client later
      */
-    protected void setBeenAttacked()
+    protected void markVelocityChanged()
     {
         this.velocityChanged = true;
     }
@@ -1713,7 +1720,7 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
         }
         else
         {
-            this.setBeenAttacked();
+            this.markVelocityChanged();
             return false;
         }
     }
@@ -2924,16 +2931,17 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
             }
             else
             {
-                double d0 = this.posX;
-                double d1 = this.posZ;
+                double moveFactor = worldserver.provider.getMovementFactor() / worldserver1.provider.getMovementFactor();
+                double d0 = MathHelper.clamp(this.posX * moveFactor, worldserver1.getWorldBorder().minX() + 16.0D, worldserver1.getWorldBorder().maxX() - 16.0D);
+                double d1 = MathHelper.clamp(this.posZ * moveFactor, worldserver1.getWorldBorder().minZ() + 16.0D, worldserver1.getWorldBorder().maxZ() - 16.0D);
                 double d2 = 8.0D;
 
-                if (dimensionIn == -1)
+                if (false && dimensionIn == -1)
                 {
                     d0 = MathHelper.clamp(d0 / 8.0D, worldserver1.getWorldBorder().minX() + 16.0D, worldserver1.getWorldBorder().maxX() - 16.0D);
                     d1 = MathHelper.clamp(d1 / 8.0D, worldserver1.getWorldBorder().minZ() + 16.0D, worldserver1.getWorldBorder().maxZ() - 16.0D);
                 }
-                else if (dimensionIn == 0)
+                else if (false && dimensionIn == 0)
                 {
                     d0 = MathHelper.clamp(d0 * 8.0D, worldserver1.getWorldBorder().minX() + 16.0D, worldserver1.getWorldBorder().maxX() - 16.0D);
                     d1 = MathHelper.clamp(d1 * 8.0D, worldserver1.getWorldBorder().minZ() + 16.0D, worldserver1.getWorldBorder().maxZ() - 16.0D);
@@ -3501,9 +3509,7 @@ public abstract class Entity implements ICommandSender, net.minecraftforge.commo
     @Override
     public boolean hasCapability(net.minecraftforge.common.capabilities.Capability<?> capability, @Nullable net.minecraft.util.EnumFacing facing)
     {
-        if (getCapability(capability, facing) != null)
-            return true;
-        return capabilities == null ? false : capabilities.hasCapability(capability, facing);
+        return capabilities != null && capabilities.hasCapability(capability, facing);
     }
 
     @Override

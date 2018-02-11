@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "morefuelsmod:block_coke"
+		}
+	],
+	"result": {
+		"item": "morefuelsmod:coke", "count":9
+	}
+}

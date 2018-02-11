@@ -40,9 +40,9 @@ public class EntityDonkey extends AbstractChestHorse
         return SoundEvents.ENTITY_DONKEY_DEATH;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        super.getHurtSound(p_184601_1_);
+        super.getHurtSound(damageSourceIn);
         return SoundEvents.ENTITY_DONKEY_HURT;
     }
 

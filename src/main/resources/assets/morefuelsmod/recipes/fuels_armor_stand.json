@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:armor_stand"
+		},
+		"B": {
+			"item": "minecraft:armor_stand"
+		},
+		"C": {
+			"item": "minecraft:armor_stand"
+		},
+		"D": {
+			"item": "minecraft:armor_stand"
+		},
+		"E": {
+			"item": "minecraft:armor_stand"
+		},
+		"F": {
+			"item": "minecraft:armor_stand"
+		},
+		"G": {
+			"item": "minecraft:armor_stand"
+		},
+		"H": {
+			"item": "minecraft:armor_stand"
+		},
+		"I": {
+			"item": "minecraft:armor_stand"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":6
+	}
+}

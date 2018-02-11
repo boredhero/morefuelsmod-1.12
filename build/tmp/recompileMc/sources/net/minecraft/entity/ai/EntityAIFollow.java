@@ -70,7 +70,7 @@ public class EntityAIFollow extends EntityAIBase
      */
     public boolean shouldContinueExecuting()
     {
-        return this.followingEntity != null && !this.navigation.noPath() && this.entity.getDistanceSqToEntity(this.followingEntity) > (double)(this.stopDistance * this.stopDistance);
+        return this.followingEntity != null && !this.navigation.noPath() && this.entity.getDistanceSq(this.followingEntity) > (double)(this.stopDistance * this.stopDistance);
     }
 
     /**
@@ -89,7 +89,7 @@ public class EntityAIFollow extends EntityAIBase
     public void resetTask()
     {
         this.followingEntity = null;
-        this.navigation.clearPathEntity();
+        this.navigation.clearPath();
         this.entity.setPathPriority(PathNodeType.WATER, this.oldWaterCost);
     }
 
@@ -116,7 +116,7 @@ public class EntityAIFollow extends EntityAIBase
                 }
                 else
                 {
-                    this.navigation.clearPathEntity();
+                    this.navigation.clearPath();
                     EntityLookHelper entitylookhelper = this.followingEntity.getLookHelper();
 
                     if (d3 <= (double)this.stopDistance || entitylookhelper.getLookPosX() == this.entity.posX && entitylookhelper.getLookPosY() == this.entity.posY && entitylookhelper.getLookPosZ() == this.entity.posZ)

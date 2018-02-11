@@ -33,7 +33,7 @@ public class EntityItem extends Entity
     private static final DataParameter<ItemStack> ITEM = EntityDataManager.<ItemStack>createKey(EntityItem.class, DataSerializers.ITEM_STACK);
     /** The age of this EntityItem (used to animate it up and down as well as expire it) */
     private int age;
-    private int delayBeforeCanPickup;
+    private int pickupDelay;
     /** The health of this EntityItem. (For example, damage for tools) */
     private int health;
     private String thrower;
@@ -103,9 +103,9 @@ public class EntityItem extends Entity
         {
             super.onUpdate();
 
-            if (this.delayBeforeCanPickup > 0 && this.delayBeforeCanPickup != 32767)
+            if (this.pickupDelay > 0 && this.pickupDelay != 32767)
             {
-                --this.delayBeforeCanPickup;
+                --this.pickupDelay;
             }
 
             this.prevPosX = this.posX;
@@ -227,7 +227,7 @@ public class EntityItem extends Entity
             ItemStack itemstack = this.getItem();
             ItemStack itemstack1 = other.getItem();
 
-            if (this.delayBeforeCanPickup != 32767 && other.delayBeforeCanPickup != 32767)
+            if (this.pickupDelay != 32767 && other.pickupDelay != 32767)
             {
                 if (this.age != -32768 && other.age != -32768)
                 {
@@ -266,7 +266,7 @@ public class EntityItem extends Entity
                     else
                     {
                         itemstack1.grow(itemstack.getCount());
-                        other.delayBeforeCanPickup = Math.max(other.delayBeforeCanPickup, this.delayBeforeCanPickup);
+                        other.pickupDelay = Math.max(other.pickupDelay, this.pickupDelay);
                         other.age = Math.min(other.age, this.age);
                         other.setItem(itemstack1);
                         this.setDead();
@@ -344,7 +344,7 @@ public class EntityItem extends Entity
         }
         else
         {
-            this.setBeenAttacked();
+            this.markVelocityChanged();
             this.health = (int)((float)this.health - amount);
 
             if (this.health <= 0)
@@ -368,7 +368,7 @@ public class EntityItem extends Entity
     {
         compound.setShort("Health", (short)this.health);
         compound.setShort("Age", (short)this.age);
-        compound.setShort("PickupDelay", (short)this.delayBeforeCanPickup);
+        compound.setShort("PickupDelay", (short)this.pickupDelay);
         compound.setInteger("Lifespan", lifespan);
 
         if (this.getThrower() != null)
@@ -397,7 +397,7 @@ public class EntityItem extends Entity
 
         if (compound.hasKey("PickupDelay"))
         {
-            this.delayBeforeCanPickup = compound.getShort("PickupDelay");
+            this.pickupDelay = compound.getShort("PickupDelay");
         }
 
         if (compound.hasKey("Owner"))
@@ -427,21 +427,23 @@ public class EntityItem extends Entity
     {
         if (!this.world.isRemote)
         {
-            if (this.delayBeforeCanPickup > 0) return;
+            if (this.pickupDelay > 0) return;
             ItemStack itemstack = this.getItem();
             Item item = itemstack.getItem();
             int i = itemstack.getCount();
 
             int hook = net.minecraftforge.event.ForgeEventFactory.onItemPickup(this, entityIn);
             if (hook < 0) return;
+            ItemStack clone = itemstack.copy();
 
-            if (this.delayBeforeCanPickup <= 0 && (this.owner == null || lifespan - this.age <= 200 || this.owner.equals(entityIn.getName())) && (hook == 1 || i <= 0 || entityIn.inventory.addItemStackToInventory(itemstack)))
+            if (this.pickupDelay <= 0 && (this.owner == null || lifespan - this.age <= 200 || this.owner.equals(entityIn.getName())) && (hook == 1 || i <= 0 || entityIn.inventory.addItemStackToInventory(itemstack) || clone.getCount() > this.getItem().getCount()))
             {
-                net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerItemPickupEvent(entityIn, this);
-                entityIn.onItemPickup(this, i);
+                clone.setCount(clone.getCount() - this.getItem().getCount());
+                net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerItemPickupEvent(entityIn, this, clone);
 
                 if (itemstack.isEmpty())
                 {
+                    entityIn.onItemPickup(this, i);
                     this.setDead();
                     itemstack.setCount(i);
                 }
@@ -525,27 +527,27 @@ public class EntityItem extends Entity
 
     public void setDefaultPickupDelay()
     {
-        this.delayBeforeCanPickup = 10;
+        this.pickupDelay = 10;
     }
 
     public void setNoPickupDelay()
     {
-        this.delayBeforeCanPickup = 0;
+        this.pickupDelay = 0;
     }
 
     public void setInfinitePickupDelay()
     {
-        this.delayBeforeCanPickup = 32767;
+        this.pickupDelay = 32767;
     }
 
     public void setPickupDelay(int ticks)
     {
-        this.delayBeforeCanPickup = ticks;
+        this.pickupDelay = ticks;
     }
 
     public boolean cannotPickup()
     {
-        return this.delayBeforeCanPickup > 0;
+        return this.pickupDelay > 0;
     }
 
     public void setNoDespawn()

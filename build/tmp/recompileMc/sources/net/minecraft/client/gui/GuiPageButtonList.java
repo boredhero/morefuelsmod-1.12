@@ -489,10 +489,10 @@ public class GuiPageButtonList extends GuiListExtended
                 }
             }
 
-            public void updatePosition(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
+            public void updatePosition(int slotIndex, int x, int y, float partialTicks)
             {
-                this.renderComponent(this.component1, p_192633_3_, 0, 0, true, p_192633_4_);
-                this.renderComponent(this.component2, p_192633_3_, 0, 0, true, p_192633_4_);
+                this.renderComponent(this.component1, y, 0, 0, true, partialTicks);
+                this.renderComponent(this.component2, y, 0, 0, true, partialTicks);
             }
 
             /**

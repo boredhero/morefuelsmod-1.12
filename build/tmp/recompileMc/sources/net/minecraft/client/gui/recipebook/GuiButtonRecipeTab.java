@@ -46,7 +46,7 @@ public class GuiButtonRecipeTab extends GuiButtonToggle
 
                 IRecipe irecipe = (IRecipe)iterator.next();
 
-                if (recipebook.isRecipeUnseen(irecipe))
+                if (recipebook.isNew(irecipe))
                 {
                     break;
                 }

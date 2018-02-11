@@ -19,7 +19,7 @@ public class PhaseManager
 
     public void setPhase(PhaseList<?> phaseIn)
     {
-        if (this.phase == null || phaseIn != this.phase.getPhaseList())
+        if (this.phase == null || phaseIn != this.phase.getType())
         {
             if (this.phase != null)
             {

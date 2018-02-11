@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "morefuelsmod:bituminous_coal"
+		},
+		"B": {
+			"item": "morefuelsmod:bituminous_coal"
+		},
+		"C": {
+			"item": "morefuelsmod:bituminous_coal"
+		},
+		"D": {
+			"item": "morefuelsmod:bituminous_coal"
+		},
+		"E": {
+			"item": "morefuelsmod:bituminous_coal"
+		},
+		"F": {
+			"item": "morefuelsmod:bituminous_coal"
+		},
+		"G": {
+			"item": "morefuelsmod:bituminous_coal"
+		},
+		"H": {
+			"item": "morefuelsmod:bituminous_coal"
+		},
+		"I": {
+			"item": "morefuelsmod:bituminous_coal"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:block_bituminous_coal"
+	}
+}

@@ -1,17 +1,30 @@
-#Items
-item.pelletsFuel.name=Kuro granules
-item.concentratedPelletsFuel.name=Koncentruotos kuro granules
+#Lituanian Translations are a mix between user contributions and Google Translate. Email at treeclan12@gmail.com or submit a pull request on github to update these.
+
+#Items (User Translated)
+item.pellet_fuel.name=Kuro granules
+item.compressed_pellet_fuel.name=Koncentruotos kuro granules
 item.coke.name=Koksas
-item.bituminousCoal.name=Bitumine anglis
-item.canSlimoline.name=Slimolino skardine
-item.dustCoal.name=Anglies dulkes
+item.bituminous_coal.name=Bitumine anglis
+item.can_of_slimoline.name=Slimolino skardine
+item.coal_dust.name=Anglies dulkes
 
-#Blocks
-tile.pelletBlock.name=Kuro granuliu blokas
-tile.concentratedPelletBlock.name=Koncentruotu kuro granuliu blokas
-tile.cokeBlock.name=Kokso blokas
-tile.bituminousCoalOre.name=Bituminėms akmens anglims rūda
+#Items (Google Translated)
+item.glass_orb.name=Stiklo sfera
+item.tempered_glass_orb.name=Grūdinto stiklo sritis
+item.lava_glass_orb.name=Lavos sritis
+item.lava_crystals.name=Lavos kristalai
 
-#Tabs
+#Blocks (User Translated)
+tile.block_pellet_fuel.name=Kuro granuliu blokas
+tile.block_compressed_pellet_fuel.name=Koncentruotu kuro granuliu blokas
+tile.block_coke.name=Kokso blokas
+tile.ore_bituminous_coal.name=Bituminėms akmens anglims rūda
+
+#Blocks (Google Translated)
+tile.block_bituminous_coal.name=Bituminių akmens anglių blokas
+tile.ore_lava.name=Lava rūdos
+tile.creative_infinite_fuel.name=Kūrybiškas begalinis kuras
+
+#Tabs (User Translated)
 
 itemGroup.morefuelsmod=More Fuels Modas

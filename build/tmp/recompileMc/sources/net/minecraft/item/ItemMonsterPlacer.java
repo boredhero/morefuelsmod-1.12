@@ -289,10 +289,15 @@ public class ItemMonsterPlacer extends Item
         stack.setTagCompound(nbttagcompound);
     }
 
+    /**
+     * Gets the entity type ID from the given itemstack.
+     *  
+     * @return The type ID, or {@code null} if there is no valid tag on the item.
+     */
     @Nullable
-    public static ResourceLocation getNamedIdFrom(ItemStack p_190908_0_)
+    public static ResourceLocation getNamedIdFrom(ItemStack stack)
     {
-        NBTTagCompound nbttagcompound = p_190908_0_.getTagCompound();
+        NBTTagCompound nbttagcompound = stack.getTagCompound();
 
         if (nbttagcompound == null)
         {

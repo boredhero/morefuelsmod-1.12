@@ -38,6 +38,9 @@ public class BlockBush extends Block implements net.minecraftforge.common.IPlant
         this.setCreativeTab(CreativeTabs.DECORATIONS);
     }
 
+    /**
+     * Checks if this block can be placed exactly at the given position.
+     */
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         IBlockState soil = worldIn.getBlockState(pos.down());
@@ -117,6 +120,7 @@ public class BlockBush extends Block implements net.minecraftforge.common.IPlant
         if (this == Blocks.WHEAT)          return net.minecraftforge.common.EnumPlantType.Crop;
         if (this == Blocks.CARROTS)        return net.minecraftforge.common.EnumPlantType.Crop;
         if (this == Blocks.POTATOES)       return net.minecraftforge.common.EnumPlantType.Crop;
+        if (this == Blocks.BEETROOTS)      return net.minecraftforge.common.EnumPlantType.Crop;
         if (this == Blocks.MELON_STEM)     return net.minecraftforge.common.EnumPlantType.Crop;
         if (this == Blocks.PUMPKIN_STEM)   return net.minecraftforge.common.EnumPlantType.Crop;
         if (this == Blocks.DEADBUSH)       return net.minecraftforge.common.EnumPlantType.Desert;
@@ -146,7 +150,16 @@ public class BlockBush extends Block implements net.minecraftforge.common.IPlant
         return BlockRenderLayer.CUTOUT;
     }
 
-    public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
+    /**
+     * Get the geometry of the queried face at the given position and state. This is used to decide whether things like
+     * buttons are allowed to be placed on the face, or how glass panes connect to the face, among other things.
+     * <p>
+     * Common values are {@code SOLID}, which is the default, and {@code UNDEFINED}, which represents something that
+     * does not fit the other descriptions and will generally cause other things not to connect to the face.
+     * 
+     * @return an approximation of the form of the given face
+     */
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
     {
         return BlockFaceShape.UNDEFINED;
     }

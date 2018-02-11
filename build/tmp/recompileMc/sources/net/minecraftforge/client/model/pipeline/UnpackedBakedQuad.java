@@ -54,11 +54,6 @@ public class UnpackedBakedQuad extends BakedQuad
                 }
             }
         }
-        /**
-         * Joined 4 vertex records, each stores packed data according to the VertexFormat of the quad. Vanilla minecraft
-         * uses DefaultVertexFormats.BLOCK, Forge uses (usually) ITEM, use BakedQuad.getFormat() to get the correct
-         * format.
-         */
         return vertexData;
     }
 
@@ -185,8 +180,8 @@ public class UnpackedBakedQuad extends BakedQuad
             }
             if(contractUVs)
             {
-                float tX = texture.getOriginX() / texture.getMinU();
-                float tY = texture.getOriginY() / texture.getMinV();
+                float tX = texture.getIconWidth() / (texture.getMaxU() - texture.getMinU());
+                float tY = texture.getIconHeight() / (texture.getMaxV() - texture.getMinV());
                 float tS = tX > tY ? tX : tY;
                 float ep = 1f / (tS * 0x100);
                 int uve = 0;

@@ -18,11 +18,11 @@ public enum ChatType
         return this.id;
     }
 
-    public static ChatType byId(byte p_192582_0_)
+    public static ChatType byId(byte idIn)
     {
         for (ChatType chattype : values())
         {
-            if (p_192582_0_ == chattype.id)
+            if (idIn == chattype.id)
             {
                 return chattype;
             }

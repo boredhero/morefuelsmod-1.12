@@ -119,7 +119,7 @@ public abstract class GuiSlot
     {
     }
 
-    protected abstract void drawSlot(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_);
+    protected abstract void drawSlot(int slotIndex, int xPos, int yPos, int heightIn, int mouseXIn, int mouseYIn, float partialTicks);
 
     /**
      * Handles drawing a list's header row.

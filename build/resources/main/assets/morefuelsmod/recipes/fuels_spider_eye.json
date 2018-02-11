@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:spider_eye"
+		},
+		"B": {
+			"item": "minecraft:spider_eye"
+		},
+		"C": {
+			"item": "minecraft:spider_eye"
+		},
+		"D": {
+			"item": "minecraft:spider_eye"
+		},
+		"E": {
+			"item": "minecraft:spider_eye"
+		},
+		"F": {
+			"item": "minecraft:spider_eye"
+		},
+		"G": {
+			"item": "minecraft:spider_eye"
+		},
+		"H": {
+			"item": "minecraft:spider_eye"
+		},
+		"I": {
+			"item": "minecraft:spider_eye"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

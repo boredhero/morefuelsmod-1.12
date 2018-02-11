@@ -71,7 +71,7 @@ public class TileEntityCommandBlock extends TileEntity
             return 0;
         }
         /**
-         * Fills in information about the command block for the packet. X/Y/Z for the minecart version, and entityId for
+         * Fills in information about the command block for the packet. entityId for the minecart version, and X/Y/Z for
          * the traditional version
          */
         @SideOnly(Side.CLIENT)

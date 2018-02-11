@@ -628,13 +628,13 @@ public class InventoryPlayer implements IInventory
         }
     }
 
-    public float getStrVsBlock(IBlockState state)
+    public float getDestroySpeed(IBlockState state)
     {
         float f = 1.0F;
 
         if (!((ItemStack)this.mainInventory.get(this.currentItem)).isEmpty())
         {
-            f *= ((ItemStack)this.mainInventory.get(this.currentItem)).getStrVsBlock(state);
+            f *= ((ItemStack)this.mainInventory.get(this.currentItem)).getDestroySpeed(state);
         }
 
         return f;
@@ -912,7 +912,7 @@ public class InventoryPlayer implements IInventory
         }
         else
         {
-            return player.getDistanceSqToEntity(this.player) <= 64.0D;
+            return player.getDistanceSq(this.player) <= 64.0D;
         }
     }
 

@@ -233,7 +233,7 @@ public class RecipesBanners
                 return null;
             }
 
-            public boolean isHidden()
+            public boolean isDynamic()
             {
                 return true;
             }
@@ -369,7 +369,7 @@ public class RecipesBanners
                 return nonnulllist;
             }
 
-            public boolean isHidden()
+            public boolean isDynamic()
             {
                 return true;
             }

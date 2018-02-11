@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityEnderPearl extends EntityThrowable
 {
-    private EntityLivingBase thrower;
+    private EntityLivingBase perlThrower;
 
     public EntityEnderPearl(World worldIn)
     {
@@ -31,7 +31,7 @@ public class EntityEnderPearl extends EntityThrowable
     public EntityEnderPearl(World worldIn, EntityLivingBase throwerIn)
     {
         super(worldIn, throwerIn);
-        this.thrower = throwerIn;
+        this.perlThrower = throwerIn;
     }
 
     @SideOnly(Side.CLIENT)
@@ -54,7 +54,7 @@ public class EntityEnderPearl extends EntityThrowable
 
         if (result.entityHit != null)
         {
-            if (result.entityHit == this.thrower)
+            if (result.entityHit == this.perlThrower)
             {
                 return;
             }

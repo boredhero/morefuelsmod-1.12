@@ -48,7 +48,7 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
         }
     }
 
-    public boolean renderBlock(IBlockState state, BlockPos pos, IBlockAccess blockAccess, BufferBuilder worldRendererIn)
+    public boolean renderBlock(IBlockState state, BlockPos pos, IBlockAccess blockAccess, BufferBuilder bufferBuilderIn)
     {
         try
         {
@@ -77,11 +77,11 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
                     case MODEL:
                         IBakedModel model = this.getModelForState(state);
                         state = state.getBlock().getExtendedState(state, blockAccess, pos);
-                        return this.blockModelRenderer.renderModel(blockAccess, model, state, pos, worldRendererIn, true);
+                        return this.blockModelRenderer.renderModel(blockAccess, model, state, pos, bufferBuilderIn, true);
                     case ENTITYBLOCK_ANIMATED:
                         return false;
                     case LIQUID:
-                        return this.fluidRenderer.renderFluid(blockAccess, state, pos, worldRendererIn);
+                        return this.fluidRenderer.renderFluid(blockAccess, state, pos, bufferBuilderIn);
                     default:
                         return false;
                 }

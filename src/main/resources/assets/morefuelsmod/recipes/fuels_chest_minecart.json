@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:chest_minecart"
+		},
+		"B": {
+			"item": "minecraft:chest_minecart"
+		},
+		"C": {
+			"item": "minecraft:chest_minecart"
+		},
+		"D": {
+			"item": "minecraft:chest_minecart"
+		},
+		"E": {
+			"item": "minecraft:chest_minecart"
+		},
+		"F": {
+			"item": "minecraft:chest_minecart"
+		},
+		"G": {
+			"item": "minecraft:chest_minecart"
+		},
+		"H": {
+			"item": "minecraft:chest_minecart"
+		},
+		"I": {
+			"item": "minecraft:chest_minecart"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":4
+	}
+}

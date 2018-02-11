@@ -95,7 +95,7 @@ public class EntitySpider extends EntityMob
 
         if (!this.world.isRemote)
         {
-            this.setBesideClimbableBlock(this.isCollidedHorizontally);
+            this.setBesideClimbableBlock(this.collidedHorizontally);
         }
     }
 
@@ -111,7 +111,7 @@ public class EntitySpider extends EntityMob
         return SoundEvents.ENTITY_SPIDER_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_SPIDER_HURT;
     }
@@ -133,7 +133,8 @@ public class EntitySpider extends EntityMob
     }
 
     /**
-     * returns true if this entity is by a ladder, false otherwise
+     * Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or
+     * for AI reasons)
      */
     public boolean isOnLadder()
     {

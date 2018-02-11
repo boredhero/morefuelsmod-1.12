@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:beetroot_seeds"
+		},
+		"B": {
+			"item": "minecraft:beetroot_seeds"
+		},
+		"C": {
+			"item": "minecraft:beetroot_seeds"
+		},
+		"D": {
+			"item": "minecraft:beetroot_seeds"
+		},
+		"E": {
+			"item": "minecraft:beetroot_seeds"
+		},
+		"F": {
+			"item": "minecraft:beetroot_seeds"
+		},
+		"G": {
+			"item": "minecraft:beetroot_seeds"
+		},
+		"H": {
+			"item": "minecraft:beetroot_seeds"
+		},
+		"I": {
+			"item": "minecraft:beetroot_seeds"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

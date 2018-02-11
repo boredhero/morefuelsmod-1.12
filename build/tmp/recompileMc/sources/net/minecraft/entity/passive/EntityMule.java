@@ -39,9 +39,9 @@ public class EntityMule extends AbstractChestHorse
         return SoundEvents.ENTITY_MULE_DEATH;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        super.getHurtSound(p_184601_1_);
+        super.getHurtSound(damageSourceIn);
         return SoundEvents.ENTITY_MULE_HURT;
     }
 

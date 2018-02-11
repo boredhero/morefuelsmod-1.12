@@ -80,7 +80,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
         return this.isEntityInvulnerable(source) ? false : super.attackEntityFrom(source, amount);
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_HOSTILE_HURT;
     }
@@ -202,7 +202,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
         return true;
     }
 
-    public boolean isPreventingPlayerRest(EntityPlayer p_191990_1_)
+    public boolean isPreventingPlayerRest(EntityPlayer playerIn)
     {
         return true;
     }

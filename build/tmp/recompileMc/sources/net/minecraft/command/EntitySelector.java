@@ -136,6 +136,11 @@ public class EntitySelector
      */
     public static <T extends Entity> List<T> matchEntities(ICommandSender sender, String token, Class <? extends T > targetClass) throws CommandException
     {
+        return net.minecraftforge.common.command.SelectorHandlerManager.matchEntities(sender, token, targetClass);
+    }
+
+    public static <T extends Entity> List<T> matchEntitiesDefault(ICommandSender sender, String token, Class <? extends T > targetClass) throws CommandException
+    {
         Matcher matcher = TOKEN_PATTERN.matcher(token);
 
         if (matcher.matches() && sender.canUseCommand(1, "@"))
@@ -572,8 +577,8 @@ public class EntitySelector
 
         if (params.containsKey(ARGUMENT_ROTY_MIN) || params.containsKey(ARGUMENT_ROTY_MAX))
         {
-            final int i = MathHelper.clampAngle(getInt(params, ARGUMENT_ROTY_MIN, 0));
-            final int j = MathHelper.clampAngle(getInt(params, ARGUMENT_ROTY_MAX, 359));
+            final int i = MathHelper.wrapDegrees(getInt(params, ARGUMENT_ROTY_MIN, 0));
+            final int j = MathHelper.wrapDegrees(getInt(params, ARGUMENT_ROTY_MAX, 359));
             list.add(new Predicate<Entity>()
             {
                 public boolean apply(@Nullable Entity p_apply_1_)
@@ -584,7 +589,7 @@ public class EntitySelector
                     }
                     else
                     {
-                        int i1 = MathHelper.clampAngle(MathHelper.floor(p_apply_1_.rotationYaw));
+                        int i1 = MathHelper.wrapDegrees(MathHelper.floor(p_apply_1_.rotationYaw));
 
                         if (i > j)
                         {
@@ -601,8 +606,8 @@ public class EntitySelector
 
         if (params.containsKey(ARGUMENT_ROTX_MIN) || params.containsKey(ARGUMENT_ROTX_MAX))
         {
-            final int k = MathHelper.clampAngle(getInt(params, ARGUMENT_ROTX_MIN, 0));
-            final int l = MathHelper.clampAngle(getInt(params, ARGUMENT_ROTX_MAX, 359));
+            final int k = MathHelper.wrapDegrees(getInt(params, ARGUMENT_ROTX_MIN, 0));
+            final int l = MathHelper.wrapDegrees(getInt(params, ARGUMENT_ROTX_MAX, 359));
             list.add(new Predicate<Entity>()
             {
                 public boolean apply(@Nullable Entity p_apply_1_)
@@ -613,7 +618,7 @@ public class EntitySelector
                     }
                     else
                     {
-                        int i1 = MathHelper.clampAngle(MathHelper.floor(p_apply_1_.rotationPitch));
+                        int i1 = MathHelper.wrapDegrees(MathHelper.floor(p_apply_1_.rotationPitch));
 
                         if (k > l)
                         {
@@ -815,6 +820,11 @@ public class EntitySelector
      */
     public static boolean matchesMultiplePlayers(String selectorStr) throws CommandException
     {
+        return net.minecraftforge.common.command.SelectorHandlerManager.matchesMultiplePlayers(selectorStr);
+    }
+
+    public static boolean matchesMultiplePlayersDefault(String selectorStr) throws CommandException
+    {
         Matcher matcher = TOKEN_PATTERN.matcher(selectorStr);
 
         if (!matcher.matches())
@@ -834,6 +844,11 @@ public class EntitySelector
      * Returns whether the given string represents a selector.
      */
     public static boolean isSelector(String selectorStr)
+    {
+        return net.minecraftforge.common.command.SelectorHandlerManager.isSelector(selectorStr);
+    }
+
+    public static boolean isSelectorDefault(String selectorStr)
     {
         return TOKEN_PATTERN.matcher(selectorStr).matches();
     }

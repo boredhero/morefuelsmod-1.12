@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:paper"
+		},
+		"B": {
+			"item": "minecraft:paper"
+		},
+		"C": {
+			"item": "minecraft:paper"
+		},
+		"D": {
+			"item": "minecraft:paper"
+		},
+		"E": {
+			"item": "minecraft:paper"
+		},
+		"F": {
+			"item": "minecraft:paper"
+		},
+		"G": {
+			"item": "minecraft:paper"
+		},
+		"H": {
+			"item": "minecraft:paper"
+		},
+		"I": {
+			"item": "minecraft:paper"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":3
+	}
+}

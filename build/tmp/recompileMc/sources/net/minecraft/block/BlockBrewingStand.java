@@ -83,7 +83,7 @@ public class BlockBrewingStand extends BlockContainer
         return false;
     }
 
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
     {
         addCollisionBoxToList(pos, entityBox, collidingBoxes, STICK_AABB);
         addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_AABB);
@@ -224,7 +224,16 @@ public class BlockBrewingStand extends BlockContainer
         return new BlockStateContainer(this, new IProperty[] {HAS_BOTTLE[0], HAS_BOTTLE[1], HAS_BOTTLE[2]});
     }
 
-    public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
+    /**
+     * Get the geometry of the queried face at the given position and state. This is used to decide whether things like
+     * buttons are allowed to be placed on the face, or how glass panes connect to the face, among other things.
+     * <p>
+     * Common values are {@code SOLID}, which is the default, and {@code UNDEFINED}, which represents something that
+     * does not fit the other descriptions and will generally cause other things not to connect to the face.
+     * 
+     * @return an approximation of the form of the given face
+     */
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
     {
         return BlockFaceShape.UNDEFINED;
     }

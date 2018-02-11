@@ -17,9 +17,9 @@ public class GuiGameOver extends GuiScreen
     private int enableButtonsTimer;
     private final ITextComponent causeOfDeath;
 
-    public GuiGameOver(@Nullable ITextComponent p_i46598_1_)
+    public GuiGameOver(@Nullable ITextComponent causeOfDeathIn)
     {
-        this.causeOfDeath = p_i46598_1_;
+        this.causeOfDeath = causeOfDeathIn;
     }
 
     /**

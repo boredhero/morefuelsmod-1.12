@@ -213,7 +213,7 @@ public class EntityPigZombie extends EntityZombie
         return SoundEvents.ENTITY_ZOMBIE_PIG_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_ZOMBIE_PIG_HURT;
     }
@@ -247,7 +247,7 @@ public class EntityPigZombie extends EntityZombie
         return ItemStack.EMPTY;
     }
 
-    public boolean isPreventingPlayerRest(EntityPlayer p_191990_1_)
+    public boolean isPreventingPlayerRest(EntityPlayer playerIn)
     {
         return this.isAngry();
     }

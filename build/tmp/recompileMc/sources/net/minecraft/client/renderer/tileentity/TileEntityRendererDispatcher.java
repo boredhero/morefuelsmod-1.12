@@ -225,7 +225,8 @@ public class TileEntityRendererDispatcher
 
         if(pass > 0)
         {
-            batchBuffer.getBuffer().sortVertexData(0, 0, 0);
+            net.minecraft.util.math.Vec3d cameraPos = net.minecraft.client.renderer.ActiveRenderInfo.getCameraPosition();
+            batchBuffer.getBuffer().sortVertexData((float)cameraPos.x, (float)cameraPos.y, (float)cameraPos.z);
         }
         batchBuffer.draw();
 

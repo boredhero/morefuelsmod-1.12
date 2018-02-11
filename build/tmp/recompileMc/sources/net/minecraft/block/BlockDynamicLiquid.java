@@ -188,7 +188,7 @@ public class BlockDynamicLiquid extends BlockLiquid
 
                 if (!this.isBlocked(worldIn, blockpos, iblockstate) && (iblockstate.getMaterial() != this.blockMaterial || ((Integer)iblockstate.getValue(LEVEL)).intValue() > 0))
                 {
-                    if (!this.isBlocked(worldIn, blockpos.down(), iblockstate))
+                    if (!this.isBlocked(worldIn, blockpos.down(), worldIn.getBlockState(blockpos.down())))
                     {
                         return distance;
                     }
@@ -258,11 +258,12 @@ public class BlockDynamicLiquid extends BlockLiquid
 
     private boolean isBlocked(World worldIn, BlockPos pos, IBlockState state)
     {
-        Block block = worldIn.getBlockState(pos).getBlock();
+        Block block = state.getBlock(); //Forge: state must be valid for position
+        Material mat = state.getMaterial();
 
         if (!(block instanceof BlockDoor) && block != Blocks.STANDING_SIGN && block != Blocks.LADDER && block != Blocks.REEDS)
         {
-            return block.blockMaterial != Material.PORTAL && block.blockMaterial != Material.STRUCTURE_VOID ? block.blockMaterial.blocksMovement() : true;
+            return mat != Material.PORTAL && mat != Material.STRUCTURE_VOID ? mat.blocksMovement() : true;
         }
         else
         {

@@ -41,7 +41,7 @@ public class EntityAIPlay extends EntityAIBase
             {
                 if (entityvillager != this.villager && !entityvillager.isPlaying() && entityvillager.getGrowingAge() < 0)
                 {
-                    double d1 = entityvillager.getDistanceSqToEntity(this.villager);
+                    double d1 = entityvillager.getDistanceSq(this.villager);
 
                     if (d1 <= d0)
                     {
@@ -104,7 +104,7 @@ public class EntityAIPlay extends EntityAIBase
 
         if (this.targetVillager != null)
         {
-            if (this.villager.getDistanceSqToEntity(this.targetVillager) > 4.0D)
+            if (this.villager.getDistanceSq(this.targetVillager) > 4.0D)
             {
                 this.villager.getNavigator().tryMoveToEntityLiving(this.targetVillager, this.speed);
             }

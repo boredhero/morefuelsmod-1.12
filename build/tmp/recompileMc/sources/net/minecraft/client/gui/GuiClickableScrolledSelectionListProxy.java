@@ -44,9 +44,9 @@ public class GuiClickableScrolledSelectionListProxy extends GuiSlot
         this.proxy.renderBackground();
     }
 
-    protected void drawSlot(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
+    protected void drawSlot(int slotIndex, int xPos, int yPos, int heightIn, int mouseXIn, int mouseYIn, float partialTicks)
     {
-        this.proxy.renderItem(p_192637_1_, p_192637_2_, p_192637_3_, p_192637_4_, p_192637_5_, p_192637_6_);
+        this.proxy.renderItem(slotIndex, xPos, yPos, heightIn, mouseXIn, mouseYIn);
     }
 
     public int width()

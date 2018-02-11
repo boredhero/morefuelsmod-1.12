@@ -63,6 +63,9 @@ public class BlockMushroom extends BlockBush implements IGrowable
         }
     }
 
+    /**
+     * Checks if this block can be placed exactly at the given position.
+     */
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos, this.getDefaultState());

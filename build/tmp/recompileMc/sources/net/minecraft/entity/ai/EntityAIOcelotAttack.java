@@ -45,7 +45,7 @@ public class EntityAIOcelotAttack extends EntityAIBase
         {
             return false;
         }
-        else if (this.entity.getDistanceSqToEntity(this.target) > 225.0D)
+        else if (this.entity.getDistanceSq(this.target) > 225.0D)
         {
             return false;
         }
@@ -61,7 +61,7 @@ public class EntityAIOcelotAttack extends EntityAIBase
     public void resetTask()
     {
         this.target = null;
-        this.entity.getNavigator().clearPathEntity();
+        this.entity.getNavigator().clearPath();
     }
 
     /**

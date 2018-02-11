@@ -80,7 +80,7 @@ public class ItemCompass extends Item
             @SideOnly(Side.CLIENT)
             private double getFrameRotation(EntityItemFrame p_185094_1_)
             {
-                return (double)MathHelper.clampAngle(180 + p_185094_1_.facingDirection.getHorizontalIndex() * 90);
+                return (double)MathHelper.wrapDegrees(180 + p_185094_1_.facingDirection.getHorizontalIndex() * 90);
             }
             @SideOnly(Side.CLIENT)
             private double getSpawnToAngle(World p_185092_1_, Entity p_185092_2_)

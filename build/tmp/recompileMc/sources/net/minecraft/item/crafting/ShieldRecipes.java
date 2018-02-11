@@ -127,7 +127,7 @@ public class ShieldRecipes
                 return nonnulllist;
             }
 
-            public boolean isHidden()
+            public boolean isDynamic()
             {
                 return true;
             }

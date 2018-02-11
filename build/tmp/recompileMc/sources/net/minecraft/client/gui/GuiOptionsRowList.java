@@ -35,8 +35,8 @@ public class GuiOptionsRowList extends GuiListExtended
         }
         else
         {
-            int i = options.returnEnumOrdinal();
-            return (GuiButton)(options.getEnumFloat() ? new GuiOptionSlider(i, p_148182_2_, p_148182_3_, options) : new GuiOptionButton(i, p_148182_2_, p_148182_3_, options, mcIn.gameSettings.getKeyBinding(options)));
+            int i = options.getOrdinal();
+            return (GuiButton)(options.isFloat() ? new GuiOptionSlider(i, p_148182_2_, p_148182_3_, options) : new GuiOptionButton(i, p_148182_2_, p_148182_3_, options, mcIn.gameSettings.getKeyBinding(options)));
         }
     }
 
@@ -104,8 +104,8 @@ public class GuiOptionsRowList extends GuiListExtended
                 {
                     if (this.buttonA instanceof GuiOptionButton)
                     {
-                        this.client.gameSettings.setOptionValue(((GuiOptionButton)this.buttonA).returnEnumOptions(), 1);
-                        this.buttonA.displayString = this.client.gameSettings.getKeyBinding(GameSettings.Options.getEnumOptions(this.buttonA.id));
+                        this.client.gameSettings.setOptionValue(((GuiOptionButton)this.buttonA).getOption(), 1);
+                        this.buttonA.displayString = this.client.gameSettings.getKeyBinding(GameSettings.Options.byOrdinal(this.buttonA.id));
                     }
 
                     return true;
@@ -114,8 +114,8 @@ public class GuiOptionsRowList extends GuiListExtended
                 {
                     if (this.buttonB instanceof GuiOptionButton)
                     {
-                        this.client.gameSettings.setOptionValue(((GuiOptionButton)this.buttonB).returnEnumOptions(), 1);
-                        this.buttonB.displayString = this.client.gameSettings.getKeyBinding(GameSettings.Options.getEnumOptions(this.buttonB.id));
+                        this.client.gameSettings.setOptionValue(((GuiOptionButton)this.buttonB).getOption(), 1);
+                        this.buttonB.displayString = this.client.gameSettings.getKeyBinding(GameSettings.Options.byOrdinal(this.buttonB.id));
                     }
 
                     return true;
@@ -142,7 +142,7 @@ public class GuiOptionsRowList extends GuiListExtended
                 }
             }
 
-            public void updatePosition(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
+            public void updatePosition(int slotIndex, int x, int y, float partialTicks)
             {
             }
         }

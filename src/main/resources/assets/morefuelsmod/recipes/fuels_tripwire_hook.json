@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:tripwire_hook"
+		},
+		"B": {
+			"item": "minecraft:tripwire_hook"
+		},
+		"C": {
+			"item": "minecraft:tripwire_hook"
+		},
+		"D": {
+			"item": "minecraft:tripwire_hook"
+		},
+		"E": {
+			"item": "minecraft:tripwire_hook"
+		},
+		"F": {
+			"item": "minecraft:tripwire_hook"
+		},
+		"G": {
+			"item": "minecraft:tripwire_hook"
+		},
+		"H": {
+			"item": "minecraft:tripwire_hook"
+		},
+		"I": {
+			"item": "minecraft:tripwire_hook"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":2
+	}
+}

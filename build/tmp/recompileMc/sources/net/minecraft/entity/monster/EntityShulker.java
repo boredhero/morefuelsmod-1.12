@@ -135,7 +135,7 @@ public class EntityShulker extends EntityGolem implements IMob
         return SoundEvents.ENTITY_SHULKER_DEATH;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return this.isClosed() ? SoundEvents.ENTITY_SHULKER_HURT_CLOSED : SoundEvents.ENTITY_SHULKER_HURT;
     }
@@ -568,7 +568,12 @@ public class EntityShulker extends EntityGolem implements IMob
     }
 
     /**
-     * Returns the collision bounding box for this entity
+     * Returns the <b>solid</b> collision bounding box for this entity. Used to make (e.g.) boats solid. Return null if
+     * this entity is not solid.
+     *  
+     * For general purposes, use {@link #width} and {@link #height}.
+     *  
+     * @see getEntityBoundingBox
      */
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox()
@@ -740,7 +745,7 @@ public class EntityShulker extends EntityGolem implements IMob
                 --this.attackTime;
                 EntityLivingBase entitylivingbase = EntityShulker.this.getAttackTarget();
                 EntityShulker.this.getLookHelper().setLookPositionWithEntity(entitylivingbase, 180.0F, 180.0F);
-                double d0 = EntityShulker.this.getDistanceSqToEntity(entitylivingbase);
+                double d0 = EntityShulker.this.getDistanceSq(entitylivingbase);
 
                 if (d0 < 400.0D)
                 {

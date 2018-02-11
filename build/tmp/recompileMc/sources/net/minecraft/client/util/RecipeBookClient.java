@@ -66,7 +66,7 @@ public class RecipeBookClient extends RecipeBook
 
         for (IRecipe irecipe : CraftingManager.REGISTRY)
         {
-            if (!irecipe.isHidden())
+            if (!irecipe.isDynamic())
             {
                 CreativeTabs creativetabs = getItemStackTab(irecipe.getRecipeOutput());
                 String s = irecipe.getGroup();

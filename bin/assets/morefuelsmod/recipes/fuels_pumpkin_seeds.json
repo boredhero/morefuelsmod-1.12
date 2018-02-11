@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:pumpkin_seeds"
+		},
+		"B": {
+			"item": "minecraft:pumpkin_seeds"
+		},
+		"C": {
+			"item": "minecraft:pumpkin_seeds"
+		},
+		"D": {
+			"item": "minecraft:pumpkin_seeds"
+		},
+		"E": {
+			"item": "minecraft:pumpkin_seeds"
+		},
+		"F": {
+			"item": "minecraft:pumpkin_seeds"
+		},
+		"G": {
+			"item": "minecraft:pumpkin_seeds"
+		},
+		"H": {
+			"item": "minecraft:pumpkin_seeds"
+		},
+		"I": {
+			"item": "minecraft:pumpkin_seeds"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

@@ -1,4 +1,50 @@
-[18:30:48] [main/INFO]: Setting user: Player415
-[18:30:51] [main/WARN]: Skipping bad option: lastServer:
-[18:30:51] [main/INFO]: LWJGL Version: 2.9.4
-[18:30:53] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:�4More Fuels Mod
+[22:07:51] [main/INFO]: Setting user: Player757
+[22:07:54] [main/INFO]: LWJGL Version: 2.9.4
+[22:07:57] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:§4More Fuels Mod
+[22:07:58] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:07:58] [Thread-5/INFO]: Initializing LWJGL OpenAL
+[22:07:58] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:07:59] [Thread-5/INFO]: OpenAL initialized.
+[22:07:59] [Sound Library Loader/INFO]: Sound engine started
+[22:08:01] [main/INFO]: Created: 512x512 textures-atlas
+[22:08:03] [main/INFO]: Narrator library for x64 successfully loaded
+[22:08:03] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[22:08:11] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:§4More Fuels Mod
+[22:08:12] [main/INFO]: SoundSystem shutting down...
+[22:08:12] [main/WARN]: Author: Paul Lamb, www.paulscode.com
+[22:08:12] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:08:12] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[22:08:12] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:08:12] [Thread-8/INFO]: OpenAL initialized.
+[22:08:13] [Sound Library Loader/INFO]: Sound engine started
+[22:08:14] [main/INFO]: Created: 512x512 textures-atlas
+[22:08:37] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:§4More Fuels Mod
+[22:08:38] [main/INFO]: SoundSystem shutting down...
+[22:08:38] [main/WARN]: Author: Paul Lamb, www.paulscode.com
+[22:08:38] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:08:39] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[22:08:39] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:08:39] [Thread-10/INFO]: OpenAL initialized.
+[22:08:39] [Sound Library Loader/INFO]: Sound engine started
+[22:08:41] [main/INFO]: Created: 512x512 textures-atlas
+[22:08:41] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:§4More Fuels Mod
+[22:08:42] [main/INFO]: SoundSystem shutting down...
+[22:08:43] [main/WARN]: Author: Paul Lamb, www.paulscode.com
+[22:08:43] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:08:43] [Thread-12/INFO]: Initializing LWJGL OpenAL
+[22:08:43] [Thread-12/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:08:43] [Thread-12/INFO]: OpenAL initialized.
+[22:08:43] [Sound Library Loader/INFO]: Sound engine started
+[22:08:45] [main/INFO]: Created: 512x512 textures-atlas
+[22:08:53] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:§4More Fuels Mod
+[22:08:54] [main/INFO]: SoundSystem shutting down...
+[22:08:54] [main/WARN]: Author: Paul Lamb, www.paulscode.com
+[22:08:54] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[22:08:54] [Thread-14/INFO]: Initializing LWJGL OpenAL
+[22:08:54] [Thread-14/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:08:54] [Thread-14/INFO]: OpenAL initialized.
+[22:08:55] [Sound Library Loader/INFO]: Sound engine started
+[22:08:56] [main/INFO]: Created: 512x512 textures-atlas
+[22:12:47] [main/INFO]: Stopping!
+[22:12:47] [main/INFO]: SoundSystem shutting down...
+[22:12:48] [main/WARN]: Author: Paul Lamb, www.paulscode.com

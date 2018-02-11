@@ -74,7 +74,7 @@ public class GuiLanguage extends GuiScreen
 
                     if (button instanceof GuiOptionButton)
                     {
-                        this.game_settings_3.setOptionValue(((GuiOptionButton)button).returnEnumOptions(), 1);
+                        this.game_settings_3.setOptionValue(((GuiOptionButton)button).getOption(), 1);
                         button.displayString = this.game_settings_3.getKeyBinding(GameSettings.Options.FORCE_UNICODE_FONT);
                         ScaledResolution scaledresolution = new ScaledResolution(this.mc);
                         int i = scaledresolution.getScaledWidth();
@@ -161,10 +161,10 @@ public class GuiLanguage extends GuiScreen
             GuiLanguage.this.drawDefaultBackground();
         }
 
-        protected void drawSlot(int p_192637_1_, int p_192637_2_, int p_192637_3_, int p_192637_4_, int p_192637_5_, int p_192637_6_, float p_192637_7_)
+        protected void drawSlot(int slotIndex, int xPos, int yPos, int heightIn, int mouseXIn, int mouseYIn, float partialTicks)
         {
             GuiLanguage.this.fontRenderer.setBidiFlag(true);
-            GuiLanguage.this.drawCenteredString(GuiLanguage.this.fontRenderer, ((Language)this.languageMap.get(this.langCodeList.get(p_192637_1_))).toString(), this.width / 2, p_192637_3_ + 1, 16777215);
+            GuiLanguage.this.drawCenteredString(GuiLanguage.this.fontRenderer, ((Language)this.languageMap.get(this.langCodeList.get(slotIndex))).toString(), this.width / 2, yPos + 1, 16777215);
             GuiLanguage.this.fontRenderer.setBidiFlag(GuiLanguage.this.languageManager.getCurrentLanguage().isBidirectional());
         }
     }

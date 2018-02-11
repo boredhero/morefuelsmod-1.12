@@ -339,11 +339,11 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         }
     }
 
-    private void renderSky(BufferBuilder worldRendererIn, float posY, boolean reverseX)
+    private void renderSky(BufferBuilder bufferBuilderIn, float posY, boolean reverseX)
     {
         int i = 64;
         int j = 6;
-        worldRendererIn.begin(7, DefaultVertexFormats.POSITION);
+        bufferBuilderIn.begin(7, DefaultVertexFormats.POSITION);
 
         for (int k = -384; k <= 384; k += 64)
         {
@@ -358,10 +358,10 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                     f = (float)(k + 64);
                 }
 
-                worldRendererIn.pos((double)f, (double)posY, (double)l).endVertex();
-                worldRendererIn.pos((double)f1, (double)posY, (double)l).endVertex();
-                worldRendererIn.pos((double)f1, (double)posY, (double)(l + 64)).endVertex();
-                worldRendererIn.pos((double)f, (double)posY, (double)(l + 64)).endVertex();
+                bufferBuilderIn.pos((double)f, (double)posY, (double)l).endVertex();
+                bufferBuilderIn.pos((double)f1, (double)posY, (double)l).endVertex();
+                bufferBuilderIn.pos((double)f1, (double)posY, (double)(l + 64)).endVertex();
+                bufferBuilderIn.pos((double)f, (double)posY, (double)(l + 64)).endVertex();
             }
         }
     }
@@ -402,10 +402,10 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         }
     }
 
-    private void renderStars(BufferBuilder worldRendererIn)
+    private void renderStars(BufferBuilder bufferBuilderIn)
     {
         Random random = new Random(10842L);
-        worldRendererIn.begin(7, DefaultVertexFormats.POSITION);
+        bufferBuilderIn.begin(7, DefaultVertexFormats.POSITION);
 
         for (int i = 0; i < 1500; ++i)
         {
@@ -446,7 +446,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                     double d24 = 0.0D * d12 - d21 * d13;
                     double d25 = d24 * d9 - d22 * d10;
                     double d26 = d22 * d9 + d24 * d10;
-                    worldRendererIn.pos(d5 + d25, d6 + d23, d7 + d26).endVertex();
+                    bufferBuilderIn.pos(d5 + d25, d6 + d23, d7 + d26).endVertex();
                 }
             }
         }
@@ -1532,12 +1532,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
 
     public void renderClouds(float partialTicks, int pass, double p_180447_3_, double p_180447_5_, double p_180447_7_)
     {
-        net.minecraftforge.client.IRenderHandler renderer = this.mc.world.provider.getCloudRenderer();
-        if (renderer != null)
-        {
-            renderer.render(partialTicks, this.mc.world, mc);
-            return;
-        }
+        if (net.minecraftforge.fml.client.FMLClientHandler.instance().renderClouds(this.cloudTickCounter, partialTicks)) return;
         if (this.mc.world.provider.isSurfaceWorld())
         {
             if (this.mc.gameSettings.shouldRenderClouds() == 2)
@@ -1940,7 +1935,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         GlStateManager.popMatrix();
     }
 
-    public void drawBlockDamageTexture(Tessellator tessellatorIn, BufferBuilder worldRendererIn, Entity entityIn, float partialTicks)
+    public void drawBlockDamageTexture(Tessellator tessellatorIn, BufferBuilder bufferBuilderIn, Entity entityIn, float partialTicks)
     {
         double d3 = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double)partialTicks;
         double d4 = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double)partialTicks;
@@ -1950,9 +1945,9 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         {
             this.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             this.preRenderDamagedBlocks();
-            worldRendererIn.begin(7, DefaultVertexFormats.BLOCK);
-            worldRendererIn.setTranslation(-d3, -d4, -d5);
-            worldRendererIn.noColor();
+            bufferBuilderIn.begin(7, DefaultVertexFormats.BLOCK);
+            bufferBuilderIn.setTranslation(-d3, -d4, -d5);
+            bufferBuilderIn.noColor();
             Iterator<DestroyBlockProgress> iterator = this.damagedBlocks.values().iterator();
 
             while (iterator.hasNext())
@@ -1989,7 +1984,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
             }
 
             tessellatorIn.draw();
-            worldRendererIn.setTranslation(0.0D, 0.0D, 0.0D);
+            bufferBuilderIn.setTranslation(0.0D, 0.0D, 0.0D);
             this.postRenderDamagedBlocks();
         }
     }
@@ -2059,17 +2054,17 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
         buffer.pos(maxX, minY, minZ).color(red, green, blue, 0.0F).endVertex();
     }
 
-    public static void renderFilledBox(AxisAlignedBB p_189696_0_, float p_189696_1_, float p_189696_2_, float p_189696_3_, float p_189696_4_)
+    public static void renderFilledBox(AxisAlignedBB aabb, float red, float green, float blue, float alpha)
     {
-        renderFilledBox(p_189696_0_.minX, p_189696_0_.minY, p_189696_0_.minZ, p_189696_0_.maxX, p_189696_0_.maxY, p_189696_0_.maxZ, p_189696_1_, p_189696_2_, p_189696_3_, p_189696_4_);
+        renderFilledBox(aabb.minX, aabb.minY, aabb.minZ, aabb.maxX, aabb.maxY, aabb.maxZ, red, green, blue, alpha);
     }
 
-    public static void renderFilledBox(double p_189695_0_, double p_189695_2_, double p_189695_4_, double p_189695_6_, double p_189695_8_, double p_189695_10_, float p_189695_12_, float p_189695_13_, float p_189695_14_, float p_189695_15_)
+    public static void renderFilledBox(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, float red, float green, float blue, float alpha)
     {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();
         bufferbuilder.begin(5, DefaultVertexFormats.POSITION_COLOR);
-        addChainedFilledBoxVertices(bufferbuilder, p_189695_0_, p_189695_2_, p_189695_4_, p_189695_6_, p_189695_8_, p_189695_10_, p_189695_12_, p_189695_13_, p_189695_14_, p_189695_15_);
+        addChainedFilledBoxVertices(bufferbuilder, minX, minY, minZ, maxX, maxY, maxZ, red, green, blue, alpha);
         tessellator.draw();
     }
 
@@ -2211,7 +2206,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
     }
 
     @Nullable
-    private Particle spawnEntityFX(int particleID, boolean ignoreRange, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed, int... parameters)
+    private Particle spawnParticle0(int particleID, boolean ignoreRange, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed, int... parameters)
     {
         return this.spawnParticle0(particleID, ignoreRange, false, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed, parameters);
     }
@@ -2508,7 +2503,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                     double d24 = Math.cos(d21) * d18;
                     double d26 = 0.01D + random.nextDouble() * 0.5D;
                     double d28 = Math.sin(d21) * d18;
-                    Particle particle1 = this.spawnEntityFX(enumparticletypes.getParticleID(), enumparticletypes.getShouldIgnoreRange(), d9 + d24 * 0.1D, d10 + 0.3D, d12 + d28 * 0.1D, d24, d26, d28);
+                    Particle particle1 = this.spawnParticle0(enumparticletypes.getParticleID(), enumparticletypes.getShouldIgnoreRange(), d9 + d24 * 0.1D, d10 + 0.3D, d12 + d28 * 0.1D, d24, d26, d28);
 
                     if (particle1 != null)
                     {
@@ -2561,7 +2556,7 @@ public class RenderGlobal implements IWorldEventListener, IResourceManagerReload
                     double d6 = (double)(MathHelper.cos(f3) * f2);
                     double d7 = 0.01D + random.nextDouble() * 0.5D;
                     double d8 = (double)(MathHelper.sin(f3) * f2);
-                    Particle particle = this.spawnEntityFX(EnumParticleTypes.DRAGON_BREATH.getParticleID(), false, (double)blockPosIn.getX() + d6 * 0.1D, (double)blockPosIn.getY() + 0.3D, (double)blockPosIn.getZ() + d8 * 0.1D, d6, d7, d8);
+                    Particle particle = this.spawnParticle0(EnumParticleTypes.DRAGON_BREATH.getParticleID(), false, (double)blockPosIn.getX() + d6 * 0.1D, (double)blockPosIn.getY() + 0.3D, (double)blockPosIn.getZ() + d8 * 0.1D, d6, d7, d8);
 
                     if (particle != null)
                     {

@@ -1,0 +1,15 @@
+[
+{
+  "modid": "morefuelsmod",
+  "name": "§4More Fuels Mod",
+  "description": "§4§oThe Premiere Mod that makes more items usable as fuel as well as adding fun fuel storage items and blocks. §lNow Officially Updated to Minecraft 1.12",
+  "version": "1.6.2",
+  "mcversion": "1.12.2",
+  "url": "http://tinyurl.com/MoreFuelsMod",
+  "updateUrl": "",
+  "authorList": ["§4B§6o§4r§6e§4d"],
+  "logoFile": "mf-logo.png",
+  "screenshots": [],
+  "dependencies": ["mod_Forge"]
+}
+]

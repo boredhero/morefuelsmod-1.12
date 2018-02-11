@@ -111,7 +111,7 @@ public class PhaseTakeoff extends PhaseBase
         return this.targetLocation;
     }
 
-    public PhaseList<PhaseTakeoff> getPhaseList()
+    public PhaseList<PhaseTakeoff> getType()
     {
         return PhaseList.TAKEOFF;
     }

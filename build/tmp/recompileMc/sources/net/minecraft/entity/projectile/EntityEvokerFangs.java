@@ -179,7 +179,7 @@ public class EntityEvokerFangs extends Entity
     }
 
     @SideOnly(Side.CLIENT)
-    public float getAnimationProgress(float p_190550_1_)
+    public float getAnimationProgress(float partialTicks)
     {
         if (!this.clientSideAttackStarted)
         {
@@ -188,7 +188,7 @@ public class EntityEvokerFangs extends Entity
         else
         {
             int i = this.lifeTicks - 2;
-            return i <= 0 ? 1.0F : 1.0F - ((float)i - p_190550_1_) / 20.0F;
+            return i <= 0 ? 1.0F : 1.0F - ((float)i - partialTicks) / 20.0F;
         }
     }
 }

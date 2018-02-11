@@ -79,9 +79,15 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class EntityLivingBase extends Entity
 {
-    private static final Logger LOG = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
     private static final UUID SPRINTING_SPEED_BOOST_ID = UUID.fromString("662A6B8D-DA3E-4C1C-8813-96EA6097278D");
     private static final AttributeModifier SPRINTING_SPEED_BOOST = (new AttributeModifier(SPRINTING_SPEED_BOOST_ID, "Sprinting speed boost", 0.30000001192092896D, 2)).setSaved(false);
+    /**
+     * Hand states, used to trigger blocking/eating/drinking animation.
+     *  
+     * Note that this is completely unrelated to {@link #isSwingInProgress}/{@link #swingingHand}, which is used for the
+     * swinging animation.
+     */
     protected static final DataParameter<Byte> HAND_STATES = EntityDataManager.<Byte>createKey(EntityLivingBase.class, DataSerializers.BYTE);
     private static final DataParameter<Float> HEALTH = EntityDataManager.<Float>createKey(EntityLivingBase.class, DataSerializers.FLOAT);
     private static final DataParameter<Integer> POTION_EFFECTS = EntityDataManager.<Integer>createKey(EntityLivingBase.class, DataSerializers.VARINT);
@@ -95,6 +101,7 @@ public abstract class EntityLivingBase extends Entity
     private final NonNullList<ItemStack> armorArray = NonNullList.<ItemStack>withSize(4, ItemStack.EMPTY);
     /** Whether an arm swing is currently in progress. */
     public boolean isSwingInProgress;
+    /** The hand that is currently being swung, if {@link #isSwingInProgress} is true. */
     public EnumHand swingingHand;
     public int swingProgressInt;
     public int arrowHitTimer;
@@ -115,7 +122,9 @@ public abstract class EntityLivingBase extends Entity
     public int maxHurtResistantTime = 20;
     public float prevCameraPitch;
     public float cameraPitch;
+    /** An unused random value set in the constructor to a random number between 0 and 12398 */
     public float randomUnused2;
+    /** An unused random value set in the constructor to a random number between .01 and .02 */
     public float randomUnused1;
     public float renderYawOffset;
     public float prevRenderYawOffset;
@@ -140,6 +149,7 @@ public abstract class EntityLivingBase extends Entity
     protected float onGroundSpeedFactor;
     protected float movedDistance;
     protected float prevMovedDistance;
+    /** An unused field that is set to 180 in the constructor of EntityPlayer (and otherwise is 0) */
     protected float unused180;
     /** The score value of the Mob, the amount of points the mob is worth. */
     protected int scoreValue;
@@ -652,7 +662,7 @@ public abstract class EntityLivingBase extends Entity
 
             if (!flag)
             {
-                LOG.warn("Unable to add mob to team \"" + s + "\" (that team probably doesn't exist)");
+                LOGGER.warn("Unable to add mob to team \"" + s + "\" (that team probably doesn't exist)");
             }
         }
 
@@ -1081,7 +1091,7 @@ public abstract class EntityLivingBase extends Entity
 
                     if (source != DamageSource.DROWN && (!flag || amount > 0.0F))
                     {
-                        this.setBeenAttacked();
+                        this.markVelocityChanged();
                     }
 
                     if (entity1 != null)
@@ -1341,6 +1351,9 @@ public abstract class EntityLivingBase extends Entity
      */
     public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio)
     {
+        net.minecraftforge.event.entity.living.LivingKnockBackEvent event = net.minecraftforge.common.ForgeHooks.onLivingKnockBack(this, entityIn, strength, xRatio, zRatio);
+        if(event.isCanceled()) return;
+        strength = event.getStrength(); xRatio = event.getRatioX(); zRatio = event.getRatioZ();
         if (this.rand.nextDouble() >= this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue())
         {
             this.isAirBorne = true;
@@ -1364,7 +1377,7 @@ public abstract class EntityLivingBase extends Entity
     }
 
     @Nullable
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_GENERIC_HURT;
     }
@@ -1388,7 +1401,8 @@ public abstract class EntityLivingBase extends Entity
     }
 
     /**
-     * returns true if this entity is by a ladder, false otherwise
+     * Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or
+     * for AI reasons)
      */
     public boolean isOnLadder()
     {
@@ -1553,12 +1567,13 @@ public abstract class EntityLivingBase extends Entity
             float f = damageAmount;
             damageAmount = Math.max(damageAmount - this.getAbsorptionAmount(), 0.0F);
             this.setAbsorptionAmount(this.getAbsorptionAmount() - (f - damageAmount));
+            damageAmount = net.minecraftforge.common.ForgeHooks.onLivingDamage(this, damageSrc, damageAmount);
 
             if (damageAmount != 0.0F)
             {
                 float f1 = this.getHealth();
-                this.setHealth(f1 - damageAmount);
                 this.getCombatTracker().trackDamage(damageSrc, f1, damageAmount);
+                this.setHealth(f1 - damageAmount); // Forge: moved to fix MC-121048
                 this.setAbsorptionAmount(this.getAbsorptionAmount() - damageAmount);
             }
         }
@@ -2024,7 +2039,7 @@ public abstract class EntityLivingBase extends Entity
         return 0.8F;
     }
 
-    public void travel(float p_191986_1_, float p_191986_2_, float p_191986_3_)
+    public void travel(float strafe, float vertical, float forward)
     {
         if (this.isServerWorld() || this.canPassengerSteer())
         {
@@ -2075,7 +2090,7 @@ public abstract class EntityLivingBase extends Entity
                         this.motionZ *= 0.9900000095367432D;
                         this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 
-                        if (this.isCollidedHorizontally && !this.world.isRemote)
+                        if (this.collidedHorizontally && !this.world.isRemote)
                         {
                             double d11 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
                             double d3 = d8 - d11;
@@ -2116,7 +2131,7 @@ public abstract class EntityLivingBase extends Entity
                             f8 = this.jumpMovementFactor;
                         }
 
-                        this.moveRelative(p_191986_1_, p_191986_2_, p_191986_3_, f8);
+                        this.moveRelative(strafe, vertical, forward, f8);
                         f6 = 0.91F;
 
                         if (this.onGround)
@@ -2147,7 +2162,7 @@ public abstract class EntityLivingBase extends Entity
 
                         this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 
-                        if (this.isCollidedHorizontally && this.isOnLadder())
+                        if (this.collidedHorizontally && this.isOnLadder())
                         {
                             this.motionY = 0.2D;
                         }
@@ -2186,7 +2201,7 @@ public abstract class EntityLivingBase extends Entity
                 else
                 {
                     double d4 = this.posY;
-                    this.moveRelative(p_191986_1_, p_191986_2_, p_191986_3_, 0.02F);
+                    this.moveRelative(strafe, vertical, forward, 0.02F);
                     this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
                     this.motionX *= 0.5D;
                     this.motionY *= 0.5D;
@@ -2197,7 +2212,7 @@ public abstract class EntityLivingBase extends Entity
                         this.motionY -= 0.02D;
                     }
 
-                    if (this.isCollidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, this.motionY + 0.6000000238418579D - this.posY + d4, this.motionZ))
+                    if (this.collidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, this.motionY + 0.6000000238418579D - this.posY + d4, this.motionZ))
                     {
                         this.motionY = 0.30000001192092896D;
                     }
@@ -2226,7 +2241,7 @@ public abstract class EntityLivingBase extends Entity
                     f2 += (this.getAIMoveSpeed() - f2) * f3 / 3.0F;
                 }
 
-                this.moveRelative(p_191986_1_, p_191986_2_, p_191986_3_, f2);
+                this.moveRelative(strafe, vertical, forward, f2);
                 this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
                 this.motionX *= (double)f1;
                 this.motionY *= 0.800000011920929D;
@@ -2237,7 +2252,7 @@ public abstract class EntityLivingBase extends Entity
                     this.motionY -= 0.02D;
                 }
 
-                if (this.isCollidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, this.motionY + 0.6000000238418579D - this.posY + d0, this.motionZ))
+                if (this.collidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, this.motionY + 0.6000000238418579D - this.posY + d0, this.motionZ))
                 {
                     this.motionY = 0.30000001192092896D;
                 }
@@ -2808,9 +2823,9 @@ public abstract class EntityLivingBase extends Entity
     }
 
     /**
-     * Sets that this entity has been attacked.
+     * Marks this entity's velocity as changed, so that it can be re-synced with the client later
      */
-    protected void setBeenAttacked()
+    protected void markVelocityChanged()
     {
         this.velocityChanged = this.rand.nextDouble() >= this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).getAttributeValue();
     }
@@ -3193,7 +3208,7 @@ public abstract class EntityLivingBase extends Entity
 
             if (this instanceof EntityCreature)
             {
-                ((EntityCreature)this).getNavigator().clearPathEntity();
+                ((EntityCreature)this).getNavigator().clearPath();
             }
 
             return true;

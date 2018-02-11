@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:arrow"
+		},
+		"B": {
+			"item": "minecraft:arrow"
+		},
+		"C": {
+			"item": "minecraft:arrow"
+		},
+		"D": {
+			"item": "minecraft:arrow"
+		},
+		"E": {
+			"item": "minecraft:arrow"
+		},
+		"F": {
+			"item": "minecraft:arrow"
+		},
+		"G": {
+			"item": "minecraft:arrow"
+		},
+		"H": {
+			"item": "minecraft:arrow"
+		},
+		"I": {
+			"item": "minecraft:arrow"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

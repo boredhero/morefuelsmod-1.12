@@ -18,12 +18,12 @@ public class NoiseGeneratorSimplex
         this(new Random());
     }
 
-    public NoiseGeneratorSimplex(Random p_i45471_1_)
+    public NoiseGeneratorSimplex(Random seed)
     {
         this.p = new int[512];
-        this.xo = p_i45471_1_.nextDouble() * 256.0D;
-        this.yo = p_i45471_1_.nextDouble() * 256.0D;
-        this.zo = p_i45471_1_.nextDouble() * 256.0D;
+        this.xo = seed.nextDouble() * 256.0D;
+        this.yo = seed.nextDouble() * 256.0D;
+        this.zo = seed.nextDouble() * 256.0D;
 
         for (int i = 0; i < 256; this.p[i] = i++)
         {
@@ -32,7 +32,7 @@ public class NoiseGeneratorSimplex
 
         for (int l = 0; l < 256; ++l)
         {
-            int j = p_i45471_1_.nextInt(256 - l) + l;
+            int j = seed.nextInt(256 - l) + l;
             int k = this.p[l];
             this.p[l] = this.p[j];
             this.p[j] = k;

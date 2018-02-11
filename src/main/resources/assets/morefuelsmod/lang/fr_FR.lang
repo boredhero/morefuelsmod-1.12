@@ -1,18 +1,25 @@
-##All French Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+#All French Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+
+#Mod Creative Tab
+itemGroup.morefuelsmod=Plus de Carburants
 
 #Items
-item.pelletsFuel.name=Pastilles de Carburant
-item.concentratedPelletsFuel.name=Pastilles de Carburant Concentres
-item.coke.name=Coke (Combustible)
-item.bituminousCoal.name=Charbon Bitumineux
-item.canSlimoline.name=Bidon d'Slimoline
-item.dustCoal.name=Poussiere de Charbon
+item.coke.name=du Coca
+item.bituminous_coal.name=Charbon Bitumineux
+item.can_of_slimoline.name=Can de Slim-o-line
+item.coal_dust.name=Poussière de Charbon
+item.compressed_pellet_fuel.name=Carburant à granulés comprimé
+item.glass_orb.name=Orbe de Verre Vide (non Tempéré)
+item.tempered_glass_orb.name=Orbe en Verre Vide (Trempé)
+item.lava_glass_orb.name=Orbe en Verre Rempli (Lave)
+item.pellet_fuel.name=Combustible à Pellets
+item.lava_crystals.name=Cristaux de Lave
 
 #Blocks
-tile.pelletBlock.name=Bloc de Pastilles de Combustible
-tile.concentratedPelletBlock.name=Bloc de Pastilles de Combustible Concentre
-tile.cokeBlock.name=Bloc de Coke (Combustible)
-tile.bituminousCoalOre.name=Bitumineux Minerai de Charbon
-
-#Tabs
-itemGroup.morefuelsmod=Plus de Combustibles Modification
+tile.ore_bituminous_coal.name=Minerai de Charbon Bitumineux
+tile.block_coke.name=Bloc de Coke
+tile.block_bituminous_coal.name=Bloc de Charbon Bitumineux
+tile.block_creative_infinite_fuel.name=Carburant Infini (Créatif Seulement)
+tile.ore_lava.name=Minerai de Lave
+tile.block_pellet_fuel.name=Bloc de Combustible à Granulés
+tile.block_compressed_pellet_fuel.name=Bloc de Combustible Comprimé à Granulés

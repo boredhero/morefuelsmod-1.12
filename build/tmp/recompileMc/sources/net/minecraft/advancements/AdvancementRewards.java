@@ -49,7 +49,7 @@ public class AdvancementRewards
     public void apply(final EntityPlayerMP player)
     {
         player.addExperience(this.experience);
-        LootContext lootcontext = (new LootContext.Builder(player.getServerWorld())).withLootedEntity(player).build();
+        LootContext lootcontext = (new LootContext.Builder(player.getServerWorld())).withLootedEntity(player).withPlayer(player).withLuck(player.getLuck()).build(); // Forge: add player & luck to LootContext
         boolean flag = false;
 
         for (ResourceLocation resourcelocation : this.loot)

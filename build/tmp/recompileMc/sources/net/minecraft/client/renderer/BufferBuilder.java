@@ -432,7 +432,7 @@ public class BufferBuilder
 
     public void addVertexData(int[] vertexData)
     {
-        this.growBuffer(vertexData.length * 4);
+        this.growBuffer(vertexData.length * 4 + this.vertexFormat.getNextOffset());//Forge, fix MC-122110
         this.rawIntBuffer.position(this.getBufferSize());
         this.rawIntBuffer.put(vertexData);
         this.vertexCount += vertexData.length / this.vertexFormat.getIntegerSize();

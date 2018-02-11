@@ -73,7 +73,7 @@ public abstract class TileEntityLockableLoot extends TileEntityLockable implemen
 
             if (player != null)
             {
-                lootcontext$builder.withLuck(player.getLuck());
+                lootcontext$builder.withLuck(player.getLuck()).withPlayer(player); // Forge: add player to LootContext
             }
 
             loottable.fillInventory(this, random, lootcontext$builder.build());

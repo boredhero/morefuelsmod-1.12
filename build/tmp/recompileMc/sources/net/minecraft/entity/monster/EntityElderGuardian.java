@@ -71,7 +71,7 @@ public class EntityElderGuardian extends EntityGuardian
         return this.isInWater() ? SoundEvents.ENTITY_ELDER_GUARDIAN_AMBIENT : SoundEvents.ENTITY_ELDERGUARDIAN_AMBIENTLAND;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return this.isInWater() ? SoundEvents.ENTITY_ELDER_GUARDIAN_HURT : SoundEvents.ENTITY_ELDER_GUARDIAN_HURT_LAND;
     }
@@ -98,7 +98,7 @@ public class EntityElderGuardian extends EntityGuardian
             {
                 public boolean apply(@Nullable EntityPlayerMP p_apply_1_)
                 {
-                    return EntityElderGuardian.this.getDistanceSqToEntity(p_apply_1_) < 2500.0D && p_apply_1_.interactionManager.survivalOrAdventure();
+                    return EntityElderGuardian.this.getDistanceSq(p_apply_1_) < 2500.0D && p_apply_1_.interactionManager.survivalOrAdventure();
                 }
             });
             int j = 2;

@@ -33,15 +33,15 @@ public abstract class TileEntity implements net.minecraftforge.common.capabiliti
     /** the Block type that this TileEntity is contained within */
     protected Block blockType;
 
-    public static void register(String p_190560_0_, Class <? extends TileEntity > p_190560_1_)
+    public static void register(String id, Class <? extends TileEntity > clazz)
     {
-        REGISTRY.putObject(new ResourceLocation(p_190560_0_), p_190560_1_);
+        REGISTRY.putObject(new ResourceLocation(id), clazz);
     }
 
     @Nullable
-    public static ResourceLocation getKey(Class <? extends TileEntity > p_190559_0_)
+    public static ResourceLocation getKey(Class <? extends TileEntity > clazz)
     {
-        return REGISTRY.getNameForObject(p_190559_0_);
+        return REGISTRY.getNameForObject(clazz);
     }
 
     /**

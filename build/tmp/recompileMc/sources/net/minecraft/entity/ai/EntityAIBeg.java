@@ -41,7 +41,7 @@ public class EntityAIBeg extends EntityAIBase
         {
             return false;
         }
-        else if (this.wolf.getDistanceSqToEntity(this.player) > (double)(this.minPlayerDistance * this.minPlayerDistance))
+        else if (this.wolf.getDistanceSq(this.player) > (double)(this.minPlayerDistance * this.minPlayerDistance))
         {
             return false;
         }

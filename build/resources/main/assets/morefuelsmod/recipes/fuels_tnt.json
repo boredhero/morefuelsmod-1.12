@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:tnt"
+		},
+		"B": {
+			"item": "minecraft:tnt"
+		},
+		"C": {
+			"item": "minecraft:tnt"
+		},
+		"D": {
+			"item": "minecraft:tnt"
+		},
+		"E": {
+			"item": "minecraft:tnt"
+		},
+		"F": {
+			"item": "minecraft:tnt"
+		},
+		"G": {
+			"item": "minecraft:tnt"
+		},
+		"H": {
+			"item": "minecraft:tnt"
+		},
+		"I": {
+			"item": "minecraft:tnt"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":81
+	}
+}

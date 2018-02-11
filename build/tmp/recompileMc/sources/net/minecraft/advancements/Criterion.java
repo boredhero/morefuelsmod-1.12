@@ -30,9 +30,21 @@ public class Criterion
     {
     }
 
-    public static Criterion criterionFromJson(JsonObject p_192145_0_, JsonDeserializationContext p_192145_1_)
+    /**
+     * Deserialize a <em>single</em> {@code Criterion} from {@code json}. The {@link ICriterionTrigger} is chosen by the
+     * {@code "trigger"} property of the object, which can then handle the optional {@code "conditions"} in the object.
+     * The {@code "conditions"}, if present, must be a {@code JsonObject}. The resulting {@link ICriterionInstance} is
+     * wrapped in a {@code Criterion}.
+     * 
+     * @return the deserialized {@code Criterion}.
+     * @see ICriterionTrigger#deserializeInstance(JsonObject, JsonDeserializationContext)
+     *  
+     * @param json the {@code JsonObject} to deserialize from
+     * @param context the {@code JsonDeserializationContext} to deserialize in
+     */
+    public static Criterion criterionFromJson(JsonObject json, JsonDeserializationContext context)
     {
-        ResourceLocation resourcelocation = new ResourceLocation(JsonUtils.getString(p_192145_0_, "trigger"));
+        ResourceLocation resourcelocation = new ResourceLocation(JsonUtils.getString(json, "trigger"));
         ICriterionTrigger<?> icriteriontrigger = CriteriaTriggers.get(resourcelocation);
 
         if (icriteriontrigger == null)
@@ -41,7 +53,7 @@ public class Criterion
         }
         else
         {
-            ICriterionInstance icriterioninstance = icriteriontrigger.deserializeInstance(JsonUtils.getJsonObject(p_192145_0_, "conditions", new JsonObject()), p_192145_1_);
+            ICriterionInstance icriterioninstance = icriteriontrigger.deserializeInstance(JsonUtils.getJsonObject(json, "conditions", new JsonObject()), context);
             return new Criterion(icriterioninstance);
         }
     }
@@ -51,39 +63,66 @@ public class Criterion
         return new Criterion();
     }
 
-    public static Map<String, Criterion> criteriaFromJson(JsonObject p_192144_0_, JsonDeserializationContext p_192144_1_)
+    /**
+     * Read criteria from {@code json}. The keys of the object name the criteria, and the values (which must be objects)
+     * are the criteria themselves.
+     * 
+     * @return the deserialized criteria. Each key-value pair consists of a {@code Criterion} and its name.
+     * @see #criterionFromJson(JsonObject, JsonDeserializationContext)
+     *  
+     * @param json the {@code JsonObject} to deserialize from
+     * @param context the {@code JsonDeserializationContext} to deserialize in
+     */
+    public static Map<String, Criterion> criteriaFromJson(JsonObject json, JsonDeserializationContext context)
     {
         Map<String, Criterion> map = Maps.<String, Criterion>newHashMap();
 
-        for (Entry<String, JsonElement> entry : p_192144_0_.entrySet())
+        for (Entry<String, JsonElement> entry : json.entrySet())
         {
-            map.put(entry.getKey(), criterionFromJson(JsonUtils.getJsonObject(entry.getValue(), "criterion"), p_192144_1_));
+            map.put(entry.getKey(), criterionFromJson(JsonUtils.getJsonObject(entry.getValue(), "criterion"), context));
         }
 
         return map;
     }
 
-    public static Map<String, Criterion> criteriaFromNetwork(PacketBuffer p_192142_0_)
+    /**
+     * Read criteria from {@code buf}.
+     * 
+     * @return the read criteria. Each key-value pair consists of a {@code Criterion} and its name.
+     * @see #serializeToNetwork(Map, PacketBuffer)
+     *  
+     * @param bus the {@code PacketBuffer} to read from
+     */
+    public static Map<String, Criterion> criteriaFromNetwork(PacketBuffer bus)
     {
         Map<String, Criterion> map = Maps.<String, Criterion>newHashMap();
-        int i = p_192142_0_.readVarInt();
+        int i = bus.readVarInt();
 
         for (int j = 0; j < i; ++j)
         {
-            map.put(p_192142_0_.readString(32767), criterionFromNetwork(p_192142_0_));
+            map.put(bus.readString(32767), criterionFromNetwork(bus));
         }
 
         return map;
     }
 
-    public static void serializeToNetwork(Map<String, Criterion> p_192141_0_, PacketBuffer p_192141_1_)
+    /**
+     * Write {@code criteria} to {@code buf}.
+     * 
+     * @see #criteriaFromNetwork(PacketBuffer)
+     *  
+     * @param criteria the criteria to write to {@code buf}. Each key-value pair consists of a {@code Criterion} and its
+     * name.
+     * @param buf the {@code PacketBuffer} to write to
+     */
+    public static void serializeToNetwork(Map<String, Criterion> criteria, PacketBuffer buf)
     {
-        p_192141_1_.writeVarInt(p_192141_0_.size());
+        buf.writeVarInt(criteria.size());
 
-        for (Entry<String, Criterion> entry : p_192141_0_.entrySet())
+        for (Entry<String, Criterion> entry : criteria.entrySet())
         {
-            p_192141_1_.writeString(entry.getKey());
-            ((Criterion)entry.getValue()).serializeToNetwork(p_192141_1_);
+            buf.writeString(entry.getKey());
+            ((Criterion)entry.getValue()).serializeToNetwork(buf);
         }
     }
 

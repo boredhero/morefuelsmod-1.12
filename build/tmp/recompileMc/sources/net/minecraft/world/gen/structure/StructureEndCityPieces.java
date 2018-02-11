@@ -204,9 +204,9 @@ public class StructureEndCityPieces
         MapGenStructureIO.registerStructureComponent(StructureEndCityPieces.CityTemplate.class, "ECP");
     }
 
-    private static StructureEndCityPieces.CityTemplate addPiece(TemplateManager p_191090_0_, StructureEndCityPieces.CityTemplate p_191090_1_, BlockPos p_191090_2_, String p_191090_3_, Rotation p_191090_4_, boolean p_191090_5_)
+    private static StructureEndCityPieces.CityTemplate addPiece(TemplateManager p_191090_0_, StructureEndCityPieces.CityTemplate p_191090_1_, BlockPos p_191090_2_, String p_191090_3_, Rotation p_191090_4_, boolean owerwrite)
     {
-        StructureEndCityPieces.CityTemplate structureendcitypieces$citytemplate = new StructureEndCityPieces.CityTemplate(p_191090_0_, p_191090_3_, p_191090_1_.templatePosition, p_191090_4_, p_191090_5_);
+        StructureEndCityPieces.CityTemplate structureendcitypieces$citytemplate = new StructureEndCityPieces.CityTemplate(p_191090_0_, p_191090_3_, p_191090_1_.templatePosition, p_191090_4_, owerwrite);
         BlockPos blockpos = p_191090_1_.template.calculateConnectedPos(p_191090_1_.placeSettings, p_191090_2_, structureendcitypieces$citytemplate.placeSettings, BlockPos.ORIGIN);
         structureendcitypieces$citytemplate.offset(blockpos.getX(), blockpos.getY(), blockpos.getZ());
         return structureendcitypieces$citytemplate;
@@ -273,19 +273,20 @@ public class StructureEndCityPieces
         {
             private String pieceName;
             private Rotation rotation;
+            /** Whether this template should overwrite existing blocks. Replaces only air if false. */
             private boolean overwrite;
 
             public CityTemplate()
             {
             }
 
-            public CityTemplate(TemplateManager p_i47214_1_, String p_i47214_2_, BlockPos p_i47214_3_, Rotation p_i47214_4_, boolean p_i47214_5_)
+            public CityTemplate(TemplateManager p_i47214_1_, String p_i47214_2_, BlockPos p_i47214_3_, Rotation p_i47214_4_, boolean overwriteIn)
             {
                 super(0);
                 this.pieceName = p_i47214_2_;
                 this.templatePosition = p_i47214_3_;
                 this.rotation = p_i47214_4_;
-                this.overwrite = p_i47214_5_;
+                this.overwrite = overwriteIn;
                 this.loadTemplate(p_i47214_1_);
             }
 

@@ -1008,7 +1008,6 @@ public class GuiContainerCreative extends InventoryEffectRenderer
      */
     public int getSelectedTabIndex()
     {
-        /** Currently selected creative inventory tab index. */
         return selectedTabIndex;
     }
 
@@ -1273,11 +1272,12 @@ public class GuiContainerCreative extends InventoryEffectRenderer
             this.slot.setBackgroundLocation(texture);
         }
 
-        public void setBackgroundName(String name)
+        public void setBackgroundName(@Nullable String name)
         {
             this.slot.setBackgroundName(name);
         }
 
+        @Nullable
         public net.minecraft.client.renderer.texture.TextureAtlasSprite getBackgroundSprite()
         {
             return this.slot.getBackgroundSprite();

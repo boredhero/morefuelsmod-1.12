@@ -16,8 +16,15 @@ public class NormalChatListener implements IChatListener
         this.mc = p_i47393_1_;
     }
 
-    public void say(ChatType p_192576_1_, ITextComponent p_192576_2_)
+    /**
+     * Called whenever this listener receives a chat message, if this listener is registered to the given type in {@link
+     * net.minecraft.client.gui.GuiIngame#chatListeners chatListeners}
+     *  
+     * @param chatTypeIn The type of chat message
+     * @param message The chat message.
+     */
+    public void say(ChatType chatTypeIn, ITextComponent message)
     {
-        this.mc.ingameGUI.getChatGUI().printChatMessage(p_192576_2_);
+        this.mc.ingameGUI.getChatGUI().printChatMessage(message);
     }
 }

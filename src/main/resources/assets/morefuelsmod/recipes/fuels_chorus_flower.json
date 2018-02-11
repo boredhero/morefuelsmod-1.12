@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:chorus_flower"
+		},
+		"B": {
+			"item": "minecraft:chorus_flower"
+		},
+		"C": {
+			"item": "minecraft:chorus_flower"
+		},
+		"D": {
+			"item": "minecraft:chorus_flower"
+		},
+		"E": {
+			"item": "minecraft:chorus_flower"
+		},
+		"F": {
+			"item": "minecraft:chorus_flower"
+		},
+		"G": {
+			"item": "minecraft:chorus_flower"
+		},
+		"H": {
+			"item": "minecraft:chorus_flower"
+		},
+		"I": {
+			"item": "minecraft:chorus_flower"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":6
+	}
+}

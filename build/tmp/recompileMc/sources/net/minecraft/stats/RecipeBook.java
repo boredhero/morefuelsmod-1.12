@@ -11,36 +11,36 @@ public class RecipeBook
 {
     protected final BitSet recipes = new BitSet();
     /** Recipes the player has not yet seen, so the GUI can play an animation */
-    protected final BitSet unseenRecipes = new BitSet();
+    protected final BitSet newRecipes = new BitSet();
     protected boolean isGuiOpen;
     protected boolean isFilteringCraftable;
 
-    public void apply(RecipeBook that)
+    public void copyFrom(RecipeBook that)
     {
         this.recipes.clear();
-        this.unseenRecipes.clear();
+        this.newRecipes.clear();
         this.recipes.or(that.recipes);
-        this.unseenRecipes.or(that.unseenRecipes);
+        this.newRecipes.or(that.newRecipes);
     }
 
-    public void setRecipes(IRecipe recipe)
+    public void unlock(IRecipe recipe)
     {
-        if (!recipe.isHidden())
+        if (!recipe.isDynamic())
         {
             this.recipes.set(getRecipeId(recipe));
         }
     }
 
-    public boolean containsRecipe(@Nullable IRecipe recipe)
+    public boolean isUnlocked(@Nullable IRecipe recipe)
     {
         return this.recipes.get(getRecipeId(recipe));
     }
 
-    public void removeRecipe(IRecipe recipe)
+    public void lock(IRecipe recipe)
     {
         int i = getRecipeId(recipe);
         this.recipes.clear(i);
-        this.unseenRecipes.clear(i);
+        this.newRecipes.clear(i);
     }
 
     @Deprecated //DO NOT USE
@@ -57,19 +57,19 @@ public class RecipeBook
     }
 
     @SideOnly(Side.CLIENT)
-    public boolean isRecipeUnseen(IRecipe recipe)
+    public boolean isNew(IRecipe recipe)
     {
-        return this.unseenRecipes.get(getRecipeId(recipe));
+        return this.newRecipes.get(getRecipeId(recipe));
     }
 
-    public void setRecipeSeen(IRecipe recipe)
+    public void markSeen(IRecipe recipe)
     {
-        this.unseenRecipes.clear(getRecipeId(recipe));
+        this.newRecipes.clear(getRecipeId(recipe));
     }
 
-    public void addDisplayedRecipe(IRecipe recipe)
+    public void markNew(IRecipe recipe)
     {
-        this.unseenRecipes.set(getRecipeId(recipe));
+        this.newRecipes.set(getRecipeId(recipe));
     }
 
     @SideOnly(Side.CLIENT)
@@ -78,9 +78,9 @@ public class RecipeBook
         return this.isGuiOpen;
     }
 
-    public void setGuiOpen(boolean p_192813_1_)
+    public void setGuiOpen(boolean open)
     {
-        this.isGuiOpen = p_192813_1_;
+        this.isGuiOpen = open;
     }
 
     @SideOnly(Side.CLIENT)
@@ -89,8 +89,8 @@ public class RecipeBook
         return this.isFilteringCraftable;
     }
 
-    public void setFilteringCraftable(boolean p_192810_1_)
+    public void setFilteringCraftable(boolean shouldFilter)
     {
-        this.isFilteringCraftable = p_192810_1_;
+        this.isFilteringCraftable = shouldFilter;
     }
 }

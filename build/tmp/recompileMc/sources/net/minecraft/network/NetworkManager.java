@@ -348,6 +348,7 @@ public class NetworkManager extends SimpleChannelInboundHandler < Packet<? >>
     @SideOnly(Side.CLIENT)
     public static NetworkManager createNetworkManagerAndConnect(InetAddress address, int serverPort, boolean useNativeTransport)
     {
+        if (address instanceof java.net.Inet6Address) System.setProperty("java.net.preferIPv4Stack", "false");
         final NetworkManager networkmanager = new NetworkManager(EnumPacketDirection.CLIENTBOUND);
         Class <? extends SocketChannel > oclass;
         LazyLoadBase <? extends EventLoopGroup > lazyloadbase;
@@ -515,7 +516,6 @@ public class NetworkManager extends SimpleChannelInboundHandler < Packet<? >>
 
     public Channel channel()
     {
-        /** The active channel */
         return channel;
     }
 

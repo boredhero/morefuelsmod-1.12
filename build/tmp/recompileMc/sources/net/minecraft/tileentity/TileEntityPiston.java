@@ -154,7 +154,7 @@ public class TileEntityPiston extends TileEntity implements ITickable
 
             if (!list1.isEmpty())
             {
-                boolean flag = this.pistonState.getBlock() == Blocks.SLIME_BLOCK;
+                boolean flag = this.pistonState.getBlock().isStickyBlock(this.pistonState);
 
                 for (int i = 0; i < list1.size(); ++i)
                 {

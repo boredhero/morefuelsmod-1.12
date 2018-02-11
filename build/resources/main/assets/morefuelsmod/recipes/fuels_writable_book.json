@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:writable_book"
+		},
+		"B": {
+			"item": "minecraft:writable_book"
+		},
+		"C": {
+			"item": "minecraft:writable_book"
+		},
+		"D": {
+			"item": "minecraft:writable_book"
+		},
+		"E": {
+			"item": "minecraft:writable_book"
+		},
+		"F": {
+			"item": "minecraft:writable_book"
+		},
+		"G": {
+			"item": "minecraft:writable_book"
+		},
+		"H": {
+			"item": "minecraft:writable_book"
+		},
+		"I": {
+			"item": "minecraft:writable_book"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":11
+	}
+}

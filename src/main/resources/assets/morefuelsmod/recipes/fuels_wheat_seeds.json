@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:wheat_seeds"
+		},
+		"B": {
+			"item": "minecraft:wheat_seeds"
+		},
+		"C": {
+			"item": "minecraft:wheat_seeds"
+		},
+		"D": {
+			"item": "minecraft:wheat_seeds"
+		},
+		"E": {
+			"item": "minecraft:wheat_seeds"
+		},
+		"F": {
+			"item": "minecraft:wheat_seeds"
+		},
+		"G": {
+			"item": "minecraft:wheat_seeds"
+		},
+		"H": {
+			"item": "minecraft:wheat_seeds"
+		},
+		"I": {
+			"item": "minecraft:wheat_seeds"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

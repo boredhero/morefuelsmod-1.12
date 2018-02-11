@@ -33,7 +33,7 @@ public class ServerListEntryLanScan implements GuiListExtended.IGuiListEntry
         this.mc.fontRenderer.drawString(s, this.mc.currentScreen.width / 2 - this.mc.fontRenderer.getStringWidth(s) / 2, i + this.mc.fontRenderer.FONT_HEIGHT, 8421504);
     }
 
-    public void updatePosition(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_)
+    public void updatePosition(int slotIndex, int x, int y, float partialTicks)
     {
     }
 

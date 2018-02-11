@@ -32,9 +32,9 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
         {
             return true;
         }
-        else if (livingEntity.getLeashed() && livingEntity.getLeashedToEntity() != null)
+        else if (livingEntity.getLeashed() && livingEntity.getLeashHolder() != null)
         {
-            Entity entity = livingEntity.getLeashedToEntity();
+            Entity entity = livingEntity.getLeashHolder();
             return camera.isBoundingBoxInFrustum(entity.getRenderBoundingBox());
         }
         else
@@ -74,7 +74,7 @@ public abstract class RenderLiving<T extends EntityLiving> extends RenderLivingB
 
     protected void renderLeash(T entityLivingIn, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        Entity entity = entityLivingIn.getLeashedToEntity();
+        Entity entity = entityLivingIn.getLeashHolder();
 
         if (entity != null)
         {

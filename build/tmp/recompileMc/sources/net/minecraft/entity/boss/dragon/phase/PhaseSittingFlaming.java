@@ -115,7 +115,7 @@ public class PhaseSittingFlaming extends PhaseSittingBase
         }
     }
 
-    public PhaseList<PhaseSittingFlaming> getPhaseList()
+    public PhaseList<PhaseSittingFlaming> getType()
     {
         return PhaseList.SITTING_FLAMING;
     }

@@ -122,9 +122,9 @@ public class Vec3d
         return d0 * d0 + d1 * d1 + d2 * d2;
     }
 
-    public Vec3d scale(double p_186678_1_)
+    public Vec3d scale(double factor)
     {
-        return new Vec3d(this.x * p_186678_1_, this.y * p_186678_1_, this.z * p_186678_1_);
+        return new Vec3d(this.x * factor, this.y * factor, this.z * factor);
     }
 
     /**

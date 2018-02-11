@@ -45,14 +45,14 @@ public class TileEntityItemStackRenderer
         this.renderByItem(itemStackIn, 1.0F);
     }
 
-    public void renderByItem(ItemStack p_192838_1_, float p_192838_2_)
+    public void renderByItem(ItemStack p_192838_1_, float partialTicks)
     {
         Item item = p_192838_1_.getItem();
 
         if (item == Items.BANNER)
         {
             this.banner.setItemValues(p_192838_1_, false);
-            TileEntityRendererDispatcher.instance.render(this.banner, 0.0D, 0.0D, 0.0D, 0.0F, p_192838_2_);
+            TileEntityRendererDispatcher.instance.render(this.banner, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
         }
         else if (item == Items.BED)
         {
@@ -108,20 +108,20 @@ public class TileEntityItemStackRenderer
         }
         else if (item == Item.getItemFromBlock(Blocks.ENDER_CHEST))
         {
-            TileEntityRendererDispatcher.instance.render(this.enderChest, 0.0D, 0.0D, 0.0D, 0.0F, p_192838_2_);
+            TileEntityRendererDispatcher.instance.render(this.enderChest, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
         }
         else if (item == Item.getItemFromBlock(Blocks.TRAPPED_CHEST))
         {
-            TileEntityRendererDispatcher.instance.render(this.chestTrap, 0.0D, 0.0D, 0.0D, 0.0F, p_192838_2_);
+            TileEntityRendererDispatcher.instance.render(this.chestTrap, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
         }
         else if (Block.getBlockFromItem(item) instanceof BlockShulkerBox)
         {
-            TileEntityRendererDispatcher.instance.render(SHULKER_BOXES[BlockShulkerBox.getColorFromItem(item).getMetadata()], 0.0D, 0.0D, 0.0D, 0.0F, p_192838_2_);
+            TileEntityRendererDispatcher.instance.render(SHULKER_BOXES[BlockShulkerBox.getColorFromItem(item).getMetadata()], 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
         }
         else if (Block.getBlockFromItem(item) != Blocks.CHEST) net.minecraftforge.client.ForgeHooksClient.renderTileItem(p_192838_1_.getItem(), p_192838_1_.getMetadata());
         else
         {
-            TileEntityRendererDispatcher.instance.render(this.chestBasic, 0.0D, 0.0D, 0.0D, 0.0F, p_192838_2_);
+            TileEntityRendererDispatcher.instance.render(this.chestBasic, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
         }
     }
 

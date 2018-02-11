@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:sign"
+		},
+		"B": {
+			"item": "minecraft:sign"
+		},
+		"C": {
+			"item": "minecraft:sign"
+		},
+		"D": {
+			"item": "minecraft:sign"
+		},
+		"E": {
+			"item": "minecraft:sign"
+		},
+		"F": {
+			"item": "minecraft:sign"
+		},
+		"G": {
+			"item": "minecraft:sign"
+		},
+		"H": {
+			"item": "minecraft:sign"
+		},
+		"I": {
+			"item": "minecraft:sign"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":7
+	}
+}

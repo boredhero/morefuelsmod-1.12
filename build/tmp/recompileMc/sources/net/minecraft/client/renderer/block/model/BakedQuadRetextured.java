@@ -27,4 +27,10 @@ public class BakedQuadRetextured extends BakedQuad
             this.vertexData[j + uvIndex + 1] = Float.floatToRawIntBits(this.texture.getInterpolatedV((double)this.sprite.getUnInterpolatedV(Float.intBitsToFloat(this.vertexData[j + uvIndex + 1]))));
         }
     }
+
+    @Override
+    public TextureAtlasSprite getSprite()
+    {
+        return texture;
+    }
 }

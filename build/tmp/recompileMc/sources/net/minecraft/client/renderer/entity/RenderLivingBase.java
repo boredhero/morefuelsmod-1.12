@@ -490,7 +490,7 @@ public abstract class RenderLivingBase<T extends EntityLivingBase> extends Rende
         if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderLivingEvent.Specials.Pre<T>(entity, this, x, y, z))) return;
         if (this.canRenderName(entity))
         {
-            double d0 = entity.getDistanceSqToEntity(this.renderManager.renderViewEntity);
+            double d0 = entity.getDistanceSq(this.renderManager.renderViewEntity);
             float f = entity.isSneaking() ? NAME_TAG_RANGE_SNEAK : NAME_TAG_RANGE;
 
             if (d0 < (double)(f * f))

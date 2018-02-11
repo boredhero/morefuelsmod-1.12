@@ -50,11 +50,11 @@ public class EntityBoat extends Entity
     private float outOfControlTicks;
     private float deltaRotation;
     private int lerpSteps;
-    private double boatPitch;
+    private double lerpX;
     private double lerpY;
     private double lerpZ;
-    private double boatYaw;
-    private double lerpXRot;
+    private double lerpYaw;
+    private double lerpPitch;
     private boolean leftInputDown;
     private boolean rightInputDown;
     private boolean forwardInputDown;
@@ -122,7 +122,12 @@ public class EntityBoat extends Entity
     }
 
     /**
-     * Returns the collision bounding box for this entity
+     * Returns the <b>solid</b> collision bounding box for this entity. Used to make (e.g.) boats solid. Return null if
+     * this entity is not solid.
+     *  
+     * For general purposes, use {@link #width} and {@link #height}.
+     *  
+     * @see getEntityBoundingBox
      */
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox()
@@ -166,7 +171,7 @@ public class EntityBoat extends Entity
                 this.setForwardDirection(-this.getForwardDirection());
                 this.setTimeSinceHit(10);
                 this.setDamageTaken(this.getDamageTaken() + amount * 10.0F);
-                this.setBeenAttacked();
+                this.markVelocityChanged();
                 boolean flag = source.getTrueSource() instanceof EntityPlayer && ((EntityPlayer)source.getTrueSource()).capabilities.isCreativeMode;
 
                 if (flag || this.getDamageTaken() > 40.0F)
@@ -251,11 +256,11 @@ public class EntityBoat extends Entity
     @SideOnly(Side.CLIENT)
     public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport)
     {
-        this.boatPitch = x;
+        this.lerpX = x;
         this.lerpY = y;
         this.lerpZ = z;
-        this.boatYaw = (double)yaw;
-        this.lerpXRot = (double)pitch;
+        this.lerpYaw = (double)yaw;
+        this.lerpPitch = (double)pitch;
         this.lerpSteps = 10;
     }
 
@@ -402,12 +407,12 @@ public class EntityBoat extends Entity
     {
         if (this.lerpSteps > 0 && !this.canPassengerSteer())
         {
-            double d0 = this.posX + (this.boatPitch - this.posX) / (double)this.lerpSteps;
+            double d0 = this.posX + (this.lerpX - this.posX) / (double)this.lerpSteps;
             double d1 = this.posY + (this.lerpY - this.posY) / (double)this.lerpSteps;
             double d2 = this.posZ + (this.lerpZ - this.posZ) / (double)this.lerpSteps;
-            double d3 = MathHelper.wrapDegrees(this.boatYaw - (double)this.rotationYaw);
+            double d3 = MathHelper.wrapDegrees(this.lerpYaw - (double)this.rotationYaw);
             this.rotationYaw = (float)((double)this.rotationYaw + d3 / (double)this.lerpSteps);
-            this.rotationPitch = (float)((double)this.rotationPitch + (this.lerpXRot - (double)this.rotationPitch) / (double)this.lerpSteps);
+            this.rotationPitch = (float)((double)this.rotationPitch + (this.lerpPitch - (double)this.rotationPitch) / (double)this.lerpSteps);
             --this.lerpSteps;
             this.setPosition(d0, d1, d2);
             this.setRotation(this.rotationYaw, this.rotationPitch);
@@ -1082,11 +1087,11 @@ public class EntityBoat extends Entity
         if(this.canPassengerSteer() && this.lerpSteps > 0)
         {
             this.lerpSteps = 0;
-            this.posX = this.boatPitch;
+            this.posX = this.lerpX;
             this.posY = this.lerpY;
             this.posZ = this.lerpZ;
-            this.rotationYaw = (float)this.boatYaw;
-            this.rotationPitch = (float)this.lerpXRot;
+            this.rotationYaw = (float)this.lerpYaw;
+            this.rotationPitch = (float)this.lerpPitch;
         }
     }
 }

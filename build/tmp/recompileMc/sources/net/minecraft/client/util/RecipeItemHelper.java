@@ -25,10 +25,15 @@ public class RecipeItemHelper
 
     public void accountStack(ItemStack stack)
     {
+        this.accountStack(stack, -1);
+    }
+
+    public void accountStack(ItemStack stack, int forceCount)
+    {
         if (!stack.isEmpty() && !stack.isItemDamaged() && !stack.isItemEnchanted() && !stack.hasDisplayName())
         {
             int i = pack(stack);
-            int j = stack.getCount();
+            int j = forceCount == -1 ? stack.getCount() : forceCount;
             this.increment(i, j);
         }
     }

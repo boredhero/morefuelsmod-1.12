@@ -93,7 +93,7 @@ public abstract class EntityLiving extends EntityLivingBase
     private ResourceLocation deathLootTable;
     private long deathLootTableSeed;
     private boolean isLeashed;
-    private Entity leashedToEntity;
+    private Entity leashHolder;
     private NBTTagCompound leashNBTTag;
 
     public EntityLiving(World worldIn)
@@ -462,18 +462,18 @@ public abstract class EntityLiving extends EntityLivingBase
         compound.setTag("HandDropChances", nbttaglist3);
         compound.setBoolean("Leashed", this.isLeashed);
 
-        if (this.leashedToEntity != null)
+        if (this.leashHolder != null)
         {
             NBTTagCompound nbttagcompound2 = new NBTTagCompound();
 
-            if (this.leashedToEntity instanceof EntityLivingBase)
+            if (this.leashHolder instanceof EntityLivingBase)
             {
-                UUID uuid = this.leashedToEntity.getUniqueID();
+                UUID uuid = this.leashHolder.getUniqueID();
                 nbttagcompound2.setUniqueId("UUID", uuid);
             }
-            else if (this.leashedToEntity instanceof EntityHanging)
+            else if (this.leashHolder instanceof EntityHanging)
             {
-                BlockPos blockpos = ((EntityHanging)this.leashedToEntity).getHangingPosition();
+                BlockPos blockpos = ((EntityHanging)this.leashHolder).getHangingPosition();
                 nbttagcompound2.setInteger("X", blockpos.getX());
                 nbttagcompound2.setInteger("Y", blockpos.getY());
                 nbttagcompound2.setInteger("Z", blockpos.getZ());
@@ -685,13 +685,13 @@ public abstract class EntityLiving extends EntityLivingBase
                     ItemSword itemsword = (ItemSword)itemstack.getItem();
                     ItemSword itemsword1 = (ItemSword)itemstack1.getItem();
 
-                    if (itemsword.getDamageVsEntity() == itemsword1.getDamageVsEntity())
+                    if (itemsword.getAttackDamage() == itemsword1.getAttackDamage())
                     {
                         flag = itemstack.getMetadata() > itemstack1.getMetadata() || itemstack.hasTagCompound() && !itemstack1.hasTagCompound();
                     }
                     else
                     {
-                        flag = itemsword.getDamageVsEntity() > itemsword1.getDamageVsEntity();
+                        flag = itemsword.getAttackDamage() > itemsword1.getAttackDamage();
                     }
                 }
                 else if (itemstack.getItem() instanceof ItemBow && itemstack1.getItem() instanceof ItemBow)
@@ -1335,7 +1335,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
     public final boolean processInitialInteract(EntityPlayer player, EnumHand hand)
     {
-        if (this.getLeashed() && this.getLeashedToEntity() == player)
+        if (this.getLeashed() && this.getLeashHolder() == player)
         {
             this.clearLeashed(true, !player.capabilities.isCreativeMode);
             return true;
@@ -1346,7 +1346,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
             if (itemstack.getItem() == Items.LEAD && this.canBeLeashedTo(player))
             {
-                this.setLeashedToEntity(player, true);
+                this.setLeashHolder(player, true);
                 itemstack.shrink(1);
                 return true;
             }
@@ -1379,7 +1379,7 @@ public abstract class EntityLiving extends EntityLivingBase
                 this.clearLeashed(true, true);
             }
 
-            if (this.leashedToEntity == null || this.leashedToEntity.isDead)
+            if (this.leashHolder == null || this.leashHolder.isDead)
             {
                 this.clearLeashed(true, true);
             }
@@ -1394,7 +1394,7 @@ public abstract class EntityLiving extends EntityLivingBase
         if (this.isLeashed)
         {
             this.isLeashed = false;
-            this.leashedToEntity = null;
+            this.leashHolder = null;
 
             if (!this.world.isRemote && dropLead)
             {
@@ -1418,22 +1418,22 @@ public abstract class EntityLiving extends EntityLivingBase
         return this.isLeashed;
     }
 
-    public Entity getLeashedToEntity()
+    public Entity getLeashHolder()
     {
-        return this.leashedToEntity;
+        return this.leashHolder;
     }
 
     /**
      * Sets the entity to be leashed to.
      */
-    public void setLeashedToEntity(Entity entityIn, boolean sendAttachNotification)
+    public void setLeashHolder(Entity entityIn, boolean sendAttachNotification)
     {
         this.isLeashed = true;
-        this.leashedToEntity = entityIn;
+        this.leashHolder = entityIn;
 
         if (!this.world.isRemote && sendAttachNotification && this.world instanceof WorldServer)
         {
-            ((WorldServer)this.world).getEntityTracker().sendToTracking(this, new SPacketEntityAttach(this, this.leashedToEntity));
+            ((WorldServer)this.world).getEntityTracker().sendToTracking(this, new SPacketEntityAttach(this, this.leashHolder));
         }
 
         if (this.isRiding())
@@ -1466,7 +1466,7 @@ public abstract class EntityLiving extends EntityLivingBase
                 {
                     if (entitylivingbase.getUniqueID().equals(uuid))
                     {
-                        this.setLeashedToEntity(entitylivingbase, true);
+                        this.setLeashHolder(entitylivingbase, true);
                         break;
                     }
                 }
@@ -1481,7 +1481,7 @@ public abstract class EntityLiving extends EntityLivingBase
                     entityleashknot = EntityLeashKnot.createKnot(this.world, blockpos);
                 }
 
-                this.setLeashedToEntity(entityleashknot, true);
+                this.setLeashHolder(entityleashknot, true);
             }
             else
             {

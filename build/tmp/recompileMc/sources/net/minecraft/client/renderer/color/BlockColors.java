@@ -160,6 +160,7 @@ public class BlockColors
                 return worldIn != null && pos != null ? 2129968 : 7455580;
             }
         }, Blocks.WATERLILY);
+        net.minecraftforge.client.ForgeHooksClient.onBlockColorsInit(blockcolors);
         return blockcolors;
     }
 

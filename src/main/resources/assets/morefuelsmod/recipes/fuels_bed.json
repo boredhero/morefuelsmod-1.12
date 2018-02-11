@@ -1,0 +1,49 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "ABC",
+        "DEF",
+        "GHI"
+    ],
+    "key": {
+        "A": {
+            "ore": "bedAny",
+            "type": "forge:ore_dict"
+        },
+        "B": {
+            "ore": "bedAny",
+            "type": "forge:ore_dict"
+        },
+        "C": {
+            "ore": "bedAny",
+            "type": "forge:ore_dict"
+        },
+        "D": {
+            "ore": "bedAny",
+            "type": "forge:ore_dict"
+        },
+        "E": {
+            "ore": "bedAny",
+            "type": "forge:ore_dict"
+        },
+        "F": {
+            "ore": "bedAny",
+            "type": "forge:ore_dict"
+        },
+        "G": {
+            "ore": "bedAny",
+            "type": "forge:ore_dict"
+        },
+        "H": {
+            "ore": "bedAny",
+            "type": "forge:ore_dict"
+        },
+        "I": {
+            "ore": "bedAny",
+            "type": "forge:ore_dict"
+        }
+    },
+    "result": {
+        "item": "morefuelsmod:pellet_fuel", "count":10
+    }
+}

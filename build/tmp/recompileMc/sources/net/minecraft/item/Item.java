@@ -201,7 +201,7 @@ public class Item extends net.minecraftforge.registries.IForgeRegistryEntry.Impl
         return EnumActionResult.PASS;
     }
 
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
+    public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         return 1.0F;
     }
@@ -510,11 +510,7 @@ public class Item extends net.minecraftforge.registries.IForgeRegistryEntry.Impl
         float f5 = MathHelper.sin(-f * 0.017453292F);
         float f6 = f3 * f4;
         float f7 = f2 * f4;
-        double d3 = 5.0D;
-        if (playerIn instanceof net.minecraft.entity.player.EntityPlayerMP)
-        {
-            d3 = ((net.minecraft.entity.player.EntityPlayerMP)playerIn).interactionManager.getBlockReachDistance();
-        }
+        double d3 = playerIn.getEntityAttribute(EntityPlayer.REACH_DISTANCE).getAttributeValue();
         Vec3d vec3d1 = vec3d.addVector((double)f6 * d3, (double)f5 * d3, (double)f7 * d3);
         return worldIn.rayTraceBlocks(vec3d, vec3d1, useLiquids, !useLiquids, false);
     }
@@ -566,8 +562,11 @@ public class Item extends net.minecraftforge.registries.IForgeRegistryEntry.Impl
     }
 
     /**
-     * Returns true if players can use this item to affect the world (e.g. placing blocks, placing ender eyes in portal)
-     * when not in creative
+     * Returns whether this item is always allowed to edit the world. Forces {@link
+     * net.minecraft.entity.player.EntityPlayer#canPlayerEdit EntityPlayer#canPlayerEdit} to return {@code true}.
+     * 
+     * @return whether this item ignores other restrictions on how a player can modify the world.
+     * @see ItemStack#canEditBlocks
      */
     public boolean canItemEditBlocks()
     {
@@ -576,6 +575,9 @@ public class Item extends net.minecraftforge.registries.IForgeRegistryEntry.Impl
 
     /**
      * Return whether this item is repairable in an anvil.
+     *  
+     * @param toRepair the {@code ItemStack} being repaired
+     * @param repair the {@code ItemStack} being used to perform the repair
      */
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
@@ -1280,6 +1282,30 @@ public class Item extends net.minecraftforge.registries.IForgeRegistryEntry.Impl
     {
         return -1;
     }
+    
+    /** 
+     * Returns an enum constant of type {@code HorseArmorType}.
+     * The returned enum constant will be used to determine the armor value and texture of this item when equipped.
+     * @param stack the armor stack
+     * @return an enum constant of type {@code HorseArmorType}. Return HorseArmorType.NONE if this is not horse armor
+     */
+    public net.minecraft.entity.passive.HorseArmorType getHorseArmorType(ItemStack stack)
+    {
+        return net.minecraft.entity.passive.HorseArmorType.getByItem(stack.getItem());
+    }
+    
+    public String getHorseArmorTexture(net.minecraft.entity.EntityLiving wearer, ItemStack stack)
+    {
+        return getHorseArmorType(stack).getTextureName();
+    }
+    
+    /**
+     * Called every tick from {@link EntityHorse#onUpdate()} on the item in the armor slot.
+     * @param world the world the horse is in
+     * @param horse the horse wearing this armor
+     * @param armor the armor itemstack
+     */
+    public void onHorseArmorTick(World world, net.minecraft.entity.EntityLiving horse, ItemStack armor) {}
 
     /* ======================================== FORGE END   =====================================*/
 
@@ -1848,9 +1874,9 @@ public class Item extends net.minecraftforge.registries.IForgeRegistryEntry.Impl
         /** The number of uses this material allows. (wood = 59, stone = 131, iron = 250, diamond = 1561, gold = 32) */
         private final int maxUses;
         /** The strength of this tool material against blocks which it is effective against. */
-        private final float efficiencyOnProperMaterial;
+        private final float efficiency;
         /** Damage versus entities. */
-        private final float damageVsEntity;
+        private final float attackDamage;
         /** Defines the natural enchantability factor of the material. */
         private final int enchantability;
         //Added by forge for custom Tool materials.
@@ -1860,8 +1886,8 @@ public class Item extends net.minecraftforge.registries.IForgeRegistryEntry.Impl
         {
             this.harvestLevel = harvestLevel;
             this.maxUses = maxUses;
-            this.efficiencyOnProperMaterial = efficiency;
-            this.damageVsEntity = damageVsEntity;
+            this.efficiency = efficiency;
+            this.attackDamage = damageVsEntity;
             this.enchantability = enchantability;
         }
 
@@ -1876,17 +1902,17 @@ public class Item extends net.minecraftforge.registries.IForgeRegistryEntry.Impl
         /**
          * The strength of this tool material against blocks which it is effective against.
          */
-        public float getEfficiencyOnProperMaterial()
+        public float getEfficiency()
         {
-            return this.efficiencyOnProperMaterial;
+            return this.efficiency;
         }
 
         /**
          * Returns the damage against a given entity.
          */
-        public float getDamageVsEntity()
+        public float getAttackDamage()
         {
-            return this.damageVsEntity;
+            return this.attackDamage;
         }
 
         /**

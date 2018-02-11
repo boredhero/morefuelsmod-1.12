@@ -73,7 +73,7 @@ public class EntitySquid extends EntityWaterMob
         return SoundEvents.ENTITY_SQUID_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_SQUID_HURT;
     }
@@ -200,7 +200,7 @@ public class EntitySquid extends EntityWaterMob
         }
     }
 
-    public void travel(float p_191986_1_, float p_191986_2_, float p_191986_3_)
+    public void travel(float strafe, float vertical, float forward)
     {
         this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
     }

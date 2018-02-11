@@ -114,10 +114,11 @@ public interface IBlockProperties
     //Forge added functions
     boolean doesSideBlockRendering(IBlockAccess world, BlockPos pos, EnumFacing side);
     boolean isSideSolid(IBlockAccess world, BlockPos pos, EnumFacing side);
+    boolean doesSideBlockChestOpening(IBlockAccess world, BlockPos pos, EnumFacing side);
 
     Vec3d getOffset(IBlockAccess access, BlockPos pos);
 
     boolean causesSuffocation();
 
-    BlockFaceShape getBlockFaceShape(IBlockAccess p_193401_1_, BlockPos p_193401_2_, EnumFacing p_193401_3_);
+    BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, BlockPos pos, EnumFacing facing);
 }

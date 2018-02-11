@@ -360,7 +360,6 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
     {
         if (side == EnumFacing.UP)
         {
-            /** an array of the input slot indices */
             return SLOTS_FOR_UP;
         }
         else
@@ -433,6 +432,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 
     @SuppressWarnings("unchecked")
     @Override
+    @javax.annotation.Nullable
     public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @javax.annotation.Nullable net.minecraft.util.EnumFacing facing)
     {
         if (facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)

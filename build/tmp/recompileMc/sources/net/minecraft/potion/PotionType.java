@@ -11,7 +11,7 @@ import net.minecraft.util.registry.RegistryNamespacedDefaultedByKey;
 public class PotionType extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<PotionType>
 {
     @Deprecated // unused
-    private static final ResourceLocation WATER = new ResourceLocation("empty");
+    private static final ResourceLocation EMPTY = new ResourceLocation("empty");
     public static final RegistryNamespacedDefaultedByKey<ResourceLocation, PotionType> REGISTRY = net.minecraftforge.registries.GameData.getWrapperDefaulted(PotionType.class);
     private static int nextPotionTypeId;
     /** The unlocalized name of this PotionType. If null, the registry name is used. */

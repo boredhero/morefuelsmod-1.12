@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "morefuelsmod:block_bituminous_coal"
+		}
+	],
+	"result": {
+		"item": "morefuelsmod:bituminous_coal", "count":9
+	}
+}

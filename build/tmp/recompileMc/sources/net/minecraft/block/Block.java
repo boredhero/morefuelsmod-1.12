@@ -82,7 +82,7 @@ public class Block extends net.minecraftforge.registries.IForgeRegistryEntry.Imp
      */
     protected boolean needsRandomTick;
     /** true if the Block contains a Tile Entity */
-    protected boolean isBlockContainer;
+    protected boolean hasTileEntity;
     /** Sound of stepping on the block */
     protected SoundType blockSoundType;
     public float blockParticleGravity;
@@ -335,14 +335,14 @@ public class Block extends net.minecraftforge.registries.IForgeRegistryEntry.Imp
         return this;
     }
 
-    protected static boolean isExceptionBlockForAttaching(Block p_193384_0_)
+    protected static boolean isExceptionBlockForAttaching(Block attachBlock)
     {
-        return p_193384_0_ instanceof BlockShulkerBox || p_193384_0_ instanceof BlockLeaves || p_193384_0_ instanceof BlockTrapDoor || p_193384_0_ == Blocks.BEACON || p_193384_0_ == Blocks.CAULDRON || p_193384_0_ == Blocks.GLASS || p_193384_0_ == Blocks.GLOWSTONE || p_193384_0_ == Blocks.ICE || p_193384_0_ == Blocks.SEA_LANTERN || p_193384_0_ == Blocks.STAINED_GLASS;
+        return attachBlock instanceof BlockShulkerBox || attachBlock instanceof BlockLeaves || attachBlock instanceof BlockTrapDoor || attachBlock == Blocks.BEACON || attachBlock == Blocks.CAULDRON || attachBlock == Blocks.GLASS || attachBlock == Blocks.GLOWSTONE || attachBlock == Blocks.ICE || attachBlock == Blocks.SEA_LANTERN || attachBlock == Blocks.STAINED_GLASS;
     }
 
-    protected static boolean isExceptBlockForAttachWithPiston(Block p_193382_0_)
+    protected static boolean isExceptBlockForAttachWithPiston(Block attachBlock)
     {
-        return isExceptionBlockForAttaching(p_193382_0_) || p_193382_0_ == Blocks.PISTON || p_193382_0_ == Blocks.STICKY_PISTON || p_193382_0_ == Blocks.PISTON_HEAD;
+        return isExceptionBlockForAttaching(attachBlock) || attachBlock == Blocks.PISTON || attachBlock == Blocks.STICKY_PISTON || attachBlock == Blocks.PISTON_HEAD;
     }
 
     /**
@@ -543,14 +543,23 @@ public class Block extends net.minecraftforge.registries.IForgeRegistryEntry.Imp
         return !blockAccess.getBlockState(pos.offset(side)).doesSideBlockRendering(blockAccess, pos.offset(side), side.getOpposite());
     }
 
+    /**
+     * Get the geometry of the queried face at the given position and state. This is used to decide whether things like
+     * buttons are allowed to be placed on the face, or how glass panes connect to the face, among other things.
+     * <p>
+     * Common values are {@code SOLID}, which is the default, and {@code UNDEFINED}, which represents something that
+     * does not fit the other descriptions and will generally cause other things not to connect to the face.
+     * 
+     * @return an approximation of the form of the given face
+     */
     @Deprecated
-    public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
     {
         return BlockFaceShape.SOLID;
     }
 
     @Deprecated
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
     {
         addCollisionBoxToList(pos, entityBox, collidingBoxes, state.getCollisionBoundingBox(worldIn, pos));
     }
@@ -817,6 +826,9 @@ public class Block extends net.minecraftforge.registries.IForgeRegistryEntry.Imp
         return this.canPlaceBlockAt(worldIn, pos);
     }
 
+    /**
+     * Checks if this block can be placed exactly at the given position.
+     */
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         return worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos);
@@ -1206,7 +1218,6 @@ public class Block extends net.minecraftforge.registries.IForgeRegistryEntry.Imp
      */
     public float getSlipperiness(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity entity)
     {
-        /** Determines how much velocity is maintained while moving on top of this block */
         return slipperiness;
     }
 
@@ -1846,6 +1857,23 @@ public class Block extends net.minecraftforge.registries.IForgeRegistryEntry.Imp
     }
 
     /**
+     * Allows a block to override the standard vanilla running particles.
+     * This is called from {@link Entity#spawnRunningParticles} and is called both,
+     * Client and server side, it's up to the implementor to client check / server check.
+     * By default vanilla spawns particles only on the client and the server methods no-op.
+     *
+     * @param state  The BlockState the entity is running on.
+     * @param world  The world.
+     * @param pos    The position at the entities feet.
+     * @param entity The entity running on the block.
+     * @return True to prevent vanilla running particles from spawning.
+     */
+    public boolean addRunningEffects(IBlockState state, World world, BlockPos pos, Entity entity)
+    {
+        return false;
+    }
+
+    /**
      * Spawn a digging particle effect in the world, this is a wrapper
      * around EffectRenderer.addBlockHitEffects to allow the block more
      * control over the particles. Useful when you have entirely different
@@ -2148,7 +2176,7 @@ public class Block extends net.minecraftforge.registries.IForgeRegistryEntry.Imp
             if (prop.getName().equals("color") && prop.getValueClass() == net.minecraft.item.EnumDyeColor.class)
             {
                 net.minecraft.item.EnumDyeColor current = (net.minecraft.item.EnumDyeColor)state.getValue(prop);
-                if (current != color)
+                if (current != color && prop.getAllowedValues().contains(color))
                 {
                     world.setBlockState(pos, state.withProperty(prop, color));
                     return true;
@@ -2331,6 +2359,20 @@ public class Block extends net.minecraftforge.registries.IForgeRegistryEntry.Imp
      {
          return null;
      }
+     
+     /**
+      * Called when entities are moving to check if they are inside a liquid
+      *
+      * @param world world that is being tested.
+      * @param pos block thats being tested.
+      * @param boundingBox box to test, generally the bounds of an entity that are besting tested.
+      * @return null for default behavior, true if the box is within the material, false if it was not.
+      */
+     @Nullable
+     public Boolean isAABBInsideLiquid(World world, BlockPos pos, AxisAlignedBB boundingBox)
+     {
+         return null;
+     }
 
      /**
      * Queries if this block should render in a given layer.
@@ -2461,6 +2503,33 @@ public class Block extends net.minecraftforge.registries.IForgeRegistryEntry.Imp
     public net.minecraft.pathfinding.PathNodeType getAiPathNodeType(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return isBurning(world, pos) ? net.minecraft.pathfinding.PathNodeType.DAMAGE_FIRE : null;
+    }
+
+    /**
+     * @param blockState The state for this block
+     * @param world The world this block is in
+     * @param pos The position of this block
+     * @param side The side of this block that the chest lid is trying to open into
+     * @return true if the chest should be prevented from opening by this block
+     */
+    public boolean doesSideBlockChestOpening(IBlockState blockState, IBlockAccess world, BlockPos pos, EnumFacing side)
+    {
+        ResourceLocation registryName = this.getRegistryName();
+        if (registryName != null && "minecraft".equals(registryName.getResourceDomain()))
+        {
+            // maintain the vanilla behavior of https://bugs.mojang.com/browse/MC-378
+            return isNormalCube(blockState, world, pos);
+        }
+        return isSideSolid(blockState, world, pos, side);
+    }
+
+    /**
+     * @param state The state
+     * @return true if the block is sticky block which used for pull or push adjacent blocks (use by piston)
+     */
+    public boolean isStickyBlock(IBlockState state)
+    {
+        return state.getBlock() == Blocks.SLIME_BLOCK;
     }
 
     /* ========================================= FORGE END ======================================*/

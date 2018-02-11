@@ -209,7 +209,7 @@ public abstract class EntityHanging extends Entity
             if (!this.isDead && !this.world.isRemote)
             {
                 this.setDead();
-                this.setBeenAttacked();
+                this.markVelocityChanged();
                 this.onBroken(source.getTrueSource());
             }
 
@@ -230,7 +230,7 @@ public abstract class EntityHanging extends Entity
     }
 
     /**
-     * Adds to the current velocity of the entity.
+     * Adds to the current velocity of the entity, and sets {@link #isAirBorne} to true.
      */
     public void addVelocity(double x, double y, double z)
     {

@@ -255,8 +255,13 @@ public final class WorldEntitySpawner
 
     /**
      * Called during chunk generation to spawn initial creatures.
+     *  
+     * @param centerX The X coordinate of the point to spawn mobs arround.
+     * @param centerZ The Z coordinate of the point to spawn mobs arround.
+     * @param diameterX The X diameter of the rectangle to spawn mobs in
+     * @param diameterZ The Z diameter of the rectangle to spawn mobs in
      */
-    public static void performWorldGenSpawning(World worldIn, Biome biomeIn, int p_77191_2_, int p_77191_3_, int p_77191_4_, int p_77191_5_, Random randomIn)
+    public static void performWorldGenSpawning(World worldIn, Biome biomeIn, int centerX, int centerZ, int diameterX, int diameterZ, Random randomIn)
     {
         List<Biome.SpawnListEntry> list = biomeIn.getSpawnableList(EnumCreatureType.CREATURE);
 
@@ -267,8 +272,8 @@ public final class WorldEntitySpawner
                 Biome.SpawnListEntry biome$spawnlistentry = (Biome.SpawnListEntry)WeightedRandom.getRandomItem(worldIn.rand, list);
                 int i = biome$spawnlistentry.minGroupCount + randomIn.nextInt(1 + biome$spawnlistentry.maxGroupCount - biome$spawnlistentry.minGroupCount);
                 IEntityLivingData ientitylivingdata = null;
-                int j = p_77191_2_ + randomIn.nextInt(p_77191_4_);
-                int k = p_77191_3_ + randomIn.nextInt(p_77191_5_);
+                int j = centerX + randomIn.nextInt(diameterX);
+                int k = centerZ + randomIn.nextInt(diameterZ);
                 int l = j;
                 int i1 = k;
 
@@ -303,7 +308,7 @@ public final class WorldEntitySpawner
 
                         j += randomIn.nextInt(5) - randomIn.nextInt(5);
 
-                        for (k += randomIn.nextInt(5) - randomIn.nextInt(5); j < p_77191_2_ || j >= p_77191_2_ + p_77191_4_ || k < p_77191_3_ || k >= p_77191_3_ + p_77191_4_; k = i1 + randomIn.nextInt(5) - randomIn.nextInt(5))
+                        for (k += randomIn.nextInt(5) - randomIn.nextInt(5); j < centerX || j >= centerX + diameterX || k < centerZ || k >= centerZ + diameterX; k = i1 + randomIn.nextInt(5) - randomIn.nextInt(5))
                         {
                             j = l + randomIn.nextInt(5) - randomIn.nextInt(5);
                         }

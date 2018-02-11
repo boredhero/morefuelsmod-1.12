@@ -17,21 +17,28 @@ public class NarratorChatListener implements IChatListener
     public static final NarratorChatListener INSTANCE = new NarratorChatListener();
     private final Narrator narrator = Narrator.getNarrator();
 
-    public void say(ChatType p_192576_1_, ITextComponent p_192576_2_)
+    /**
+     * Called whenever this listener receives a chat message, if this listener is registered to the given type in {@link
+     * net.minecraft.client.gui.GuiIngame#chatListeners chatListeners}
+     *  
+     * @param chatTypeIn The type of chat message
+     * @param message The chat message.
+     */
+    public void say(ChatType chatTypeIn, ITextComponent message)
     {
         int i = Minecraft.getMinecraft().gameSettings.narrator;
 
         if (i != 0 && this.narrator.active())
         {
-            if (i == 1 || i == 2 && p_192576_1_ == ChatType.CHAT || i == 3 && p_192576_1_ == ChatType.SYSTEM)
+            if (i == 1 || i == 2 && chatTypeIn == ChatType.CHAT || i == 3 && chatTypeIn == ChatType.SYSTEM)
             {
-                if (p_192576_2_ instanceof TextComponentTranslation && "chat.type.text".equals(((TextComponentTranslation)p_192576_2_).getKey()))
+                if (message instanceof TextComponentTranslation && "chat.type.text".equals(((TextComponentTranslation)message).getKey()))
                 {
-                    this.narrator.say((new TextComponentTranslation("chat.type.text.narrate", ((TextComponentTranslation)p_192576_2_).getFormatArgs())).getUnformattedText());
+                    this.narrator.say((new TextComponentTranslation("chat.type.text.narrate", ((TextComponentTranslation)message).getFormatArgs())).getUnformattedText());
                 }
                 else
                 {
-                    this.narrator.say(p_192576_2_.getUnformattedText());
+                    this.narrator.say(message.getUnformattedText());
                 }
             }
         }

@@ -157,7 +157,7 @@ public class EntityPotion extends EntityThrowable
         {
             for (EntityLivingBase entitylivingbase : list)
             {
-                double d0 = this.getDistanceSqToEntity(entitylivingbase);
+                double d0 = this.getDistanceSq(entitylivingbase);
 
                 if (d0 < 16.0D && isWaterSensitiveEntity(entitylivingbase))
                 {
@@ -178,7 +178,7 @@ public class EntityPotion extends EntityThrowable
             {
                 if (entitylivingbase.canBeHitWithPotion())
                 {
-                    double d0 = this.getDistanceSqToEntity(entitylivingbase);
+                    double d0 = this.getDistanceSq(entitylivingbase);
 
                     if (d0 < 16.0D)
                     {

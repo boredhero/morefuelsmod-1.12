@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:fishing_rod"
+		},
+		"B": {
+			"item": "minecraft:fishing_rod"
+		},
+		"C": {
+			"item": "minecraft:fishing_rod"
+		},
+		"D": {
+			"item": "minecraft:fishing_rod"
+		},
+		"E": {
+			"item": "minecraft:fishing_rod"
+		},
+		"F": {
+			"item": "minecraft:fishing_rod"
+		},
+		"G": {
+			"item": "minecraft:fishing_rod"
+		},
+		"H": {
+			"item": "minecraft:fishing_rod"
+		},
+		"I": {
+			"item": "minecraft:fishing_rod"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":3
+	}
+}

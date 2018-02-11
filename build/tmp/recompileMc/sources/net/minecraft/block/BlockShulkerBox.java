@@ -398,12 +398,21 @@ public class BlockShulkerBox extends BlockContainer
         return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
     }
 
-    public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
+    /**
+     * Get the geometry of the queried face at the given position and state. This is used to decide whether things like
+     * buttons are allowed to be placed on the face, or how glass panes connect to the face, among other things.
+     * <p>
+     * Common values are {@code SOLID}, which is the default, and {@code UNDEFINED}, which represents something that
+     * does not fit the other descriptions and will generally cause other things not to connect to the face.
+     * 
+     * @return an approximation of the form of the given face
+     */
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
     {
-        p_193383_2_ = this.getActualState(p_193383_2_, p_193383_1_, p_193383_3_);
-        EnumFacing enumfacing = (EnumFacing)p_193383_2_.getValue(FACING);
-        TileEntityShulkerBox.AnimationStatus tileentityshulkerbox$animationstatus = ((TileEntityShulkerBox)p_193383_1_.getTileEntity(p_193383_3_)).getAnimationStatus();
-        return tileentityshulkerbox$animationstatus != TileEntityShulkerBox.AnimationStatus.CLOSED && (tileentityshulkerbox$animationstatus != TileEntityShulkerBox.AnimationStatus.OPENED || enumfacing != p_193383_4_.getOpposite() && enumfacing != p_193383_4_) ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
+        state = this.getActualState(state, worldIn, pos);
+        EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+        TileEntityShulkerBox.AnimationStatus tileentityshulkerbox$animationstatus = ((TileEntityShulkerBox)worldIn.getTileEntity(pos)).getAnimationStatus();
+        return tileentityshulkerbox$animationstatus != TileEntityShulkerBox.AnimationStatus.CLOSED && (tileentityshulkerbox$animationstatus != TileEntityShulkerBox.AnimationStatus.OPENED || enumfacing != face.getOpposite() && enumfacing != face) ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
     }
 
     @SideOnly(Side.CLIENT)

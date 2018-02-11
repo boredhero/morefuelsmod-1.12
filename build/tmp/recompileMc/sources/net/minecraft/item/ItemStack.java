@@ -221,9 +221,9 @@ public final class ItemStack implements net.minecraftforge.common.capabilities.I
         return enumactionresult;
     }
 
-    public float getStrVsBlock(IBlockState blockIn)
+    public float getDestroySpeed(IBlockState blockIn)
     {
-        return this.getItem().getStrVsBlock(this, blockIn);
+        return this.getItem().getDestroySpeed(this, blockIn);
     }
 
     /**
@@ -1067,6 +1067,13 @@ public final class ItemStack implements net.minecraftforge.common.capabilities.I
         this.stackTagCompound.setTag(key, value);
     }
 
+    /**
+     * Returns whether this stack is always allowed to edit the world. Forces {@link
+     * net.minecraft.entity.player.EntityPlayer#canPlayerEdit EntityPlayer#canPlayerEdit} to return {@code true}.
+     * 
+     * @return whether this stack ignores other restrictions on how a player can modify the world.
+     * @see Item#canItemEditBlocks
+     */
     public boolean canEditBlocks()
     {
         return this.getItem().canItemEditBlocks();
@@ -1229,6 +1236,14 @@ public final class ItemStack implements net.minecraftforge.common.capabilities.I
         }
     }
 
+    /**
+     * Returns whether this stack is explicitly allowed to be used on the given block via the {@code "CanPlaceOn"} NBT
+     * tag.
+     * 
+     * @return whether the {@code "CanPlaceOn"} tag contains the given block.
+     *  
+     * @param blockIn the block the NBT is being tested for
+     */
     public boolean canPlaceOn(Block blockIn)
     {
         if (blockIn == this.canPlaceOnCacheBlock)
@@ -1357,6 +1372,7 @@ public final class ItemStack implements net.minecraftforge.common.capabilities.I
      * Internal call to get the actual item, not the delegate.
      * In all other methods, FML replaces calls to this.item with the item delegate.
      */
+    @Nullable
     private Item getItemRaw()
     {
         return this.item;

@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:activator_rail"
+		},
+		"B": {
+			"item": "minecraft:activator_rail"
+		},
+		"C": {
+			"item": "minecraft:activator_rail"
+		},
+		"D": {
+			"item": "minecraft:activator_rail"
+		},
+		"E": {
+			"item": "minecraft:activator_rail"
+		},
+		"F": {
+			"item": "minecraft:activator_rail"
+		},
+		"G": {
+			"item": "minecraft:activator_rail"
+		},
+		"H": {
+			"item": "minecraft:activator_rail"
+		},
+		"I": {
+			"item": "minecraft:activator_rail"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

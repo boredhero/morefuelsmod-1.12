@@ -299,7 +299,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
         return SoundEvents.ENTITY_LLAMA_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_LLAMA_HURT;
     }
@@ -443,7 +443,7 @@ public class EntityLlama extends AbstractChestHorse implements IRangedAttackMob
         double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - entityllamaspit.posY;
         double d2 = target.posZ - this.posZ;
         float f = MathHelper.sqrt(d0 * d0 + d2 * d2) * 0.2F;
-        entityllamaspit.setThrowableHeading(d0, d1 + (double)f, d2, 1.5F, 10.0F);
+        entityllamaspit.shoot(d0, d1 + (double)f, d2, 1.5F, 10.0F);
         this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_LLAMA_SPIT, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
         this.world.spawnEntity(entityllamaspit);
         this.didSpit = true;

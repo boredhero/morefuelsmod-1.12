@@ -86,7 +86,7 @@ public class Chunk implements net.minecraftforge.common.capabilities.ICapability
     private long inhabitedTime;
     /** Contains the current round-robin relight check index, and is implied as the relight check location as well. */
     private int queuedLightChecks;
-    /** "queue containing the BlockPos of tile entities queued for creation" */
+    /** Queue containing the BlockPos of tile entities queued for creation */
     private final ConcurrentLinkedQueue<BlockPos> tileEntityPosQueue;
     public boolean unloadQueued;
 
@@ -1542,6 +1542,7 @@ public class Chunk implements net.minecraftforge.common.capabilities.ICapability
         else
         {
             System.arraycopy(newHeightMap, 0, this.heightMap, 0, this.heightMap.length);
+            this.heightMapMinimum = com.google.common.primitives.Ints.min(this.heightMap); // Forge: fix MC-117412
         }
     }
 

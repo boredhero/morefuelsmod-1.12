@@ -16,7 +16,7 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
     private final EntityCreature entity;
     private final double movementSpeed;
     /** The PathNavigate of our entity. */
-    private Path entityPathNavigate;
+    private Path path;
     private VillageDoorInfo doorInfo;
     private final boolean isNocturnal;
     private final List<VillageDoorInfo> doorList = Lists.<VillageDoorInfo>newArrayList();
@@ -66,10 +66,10 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
                     PathNavigateGround pathnavigateground = (PathNavigateGround)this.entity.getNavigator();
                     boolean flag = pathnavigateground.getEnterDoors();
                     pathnavigateground.setBreakDoors(false);
-                    this.entityPathNavigate = pathnavigateground.getPathToPos(this.doorInfo.getDoorBlockPos());
+                    this.path = pathnavigateground.getPathToPos(this.doorInfo.getDoorBlockPos());
                     pathnavigateground.setBreakDoors(flag);
 
-                    if (this.entityPathNavigate != null)
+                    if (this.path != null)
                     {
                         return true;
                     }
@@ -84,9 +84,9 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
                         else
                         {
                             pathnavigateground.setBreakDoors(false);
-                            this.entityPathNavigate = this.entity.getNavigator().getPathToXYZ(vec3d.x, vec3d.y, vec3d.z);
+                            this.path = this.entity.getNavigator().getPathToXYZ(vec3d.x, vec3d.y, vec3d.z);
                             pathnavigateground.setBreakDoors(flag);
-                            return this.entityPathNavigate != null;
+                            return this.path != null;
                         }
                     }
                 }
@@ -115,7 +115,7 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.entity.getNavigator().setPath(this.entityPathNavigate, this.movementSpeed);
+        this.entity.getNavigator().setPath(this.path, this.movementSpeed);
     }
 
     /**

@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:magma_cream"
+		},
+		"B": {
+			"item": "minecraft:magma_cream"
+		},
+		"C": {
+			"item": "minecraft:magma_cream"
+		},
+		"D": {
+			"item": "minecraft:magma_cream"
+		},
+		"E": {
+			"item": "minecraft:magma_cream"
+		},
+		"F": {
+			"item": "minecraft:magma_cream"
+		},
+		"G": {
+			"item": "minecraft:magma_cream"
+		},
+		"H": {
+			"item": "minecraft:magma_cream"
+		},
+		"I": {
+			"item": "minecraft:magma_cream"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":20
+	}
+}

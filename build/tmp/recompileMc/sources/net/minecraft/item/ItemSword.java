@@ -26,18 +26,18 @@ public class ItemSword extends Item
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
         this.setCreativeTab(CreativeTabs.COMBAT);
-        this.attackDamage = 3.0F + material.getDamageVsEntity();
+        this.attackDamage = 3.0F + material.getAttackDamage();
     }
 
     /**
      * Returns the amount of damage this item will deal. One heart of damage is equal to 2 damage points.
      */
-    public float getDamageVsEntity()
+    public float getAttackDamage()
     {
-        return this.material.getDamageVsEntity();
+        return this.material.getAttackDamage();
     }
 
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
+    public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Block block = state.getBlock();
 
@@ -110,6 +110,9 @@ public class ItemSword extends Item
 
     /**
      * Return whether this item is repairable in an anvil.
+     *  
+     * @param toRepair the {@code ItemStack} being repaired
+     * @param repair the {@code ItemStack} being used to perform the repair
      */
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {

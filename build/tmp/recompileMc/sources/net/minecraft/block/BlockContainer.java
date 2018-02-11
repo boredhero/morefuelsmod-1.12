@@ -28,7 +28,7 @@ public abstract class BlockContainer extends Block implements ITileEntityProvide
     protected BlockContainer(Material materialIn, MapColor color)
     {
         super(materialIn, color);
-        this.isBlockContainer = true;
+        this.hasTileEntity = true;
     }
 
     protected boolean isInvalidNeighbor(World worldIn, BlockPos pos, EnumFacing facing)

@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:ghast_tear"
+		},
+		"B": {
+			"item": "minecraft:ghast_tear"
+		},
+		"C": {
+			"item": "minecraft:ghast_tear"
+		},
+		"D": {
+			"item": "minecraft:ghast_tear"
+		},
+		"E": {
+			"item": "minecraft:ghast_tear"
+		},
+		"F": {
+			"item": "minecraft:ghast_tear"
+		},
+		"G": {
+			"item": "minecraft:ghast_tear"
+		},
+		"H": {
+			"item": "minecraft:ghast_tear"
+		},
+		"I": {
+			"item": "minecraft:ghast_tear"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":20
+	}
+}

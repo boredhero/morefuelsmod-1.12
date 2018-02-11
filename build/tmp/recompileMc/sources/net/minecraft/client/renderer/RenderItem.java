@@ -210,7 +210,7 @@ public class RenderItem implements IResourceManagerReloadListener
 
             if (flag && bakedquad.hasTintIndex())
             {
-                k = this.itemColors.getColorFromItemstack(stack, bakedquad.getTintIndex());
+                k = this.itemColors.colorMultiplier(stack, bakedquad.getTintIndex());
 
                 if (EntityRenderer.anaglyphEnable)
                 {

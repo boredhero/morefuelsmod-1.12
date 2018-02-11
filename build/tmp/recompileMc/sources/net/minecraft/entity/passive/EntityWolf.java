@@ -199,7 +199,7 @@ public class EntityWolf extends EntityTameable
         }
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_WOLF_HURT;
     }
@@ -457,7 +457,7 @@ public class EntityWolf extends EntityTameable
             {
                 this.aiSit.setSitting(!this.isSitting());
                 this.isJumping = false;
-                this.navigator.clearPathEntity();
+                this.navigator.clearPath();
                 this.setAttackTarget((EntityLivingBase)null);
             }
         }
@@ -473,7 +473,7 @@ public class EntityWolf extends EntityTameable
                 if (this.rand.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player))
                 {
                     this.setTamedBy(player);
-                    this.navigator.clearPathEntity();
+                    this.navigator.clearPath();
                     this.setAttackTarget((EntityLivingBase)null);
                     this.aiSit.setSitting(true);
                     this.setHealth(20.0F);

@@ -199,7 +199,7 @@ public class EntityVindicator extends AbstractIllager
         return SoundEvents.VINDICATION_ILLAGER_DEATH;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_VINDICATION_ILLAGER_HURT;
     }

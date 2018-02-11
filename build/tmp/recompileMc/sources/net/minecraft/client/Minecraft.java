@@ -226,7 +226,12 @@ public class Minecraft implements IThreadListener, ISnooperInfo
     private static final Logger LOGGER = LogManager.getLogger();
     private static final ResourceLocation LOCATION_MOJANG_PNG = new ResourceLocation("textures/gui/title/mojang.png");
     public static final boolean IS_RUNNING_ON_MAC = Util.getOSType() == Util.EnumOS.OSX;
-    /** A 10MiB preallocation to ensure the heap is reasonably sized. */
+    /**
+     * A 10MiB preallocation to ensure the heap is reasonably sized. {@linkplain #freeMemory() Freed} when the game runs
+     * out of memory.
+     *  
+     * @see #freeMemory()
+     */
     public static byte[] memoryReserve = new byte[10485760];
     private static final List<DisplayMode> MAC_DISPLAY_MODES = Lists.newArrayList(new DisplayMode(2560, 1600), new DisplayMode(2880, 1800));
     private final File fileResourcepacks;
@@ -1029,6 +1034,16 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 
     /**
      * Sets the argument GuiScreen as the main (topmost visible) screen.
+     *  
+     * <p><strong>WARNING</strong>: This method is not thread-safe. Opening GUIs from a thread other than the main
+     * thread may cause many different issues, including the GUI being rendered before it has initialized (leading to
+     * unusual crashes). If on a thread other than the main thread, use {@link #addScheduledTask}:
+     *  
+     * <pre>
+     * minecraft.addScheduledTask(() -> minecraft.displayGuiScreen(gui));
+     * </pre>
+     *  
+     * @param guiScreenIn The {@link GuiScreen} to display. If it is {@code null}, any open GUI will be closed.
      */
     public void displayGuiScreen(@Nullable GuiScreen guiScreenIn)
     {
@@ -1316,6 +1331,9 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         return (float)this.getLimitFramerate() < GameSettings.Options.FRAMERATE_LIMIT.getValueMax();
     }
 
+    /**
+     * Attempts to free as much memory as possible, including leaving the world and running the garbage collector.
+     */
     public void freeMemory()
     {
         try
@@ -2712,7 +2730,6 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 
     public static boolean isGuiEnabled()
     {
-        /** The instance of the Minecraft Client, set in the constructor. */
         return instance == null || !instance.gameSettings.hideGUI;
     }
 
@@ -2887,7 +2904,6 @@ public class Minecraft implements IThreadListener, ISnooperInfo
      */
     public static Minecraft getMinecraft()
     {
-        /** The instance of the Minecraft Client, set in the constructor. */
         return instance;
     }
 
@@ -3229,6 +3245,9 @@ public class Minecraft implements IThreadListener, ISnooperInfo
         }
         else if (this.player != null)
         {
+            MusicTicker.MusicType type = this.world.provider.getMusicType();
+            if (type != null) return type;
+
             if (this.player.world.provider instanceof WorldProviderHell)
             {
                 return MusicTicker.MusicType.NETHER;
@@ -3373,10 +3392,6 @@ public class Minecraft implements IThreadListener, ISnooperInfo
 
     public static int getDebugFPS()
     {
-        /**
-         * This is set to fpsCounter every debug screen update, and is shown on the debug screen. It's also sent as part
-         * of the usage snooping.
-         */
         return debugFPS;
     }
 

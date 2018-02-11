@@ -81,7 +81,7 @@ public class ParticleMobAppearance extends Particle
             this.entity.rotationYawHead = 0.0F;
             this.entity.prevRotationYaw = 0.0F;
             this.entity.prevRotationYawHead = 0.0F;
-            rendermanager.doRenderEntity(this.entity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
+            rendermanager.renderEntity(this.entity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
             GlStateManager.popMatrix();
             GlStateManager.enableDepth();
         }

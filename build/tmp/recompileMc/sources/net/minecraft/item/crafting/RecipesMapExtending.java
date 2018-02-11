@@ -108,7 +108,7 @@ public class RecipesMapExtending extends ShapedRecipes
         return itemstack;
     }
 
-    public boolean isHidden()
+    public boolean isDynamic()
     {
         return true;
     }

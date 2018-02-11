@@ -36,7 +36,7 @@ public abstract class EntityAIDoorInteract extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (!this.entity.isCollidedHorizontally)
+        if (!this.entity.collidedHorizontally)
         {
             return false;
         }

@@ -1,18 +1,25 @@
-##All Portuguese Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+#All Portuguese Translation Done With Google Translate! If there are errors, email me at treeclan12@gmail.com to correct them or commit to github repo
+
+#Mod Creative Tab
+itemGroup.morefuelsmod=Mais Combustíveis
 
 #Items
-item.pelletsFuel.name=Pastilhas de Combustivel
-item.concentratedPelletsFuel.name=Pastilhas de Combustivel Concentrados
-item.coke.name=Coque (Combustivel)
-item.bituminousCoal.name=Carvao Betuminoso
-item.canSlimoline.name=Lata de Slimolina
-item.dustCoal.name=Po de Carvao
+item.coke.name=Coke
+item.bituminous_coal.name=Carvão industrial
+item.can_of_slimoline.name=Recipiente de Slim-o-line
+item.coal_dust.name=Poeira de carvão
+item.compressed_pellet_fuel.name=combustível para pellets
+item.glass_orb.name=esfera de vidro
+item.tempered_glass_orb.name=esfera de vidro temperado
+item.lava_glass_orb.name=Orbe de lava
+item.pellet_fuel.name=Combustível de pelota
+item.lava_crystals.name=Cristais de lava
 
 #Blocks
-tile.pelletBlock.name=Bloco de Combustivel Pastilhas
-tile.concentratedPelletBlock.name=Bloco de Combustivel Pastilhas Concentrado
-tile.cokeBlock.name=Bloco de Coque (Combustivel)
-tile.bituminousCoalOre.name=Minerio de Carvao Betuminoso
-
-#Tabs
-itemGroup.morefuelsmod=Modificacao Mais Combustiveis
+tile.ore_bituminous_coal.name=Minério de carvão betuminoso
+tile.block_coke.name=Bloco de carvão industrial
+tile.block_bituminous_coal.name=Bloco de carvão betuminoso
+tile.block_creative_infinite_fuel.name=Combustível infinito (apenas criativo)
+tile.ore_lava.name=Oma de lava
+tile.block_pellet_fuel.name=Bloco de combustível de pellets
+tile.block_compressed_pellet_fuel.name=Bloco de combustível com pastilhas comprimidas

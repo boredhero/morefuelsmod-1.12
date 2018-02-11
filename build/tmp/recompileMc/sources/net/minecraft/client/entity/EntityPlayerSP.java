@@ -507,9 +507,9 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
     public void removeRecipeHighlight(IRecipe p_193103_1_)
     {
-        if (this.recipeBook.isRecipeUnseen(p_193103_1_))
+        if (this.recipeBook.isNew(p_193103_1_))
         {
-            this.recipeBook.setRecipeSeen(p_193103_1_);
+            this.recipeBook.markSeen(p_193103_1_);
             this.connection.sendPacket(new CPacketRecipeInfo(p_193103_1_));
         }
     }
@@ -986,6 +986,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
         float f = 0.8F;
         boolean flag2 = this.movementInput.moveForward >= 0.8F;
         this.movementInput.updatePlayerMoveState();
+        net.minecraftforge.client.ForgeHooksClient.onInputUpdate(this, this.movementInput);
         this.mc.getTutorial().handleMovement(this.movementInput);
 
         if (this.isHandActive() && !this.isRiding())
@@ -1031,7 +1032,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
             this.setSprinting(true);
         }
 
-        if (this.isSprinting() && (this.movementInput.moveForward < 0.8F || this.isCollidedHorizontally || !flag4))
+        if (this.isSprinting() && (this.movementInput.moveForward < 0.8F || this.collidedHorizontally || !flag4))
         {
             this.setSprinting(false);
         }

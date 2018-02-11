@@ -69,7 +69,7 @@ public class EntityAIFollowGolem extends EntityAIBase
     {
         this.takeGolemRoseTick = this.villager.getRNG().nextInt(320);
         this.tookGolemRose = false;
-        this.ironGolem.getNavigator().clearPathEntity();
+        this.ironGolem.getNavigator().clearPath();
     }
 
     /**
@@ -78,7 +78,7 @@ public class EntityAIFollowGolem extends EntityAIBase
     public void resetTask()
     {
         this.ironGolem = null;
-        this.villager.getNavigator().clearPathEntity();
+        this.villager.getNavigator().clearPath();
     }
 
     /**
@@ -94,10 +94,10 @@ public class EntityAIFollowGolem extends EntityAIBase
             this.tookGolemRose = true;
         }
 
-        if (this.tookGolemRose && this.villager.getDistanceSqToEntity(this.ironGolem) < 4.0D)
+        if (this.tookGolemRose && this.villager.getDistanceSq(this.ironGolem) < 4.0D)
         {
             this.ironGolem.setHoldingRose(false);
-            this.villager.getNavigator().clearPathEntity();
+            this.villager.getNavigator().clearPath();
         }
     }
 }

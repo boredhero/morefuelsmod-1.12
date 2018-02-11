@@ -268,6 +268,9 @@ public class BlockDoor extends Block
         return state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER ? Items.AIR : this.getItem();
     }
 
+    /**
+     * Checks if this block can be placed exactly at the given position.
+     */
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         if (pos.getY() >= worldIn.getHeight() - 1)
@@ -489,7 +492,16 @@ public class BlockDoor extends Block
         return new BlockStateContainer(this, new IProperty[] {HALF, FACING, OPEN, HINGE, POWERED});
     }
 
-    public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
+    /**
+     * Get the geometry of the queried face at the given position and state. This is used to decide whether things like
+     * buttons are allowed to be placed on the face, or how glass panes connect to the face, among other things.
+     * <p>
+     * Common values are {@code SOLID}, which is the default, and {@code UNDEFINED}, which represents something that
+     * does not fit the other descriptions and will generally cause other things not to connect to the face.
+     * 
+     * @return an approximation of the form of the given face
+     */
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
     {
         return BlockFaceShape.UNDEFINED;
     }

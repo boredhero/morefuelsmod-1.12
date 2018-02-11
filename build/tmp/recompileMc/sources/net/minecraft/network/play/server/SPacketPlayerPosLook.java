@@ -106,6 +106,10 @@ public class SPacketPlayerPosLook implements Packet<INetHandlerPlayClient>
         return this.teleportId;
     }
 
+    /**
+     * Returns a set of which fields are relative. Items in this set indicate that the value is a relative change
+     * applied to the player's position, rather than an exact value.
+     */
     @SideOnly(Side.CLIENT)
     public Set<SPacketPlayerPosLook.EnumFlags> getFlags()
     {
@@ -122,9 +126,9 @@ public class SPacketPlayerPosLook implements Packet<INetHandlerPlayClient>
 
         private final int bit;
 
-        private EnumFlags(int p_i46690_3_)
+        private EnumFlags(int bitIn)
         {
-            this.bit = p_i46690_3_;
+            this.bit = bitIn;
         }
 
         private int getMask()
@@ -132,9 +136,12 @@ public class SPacketPlayerPosLook implements Packet<INetHandlerPlayClient>
             return 1 << this.bit;
         }
 
-        private boolean isSet(int p_187043_1_)
+        /**
+         * Checks if this flag is set within the given set of flags.
+         */
+        private boolean isSet(int flags)
         {
-            return (p_187043_1_ & this.getMask()) == this.getMask();
+            return (flags & this.getMask()) == this.getMask();
         }
 
         public static Set<SPacketPlayerPosLook.EnumFlags> unpack(int flags)

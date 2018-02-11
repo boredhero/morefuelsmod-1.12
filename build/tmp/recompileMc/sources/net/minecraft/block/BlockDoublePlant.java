@@ -57,6 +57,9 @@ public class BlockDoublePlant extends BlockBush implements IGrowable, net.minecr
         }
     }
 
+    /**
+     * Checks if this block can be placed exactly at the given position.
+     */
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         return super.canPlaceBlockAt(worldIn, pos) && worldIn.isAirBlock(pos.up());

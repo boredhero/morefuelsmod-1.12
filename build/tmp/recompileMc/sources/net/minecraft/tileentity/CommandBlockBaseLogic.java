@@ -269,7 +269,7 @@ public abstract class CommandBlockBaseLogic implements ICommandSender
     public abstract int getCommandBlockType();
 
     /**
-     * Fills in information about the command block for the packet. X/Y/Z for the minecart version, and entityId for the
+     * Fills in information about the command block for the packet. entityId for the minecart version, and X/Y/Z for the
      * traditional version
      */
     @SideOnly(Side.CLIENT)

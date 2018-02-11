@@ -441,7 +441,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
         if (p_191984_1_.getPurpose() == CPacketRecipeInfo.Purpose.SHOWN)
         {
-            this.player.getRecipeBook().setRecipeSeen(p_191984_1_.getRecipe());
+            this.player.getRecipeBook().markSeen(p_191984_1_.getRecipe());
         }
         else if (p_191984_1_.getPurpose() == CPacketRecipeInfo.Purpose.SETTINGS)
         {
@@ -699,7 +699,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                 double d2 = this.player.posZ - ((double)blockpos.getZ() + 0.5D);
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 
-                double dist = player.interactionManager.getBlockReachDistance() + 1;
+                double dist = player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).getAttributeValue() + 1;
                 dist *= dist;
 
                 if (d3 > dist)
@@ -760,7 +760,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
 
         if (blockpos.getY() < this.serverController.getBuildLimit() - 1 || enumfacing != EnumFacing.UP && blockpos.getY() < this.serverController.getBuildLimit())
         {
-            double dist = player.interactionManager.getBlockReachDistance() + 3;
+            double dist = player.getEntityAttribute(EntityPlayer.REACH_DISTANCE).getAttributeValue() + 3;
             dist *= dist;
             if (this.targetPos == null && this.player.getDistanceSq((double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.5D, (double)blockpos.getZ() + 0.5D) < dist && !this.serverController.isBlockProtected(worldserver, blockpos, this.player) && worldserver.getWorldBorder().contains(blockpos))
             {
@@ -1113,7 +1113,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                 d0 = 9.0D;
             }
 
-            if (this.player.getDistanceSqToEntity(entity) < d0)
+            if (this.player.getDistanceSq(entity) < d0)
             {
                 if (packetIn.getAction() == CPacketUseEntity.Action.INTERACT)
                 {

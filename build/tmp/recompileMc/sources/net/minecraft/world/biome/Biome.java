@@ -249,18 +249,19 @@ public abstract class Biome extends net.minecraftforge.registries.IForgeRegistry
     }
 
     /**
-     * Gets a floating point representation of this biome's temperature
+     * Gets the current temperature at the given location, based off of the default for this biome, the elevation of the
+     * position, and {@linkplain #TEMPERATURE_NOISE} some random perlin noise.
      */
-    public final float getFloatTemperature(BlockPos pos)
+    public final float getTemperature(BlockPos pos)
     {
         if (pos.getY() > 64)
         {
             float f = (float)(TEMPERATURE_NOISE.getValue((double)((float)pos.getX() / 8.0F), (double)((float)pos.getZ() / 8.0F)) * 4.0D);
-            return this.getTemperature() - (f + (float)pos.getY() - 64.0F) * 0.05F / 30.0F;
+            return this.getDefaultTemperature() - (f + (float)pos.getY() - 64.0F) * 0.05F / 30.0F;
         }
         else
         {
-            return this.getTemperature();
+            return this.getDefaultTemperature();
         }
     }
 
@@ -277,7 +278,7 @@ public abstract class Biome extends net.minecraftforge.registries.IForgeRegistry
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos)
     {
-        double d0 = (double)MathHelper.clamp(this.getFloatTemperature(pos), 0.0F, 1.0F);
+        double d0 = (double)MathHelper.clamp(this.getTemperature(pos), 0.0F, 1.0F);
         double d1 = (double)MathHelper.clamp(this.getRainfall(), 0.0F, 1.0F);
         return getModdedBiomeGrassColor(ColorizerGrass.getGrassColor(d0, d1));
     }
@@ -334,7 +335,7 @@ public abstract class Biome extends net.minecraftforge.registries.IForgeRegistry
 
                         if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR))
                         {
-                            if (this.getFloatTemperature(blockpos$mutableblockpos.setPos(x, j1, z)) < 0.15F)
+                            if (this.getTemperature(blockpos$mutableblockpos.setPos(x, j1, z)) < 0.15F)
                             {
                                 iblockstate = ICE;
                             }
@@ -380,7 +381,7 @@ public abstract class Biome extends net.minecraftforge.registries.IForgeRegistry
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos)
     {
-        double d0 = (double)MathHelper.clamp(this.getFloatTemperature(pos), 0.0F, 1.0F);
+        double d0 = (double)MathHelper.clamp(this.getTemperature(pos), 0.0F, 1.0F);
         double d1 = (double)MathHelper.clamp(this.getRainfall(), 0.0F, 1.0F);
         return getModdedBiomeFoliageColor(ColorizerFoliage.getFoliageColor(d0, d1));
     }
@@ -392,13 +393,13 @@ public abstract class Biome extends net.minecraftforge.registries.IForgeRegistry
 
     public Biome.TempCategory getTempCategory()
     {
-        if ((double)this.getTemperature() < 0.2D)
+        if ((double)this.getDefaultTemperature() < 0.2D)
         {
             return Biome.TempCategory.COLD;
         }
         else
         {
-            return (double)this.getTemperature() < 1.0D ? Biome.TempCategory.MEDIUM : Biome.TempCategory.WARM;
+            return (double)this.getDefaultTemperature() < 1.0D ? Biome.TempCategory.MEDIUM : Biome.TempCategory.WARM;
         }
     }
 
@@ -446,7 +447,10 @@ public abstract class Biome extends net.minecraftforge.registries.IForgeRegistry
         return this.heightVariation;
     }
 
-    public final float getTemperature()
+    /**
+     * Gets the constant default temperature for this biome.
+     */
+    public final float getDefaultTemperature()
     {
         return this.temperature;
     }
@@ -526,6 +530,7 @@ public abstract class Biome extends net.minecraftforge.registries.IForgeRegistry
 
     public void plantFlower(World world, Random rand, BlockPos pos)
     {
+        if (flowers.isEmpty()) return;
         FlowerEntry flower = (FlowerEntry)WeightedRandom.getRandomItem(rand, flowers);
         if (flower == null || flower.state == null ||
             (flower.state.getBlock() instanceof net.minecraft.block.BlockBush &&
@@ -700,7 +705,7 @@ public abstract class Biome extends net.minecraftforge.registries.IForgeRegistry
             public Class <? extends EntityLiving > entityClass;
             public int minGroupCount;
             public int maxGroupCount;
-            private final java.lang.reflect.Constructor<?> ctr;
+            private final java.lang.reflect.Constructor<? extends EntityLiving> ctr;
 
             public SpawnListEntry(Class <? extends EntityLiving > entityclassIn, int weight, int groupCountMin, int groupCountMax)
             {
@@ -709,16 +714,14 @@ public abstract class Biome extends net.minecraftforge.registries.IForgeRegistry
                 this.minGroupCount = groupCountMin;
                 this.maxGroupCount = groupCountMax;
 
-                java.lang.reflect.Constructor<?> tmp = null;
                 try
                 {
-                    tmp = entityclassIn.getConstructor(World.class);
+                    ctr = entityclassIn.getConstructor(World.class);
                 }
                 catch (NoSuchMethodException e)
                 {
-                    com.google.common.base.Throwables.propagate(e);
+                    throw new RuntimeException(e);
                 }
-                ctr = tmp;
             }
 
             public String toString()
@@ -728,7 +731,7 @@ public abstract class Biome extends net.minecraftforge.registries.IForgeRegistry
 
             public EntityLiving newInstance(World world) throws Exception
             {
-                return (EntityLiving)ctr.newInstance(world);
+                return ctr.newInstance(world);
             }
         }
 

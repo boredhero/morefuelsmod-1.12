@@ -33,7 +33,7 @@ public class ItemHoe extends Item
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
         this.setCreativeTab(CreativeTabs.TOOLS);
-        this.speed = material.getDamageVsEntity() + 1.0F;
+        this.speed = material.getAttackDamage() + 1.0F;
     }
 
     /**

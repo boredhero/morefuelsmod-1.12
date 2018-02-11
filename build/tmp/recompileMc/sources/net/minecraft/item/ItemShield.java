@@ -86,6 +86,9 @@ public class ItemShield extends Item
 
     /**
      * Return whether this item is repairable in an anvil.
+     *  
+     * @param toRepair the {@code ItemStack} being repaired
+     * @param repair the {@code ItemStack} being used to perform the repair
      */
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {

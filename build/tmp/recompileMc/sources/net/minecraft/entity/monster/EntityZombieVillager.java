@@ -37,6 +37,10 @@ public class EntityZombieVillager extends EntityZombie
     private static final DataParameter<Integer> PROFESSION = EntityDataManager.<Integer>createKey(EntityZombieVillager.class, DataSerializers.VARINT);
     /** Ticker used to determine the time remaining for this zombie to convert into a villager when cured. */
     private int conversionTime;
+    /**
+     * The entity that started the conversion, used for the {@link CriteriaTriggers#CURED_ZOMBIE_VILLAGER} advancement
+     * criteria
+     */
     private UUID converstionStarter;
 
     public EntityZombieVillager(World worldIn)
@@ -175,13 +179,19 @@ public class EntityZombieVillager extends EntityZombie
         return ((Boolean)this.getDataManager().get(CONVERTING)).booleanValue();
     }
 
-    protected void startConverting(@Nullable UUID p_191991_1_, int p_191991_2_)
+    /**
+     * Starts conversion of this zombie villager to a villager
+     *  
+     * @param conversionStarterIn The entity that started the conversion's UUID
+     * @param conversionTimeIn The time that it will take to finish conversion
+     */
+    protected void startConverting(@Nullable UUID conversionStarterIn, int conversionTimeIn)
     {
-        this.converstionStarter = p_191991_1_;
-        this.conversionTime = p_191991_2_;
+        this.converstionStarter = conversionStarterIn;
+        this.conversionTime = conversionTimeIn;
         this.getDataManager().set(CONVERTING, Boolean.valueOf(true));
         this.removePotionEffect(MobEffects.WEAKNESS);
-        this.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, p_191991_2_, Math.min(this.world.getDifficulty().getDifficultyId() - 1, 0)));
+        this.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, conversionTimeIn, Math.min(this.world.getDifficulty().getDifficultyId() - 1, 0)));
         this.world.setEntityState(this, (byte)16);
     }
 
@@ -289,7 +299,7 @@ public class EntityZombieVillager extends EntityZombie
         return SoundEvents.ENTITY_ZOMBIE_VILLAGER_AMBIENT;
     }
 
-    public SoundEvent getHurtSound(DamageSource p_184601_1_)
+    public SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_ZOMBIE_VILLAGER_HURT;
     }

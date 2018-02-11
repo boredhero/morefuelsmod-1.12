@@ -17,27 +17,27 @@ public class ParticleRedstone extends Particle
         this(worldIn, xCoordIn, yCoordIn, zCoordIn, 1.0F, p_i46349_8_, p_i46349_9_, p_i46349_10_);
     }
 
-    protected ParticleRedstone(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, float p_i46350_8_, float p_i46350_9_, float p_i46350_10_, float p_i46350_11_)
+    protected ParticleRedstone(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, float scale, float red, float green, float blue)
     {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, 0.0D, 0.0D, 0.0D);
         this.motionX *= 0.10000000149011612D;
         this.motionY *= 0.10000000149011612D;
         this.motionZ *= 0.10000000149011612D;
 
-        if (p_i46350_9_ == 0.0F)
+        if (red == 0.0F)
         {
-            p_i46350_9_ = 1.0F;
+            red = 1.0F;
         }
 
         float f = (float)Math.random() * 0.4F + 0.6F;
-        this.particleRed = ((float)(Math.random() * 0.20000000298023224D) + 0.8F) * p_i46350_9_ * f;
-        this.particleGreen = ((float)(Math.random() * 0.20000000298023224D) + 0.8F) * p_i46350_10_ * f;
-        this.particleBlue = ((float)(Math.random() * 0.20000000298023224D) + 0.8F) * p_i46350_11_ * f;
+        this.particleRed = ((float)(Math.random() * 0.20000000298023224D) + 0.8F) * red * f;
+        this.particleGreen = ((float)(Math.random() * 0.20000000298023224D) + 0.8F) * green * f;
+        this.particleBlue = ((float)(Math.random() * 0.20000000298023224D) + 0.8F) * blue * f;
         this.particleScale *= 0.75F;
-        this.particleScale *= p_i46350_8_;
+        this.particleScale *= scale;
         this.reddustParticleScale = this.particleScale;
         this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
-        this.particleMaxAge = (int)((float)this.particleMaxAge * p_i46350_8_);
+        this.particleMaxAge = (int)((float)this.particleMaxAge * scale);
     }
 
     /**

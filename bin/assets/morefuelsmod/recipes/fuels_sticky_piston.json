@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:sticky_piston"
+		},
+		"B": {
+			"item": "minecraft:sticky_piston"
+		},
+		"C": {
+			"item": "minecraft:sticky_piston"
+		},
+		"D": {
+			"item": "minecraft:sticky_piston"
+		},
+		"E": {
+			"item": "minecraft:sticky_piston"
+		},
+		"F": {
+			"item": "minecraft:sticky_piston"
+		},
+		"G": {
+			"item": "minecraft:sticky_piston"
+		},
+		"H": {
+			"item": "minecraft:sticky_piston"
+		},
+		"I": {
+			"item": "minecraft:sticky_piston"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":10
+	}
+}

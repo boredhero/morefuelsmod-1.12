@@ -148,7 +148,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
         return SoundEvents.ENTITY_WITHER_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_WITHER_HURT;
     }
@@ -315,7 +315,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
                     {
                         Entity entity = this.world.getEntityByID(k1);
 
-                        if (entity != null && entity.isEntityAlive() && this.getDistanceSqToEntity(entity) <= 900.0D && this.canEntityBeSeen(entity))
+                        if (entity != null && entity.isEntityAlive() && this.getDistanceSq(entity) <= 900.0D && this.canEntityBeSeen(entity))
                         {
                             if (entity instanceof EntityPlayer && ((EntityPlayer)entity).capabilities.disableDamage)
                             {

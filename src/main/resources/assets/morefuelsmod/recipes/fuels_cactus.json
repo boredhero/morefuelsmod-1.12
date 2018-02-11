@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:cactus"
+		},
+		"B": {
+			"item": "minecraft:cactus"
+		},
+		"C": {
+			"item": "minecraft:cactus"
+		},
+		"D": {
+			"item": "minecraft:cactus"
+		},
+		"E": {
+			"item": "minecraft:cactus"
+		},
+		"F": {
+			"item": "minecraft:cactus"
+		},
+		"G": {
+			"item": "minecraft:cactus"
+		},
+		"H": {
+			"item": "minecraft:cactus"
+		},
+		"I": {
+			"item": "minecraft:cactus"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":3
+	}
+}

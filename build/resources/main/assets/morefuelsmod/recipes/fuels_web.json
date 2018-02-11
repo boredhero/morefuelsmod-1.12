@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:web"
+		},
+		"B": {
+			"item": "minecraft:web"
+		},
+		"C": {
+			"item": "minecraft:web"
+		},
+		"D": {
+			"item": "minecraft:web"
+		},
+		"E": {
+			"item": "minecraft:web"
+		},
+		"F": {
+			"item": "minecraft:web"
+		},
+		"G": {
+			"item": "minecraft:web"
+		},
+		"H": {
+			"item": "minecraft:web"
+		},
+		"I": {
+			"item": "minecraft:web"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":2
+	}
+}

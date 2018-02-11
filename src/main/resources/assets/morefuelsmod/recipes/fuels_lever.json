@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:lever"
+		},
+		"B": {
+			"item": "minecraft:lever"
+		},
+		"C": {
+			"item": "minecraft:lever"
+		},
+		"D": {
+			"item": "minecraft:lever"
+		},
+		"E": {
+			"item": "minecraft:lever"
+		},
+		"F": {
+			"item": "minecraft:lever"
+		},
+		"G": {
+			"item": "minecraft:lever"
+		},
+		"H": {
+			"item": "minecraft:lever"
+		},
+		"I": {
+			"item": "minecraft:lever"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel"
+	}
+}

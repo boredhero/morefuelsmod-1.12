@@ -76,12 +76,25 @@ public class Advancement
         return new Advancement.Builder(this.parent == null ? null : this.parent.getId(), this.display, this.rewards, this.criteria, this.requirements);
     }
 
+    /**
+     * Get the {@code Advancement} that is this {@code Advancement}'s parent. This determines the tree structure that
+     * appears in the {@linkplain GuiScreenAdvancements GUI}.
+     * 
+     * @return the parent {@code Advancement} of this {@code Advancement}, or {@code null} to signify that this {@code
+     * Advancement} is a root with no parent.
+     */
     @Nullable
     public Advancement getParent()
     {
         return this.parent;
     }
 
+    /**
+     * Get information that defines this {@code Advancement}'s appearance in GUIs.
+     * 
+     * @return information that defines this {@code Advancement}'s appearance in GUIs. If {@code null}, signifies an
+     * invisible {@code Advancement}.
+     */
     @Nullable
     public DisplayInfo getDisplay()
     {
@@ -98,27 +111,56 @@ public class Advancement
         return "SimpleAdvancement{id=" + this.getId() + ", parent=" + (this.parent == null ? "null" : this.parent.getId()) + ", display=" + this.display + ", rewards=" + this.rewards + ", criteria=" + this.criteria + ", requirements=" + Arrays.deepToString(this.requirements) + '}';
     }
 
+    /**
+     * Get the children of this {@code Advancement}.
+     * 
+     * @return an {@code Iterable} of this {@code Advancement}'s children.
+     * @see #getParent()
+     */
     public Iterable<Advancement> getChildren()
     {
         return this.children;
     }
 
+    /**
+     * Get the {@link Criterion Criteria} used to decide the completion of this {@code Advancement}. Each key-value pair
+     * consists of a {@code Criterion} and its name.
+     * 
+     * @return the criteria used to decide the completion of this {@code Advancement}
+     * @see #getRequirements()
+     */
     public Map<String, Criterion> getCriteria()
     {
         return this.criteria;
     }
 
+    /**
+     * Get how many requirements this {@code Advancement} has.
+     * 
+     * @return {@code this.getRequirements().length}
+     * @see #getRequirements()
+     */
     @SideOnly(Side.CLIENT)
     public int getRequirementCount()
     {
         return this.requirements.length;
     }
 
+    /**
+     * Add the given {@code Advancement} as a child of this {@code Advancement}.
+     * 
+     * @see #getParent()
+     */
     public void addChild(Advancement advancementIn)
     {
         this.children.add(advancementIn);
     }
 
+    /**
+     * Get this {@code Advancement}'s unique identifier.
+     * 
+     * @return this {@code Advancement}'s unique identifier
+     */
     public ResourceLocation getId()
     {
         return this.id;
@@ -151,6 +193,16 @@ public class Advancement
         return this.requirements;
     }
 
+    /**
+     * Returns the {@code ITextComponent} that is shown in the chat message sent after this {@code Advancement} is
+     * completed.
+     * 
+     * @return the {@code ITextComponent} that is shown in the chat message sent after this {@code Advancement} is
+     * completed. If this {@code Advancement} is {@linkplain #getDisplay() invisible}, then it consists simply of {@link
+     * #getId()}. Otherwise, it is the {@linkplain DisplayInfo#getTitle() title} inside square brackets, colored by the
+     * {@linkplain net.minecraft.advancements.FrameType#getFormat frame type}, and hovering over it shows the
+     * {@linkplain DisplayInfo#getDescription() description}.
+     */
     public ITextComponent getDisplayText()
     {
         return this.displayText;

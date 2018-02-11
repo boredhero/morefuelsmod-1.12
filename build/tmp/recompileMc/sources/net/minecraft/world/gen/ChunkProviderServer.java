@@ -36,7 +36,7 @@ public class ChunkProviderServer implements IChunkProvider
     /** map of chunk Id's to Chunk instances */
     public final Long2ObjectMap<Chunk> id2ChunkMap = new Long2ObjectOpenHashMap<Chunk>(8192);
     public final WorldServer world;
-    private Set<Long> loadingChunks = com.google.common.collect.Sets.newHashSet();
+    private final Set<Long> loadingChunks = com.google.common.collect.Sets.newHashSet();
 
     public ChunkProviderServer(WorldServer worldObjIn, IChunkLoader chunkLoaderIn, IChunkGenerator chunkGeneratorIn)
     {
@@ -102,7 +102,7 @@ public class ChunkProviderServer implements IChunkProvider
     }
 
     @Nullable
-    public Chunk loadChunk(int x, int z, Runnable runnable)
+    public Chunk loadChunk(int x, int z, @Nullable Runnable runnable)
     {
         Chunk chunk = this.getLoadedChunk(x, z);
         if (chunk == null)
@@ -126,7 +126,7 @@ public class ChunkProviderServer implements IChunkProvider
             else
             {
                 net.minecraft.world.chunk.storage.AnvilChunkLoader loader = (net.minecraft.world.chunk.storage.AnvilChunkLoader) this.chunkLoader;
-                if (runnable == null)
+                if (runnable == null || !net.minecraftforge.common.ForgeChunkManager.asyncChunkLoading)
                     chunk = net.minecraftforge.common.chunkio.ChunkIOExecutor.syncChunkLoad(this.world, loader, this, x, z);
                 else if (loader.isChunkGeneratedAt(x, z))
                 {

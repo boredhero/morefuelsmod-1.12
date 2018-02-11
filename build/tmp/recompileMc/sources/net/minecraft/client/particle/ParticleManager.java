@@ -47,7 +47,7 @@ public class ParticleManager
     /** RNG. */
     private final Random rand = new Random();
     private final Map<Integer, IParticleFactory> particleTypes = Maps.<Integer, IParticleFactory>newHashMap();
-    private final Queue<Particle> queueEntityFX = Queues.<Particle>newArrayDeque();
+    private final Queue<Particle> queue = Queues.<Particle>newArrayDeque();
 
     public ParticleManager(World worldIn, TextureManager rendererIn)
     {
@@ -159,7 +159,7 @@ public class ParticleManager
     public void addEffect(Particle effect)
     {
         if (effect == null) return; //Forge: Prevent modders from being bad and adding nulls causing untraceable NPEs.
-        this.queueEntityFX.add(effect);
+        this.queue.add(effect);
     }
 
     public void updateEffects()
@@ -186,9 +186,9 @@ public class ParticleManager
             this.particleEmitters.removeAll(list);
         }
 
-        if (!this.queueEntityFX.isEmpty())
+        if (!this.queue.isEmpty())
         {
-            for (Particle particle = this.queueEntityFX.poll(); particle != null; particle = this.queueEntityFX.poll())
+            for (Particle particle = this.queue.poll(); particle != null; particle = this.queue.poll())
             {
                 int j = particle.getFXLayer();
                 int k = particle.shouldDisableDepth() ? 0 : 1;

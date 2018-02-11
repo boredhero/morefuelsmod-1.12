@@ -33,11 +33,11 @@ public class DebugRendererPathfinding implements DebugRenderer.IDebugRenderer
         this.minecraft = minecraftIn;
     }
 
-    public void addPath(int p_188289_1_, Path p_188289_2_, float p_188289_3_)
+    public void addPath(int eid, Path pathIn, float distance)
     {
-        this.pathMap.put(Integer.valueOf(p_188289_1_), p_188289_2_);
-        this.creationMap.put(Integer.valueOf(p_188289_1_), Long.valueOf(System.currentTimeMillis()));
-        this.pathMaxDistance.put(Integer.valueOf(p_188289_1_), Float.valueOf(p_188289_3_));
+        this.pathMap.put(Integer.valueOf(eid), pathIn);
+        this.creationMap.put(Integer.valueOf(eid), Long.valueOf(System.currentTimeMillis()));
+        this.pathMaxDistance.put(Integer.valueOf(eid), Float.valueOf(distance));
     }
 
     public void render(float partialTicks, long finishTimeNano)
@@ -130,19 +130,19 @@ public class DebugRendererPathfinding implements DebugRenderer.IDebugRenderer
         }
     }
 
-    public void renderPathLine(float finishTimeNano, Path p_190067_2_)
+    public void renderPathLine(float finishTimeNano, Path pathIn)
     {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();
         bufferbuilder.begin(3, DefaultVertexFormats.POSITION_COLOR);
 
-        for (int i = 0; i < p_190067_2_.getCurrentPathLength(); ++i)
+        for (int i = 0; i < pathIn.getCurrentPathLength(); ++i)
         {
-            PathPoint pathpoint = p_190067_2_.getPathPointFromIndex(i);
+            PathPoint pathpoint = pathIn.getPathPointFromIndex(i);
 
             if (this.addDistanceToPlayer(pathpoint) <= 40.0F)
             {
-                float f = (float)i / (float)p_190067_2_.getCurrentPathLength() * 0.33F;
+                float f = (float)i / (float)pathIn.getCurrentPathLength() * 0.33F;
                 int j = i == 0 ? 0 : MathHelper.hsvToRGB(f, 0.9F, 0.9F);
                 int k = j >> 16 & 255;
                 int l = j >> 8 & 255;

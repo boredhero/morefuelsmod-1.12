@@ -43,13 +43,13 @@ public class GuiControls extends GuiScreen
 
         for (GameSettings.Options gamesettings$options : OPTIONS_ARR)
         {
-            if (gamesettings$options.getEnumFloat())
+            if (gamesettings$options.isFloat())
             {
-                this.buttonList.add(new GuiOptionSlider(gamesettings$options.returnEnumOrdinal(), this.width / 2 - 155 + i % 2 * 160, 18 + 24 * (i >> 1), gamesettings$options));
+                this.buttonList.add(new GuiOptionSlider(gamesettings$options.getOrdinal(), this.width / 2 - 155 + i % 2 * 160, 18 + 24 * (i >> 1), gamesettings$options));
             }
             else
             {
-                this.buttonList.add(new GuiOptionButton(gamesettings$options.returnEnumOrdinal(), this.width / 2 - 155 + i % 2 * 160, 18 + 24 * (i >> 1), gamesettings$options, this.options.getKeyBinding(gamesettings$options)));
+                this.buttonList.add(new GuiOptionButton(gamesettings$options.getOrdinal(), this.width / 2 - 155 + i % 2 * 160, 18 + 24 * (i >> 1), gamesettings$options, this.options.getKeyBinding(gamesettings$options)));
             }
 
             ++i;
@@ -85,8 +85,8 @@ public class GuiControls extends GuiScreen
         }
         else if (button.id < 100 && button instanceof GuiOptionButton)
         {
-            this.options.setOptionValue(((GuiOptionButton)button).returnEnumOptions(), 1);
-            button.displayString = this.options.getKeyBinding(GameSettings.Options.getEnumOptions(button.id));
+            this.options.setOptionValue(((GuiOptionButton)button).getOption(), 1);
+            button.displayString = this.options.getKeyBinding(GameSettings.Options.byOrdinal(button.id));
         }
     }
 

@@ -62,7 +62,7 @@ public class EntityDragonFireball extends EntityFireball
                 {
                     for (EntityLivingBase entitylivingbase : list)
                     {
-                        double d0 = this.getDistanceSqToEntity(entitylivingbase);
+                        double d0 = this.getDistanceSq(entitylivingbase);
 
                         if (d0 < 16.0D)
                         {

@@ -1,0 +1,40 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ABC",
+		"DEF",
+		"GHI"
+	],
+	"key": {
+		"A": {
+			"item": "minecraft:spawn_egg"
+		},
+		"B": {
+			"item": "minecraft:spawn_egg"
+		},
+		"C": {
+			"item": "minecraft:spawn_egg"
+		},
+		"D": {
+			"item": "minecraft:spawn_egg"
+		},
+		"E": {
+			"item": "minecraft:spawn_egg"
+		},
+		"F": {
+			"item": "minecraft:spawn_egg"
+		},
+		"G": {
+			"item": "minecraft:spawn_egg"
+		},
+		"H": {
+			"item": "minecraft:spawn_egg"
+		},
+		"I": {
+			"item": "minecraft:spawn_egg"
+		}
+	},
+	"result": {
+		"item": "morefuelsmod:pellet_fuel", "count":50
+	}
+}

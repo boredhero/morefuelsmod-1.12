@@ -67,13 +67,13 @@ public class EnchantedItemTrigger implements ICriterionTrigger<EnchantedItemTrig
         return new EnchantedItemTrigger.Instance(itempredicate, minmaxbounds);
     }
 
-    public void trigger(EntityPlayerMP player, ItemStack item, int p_192190_3_)
+    public void trigger(EntityPlayerMP player, ItemStack item, int levelsSpent)
     {
         EnchantedItemTrigger.Listeners enchanteditemtrigger$listeners = this.listeners.get(player.getAdvancements());
 
         if (enchanteditemtrigger$listeners != null)
         {
-            enchanteditemtrigger$listeners.trigger(item, p_192190_3_);
+            enchanteditemtrigger$listeners.trigger(item, levelsSpent);
         }
     }
 
